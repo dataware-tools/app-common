@@ -4,5 +4,6 @@ export const API_CATALOG = {
 
 export const APP_CATALOG = {
   webviz: 'http://webviz.hdwlab.co.jp/',
-  docs: '/docs'
+  docs: '/docs',
+  dataBrowser: '/data_browser'
 }
