@@ -1,9 +1,14 @@
-import { fetchApi, FetchStatus } from './api/ApiUtils'
+import { fetchApi, FetchStatus } from './api/utils'
 import { AUTH_CONFIG } from './auth/config'
-import { APP_CATALOG, API_CATALOG } from './api/ApiConstant'
+import { APP_CATALOG } from './app/catalog'
+import { API_CATALOG } from './api/catalog'
 import HealthCheck from './components/HealthCheck'
 
-export { fetchApi, FetchStatus }
-export { AUTH_CONFIG }
-export { APP_CATALOG, API_CATALOG }
-export { HealthCheck }
+export {
+  fetchApi,
+  FetchStatus,
+  AUTH_CONFIG,
+  APP_CATALOG,
+  API_CATALOG,
+  HealthCheck
+}
