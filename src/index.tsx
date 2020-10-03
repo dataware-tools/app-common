@@ -1,15 +1,7 @@
-import * as React from 'react'
-import styles from './styles.module.css'
 import { fetchApi, FetchStatus } from './api/ApiUtils'
-import { PageWrapper, HierarchicalLink } from './components/Common'
-
-interface Props {
-  text: string
-}
-
-export const ExampleComponent = ({ text }: Props) => {
-  return <div className={styles.test}>Example Component: {text}</div>
-}
+import { AUTH_CONFIG } from './auth/config'
+import { APP_CATALOG, API_CATALOG } from './api/ApiConstant'
 
 export { fetchApi, FetchStatus }
-export { PageWrapper, HierarchicalLink }
+export { AUTH_CONFIG }
+export { APP_CATALOG, API_CATALOG }

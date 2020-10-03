@@ -1,46 +1,55 @@
 import React from 'react'
-
 import { Loader, Message } from 'semantic-ui-react'
-
 import request from 'superagent'
 
 export const fetchApi = (
   q: string,
-  setState = (..._: any[]) => {},
-  callback = () => {},
+  accessToken: string | undefined = undefined,
+  setState = (..._: any) => {},
+  callback = (_: any | undefined) => {},
   query: object = { undefined }
 ) => {
+  setState({
+    res: undefined,
+    isFetchFailed: false,
+    isFetchDone: false,
+    isFetching: true
+  })
   request
     .get(q)
+    .set('Authorization', 'Bearer ' + accessToken || '')
     .query(query)
-    .then((res) => {
+    .then((res: any) => {
       setState(
         {
           res: res.body,
-          is_fetch_failed: false,
-          is_fetch_done: true
+          isFetchFailed: false,
+          isFetchDone: true,
+          isFetching: false
         },
-        callback()
+        callback(res)
       )
     })
-    .catch((err) => {
+    .catch((err: any) => {
       console.error(err)
       setState(
         {
           res:
             err && err.response && err.response.body ? err.response.body : {},
-          is_fetch_failed: true,
-          is_fetch_done: true
+          isFetchFailed: true,
+          isFetchDone: true,
+          isFetching: false
         },
-        callback()
+        callback(undefined)
       )
     })
 }
 
 type FetchStatusProps = {
   res?: any
-  is_fetch_done?: boolean
-  is_fetch_failed?: boolean
+  isFetchDone?: boolean
+  isFetchFailed?: boolean
+  isFetching?: boolean
 }
 
 export const FetchStatus = (props: FetchStatusProps) => {
@@ -54,8 +63,8 @@ export const FetchStatus = (props: FetchStatusProps) => {
 
   return (
     <div>
-      {!props.is_fetch_done && <Loader inline active size='mini' />}
-      {props.is_fetch_done && props.is_fetch_failed && (
+      {props.isFetching && <Loader inline active size='mini' />}
+      {props.isFetchDone && props.isFetchFailed && (
         <Message
           negative
           icon='exclamation triangle'
