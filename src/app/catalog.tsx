@@ -4,20 +4,26 @@ export const APP_CATALOG = {
     icon: 'https://webviz.io/favicon.ico',
     name: 'WebViz',
     description: 'Modern rosbag player',
-    urlPrefix: 'http://webviz.hdwlab.co.jp/'
+    urlPrefix: 'http://webviz.hdwlab.co.jp/',
+    visibility: 'public',
+    location: 'external'
   },
   docs: {
     id: 'data_docs',
     icon: 'book',
     name: 'Documents',
     description: 'Read documents',
-    urlPrefix: 'http://192.168.1.122:32332'
+    urlPrefix: 'http://192.168.1.122:32332',
+    visibility: 'private',
+    location: 'internal'
   },
   dataBrowser: {
     id: 'data_browser',
     icon: 'database',
     name: 'Data browser',
     description: 'Explore data',
-    urlPrefix: '/data-browser'
+    urlPrefix: '/data-browser',
+    visibility: 'private',
+    location: 'internal'
   }
 }
