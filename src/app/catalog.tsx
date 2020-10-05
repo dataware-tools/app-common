@@ -11,7 +11,7 @@ export const APP_CATALOG = {
     icon: 'book',
     name: 'Documents',
     description: 'Read documents',
-    urlPrefix: '/database-docs'
+    urlPrefix: 'http://192.168.1.122:32332'
   },
   dataBrowser: {
     id: 'data_browser',
