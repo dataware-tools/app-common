@@ -11,13 +11,13 @@ export const APP_CATALOG = {
     icon: 'book',
     name: 'Documents',
     description: 'Read documents',
-    urlPrefix: '/database_docs'
+    urlPrefix: '/database-docs'
   },
   dataBrowser: {
     id: 'data_browser',
     icon: 'database',
     name: 'Data browser',
     description: 'Explore data',
-    urlPrefix: '/data_browser',
+    urlPrefix: '/data-browser'
   }
 }
