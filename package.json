@@ -19,7 +19,8 @@
     "test:build": "NODE_OPTIONS=\"--max-old-space-size=4096\" run-s build",
     "test:lint": "eslint .",
     "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
-    "test:watch": "react-scripts test --env=jsdom"
+    "test:watch": "react-scripts test --env=jsdom",
+    "postinstall": "[[ ! -d dist ]] && npm run build"
   },
   "peerDependencies": {
     "react": "^16.0.0",
