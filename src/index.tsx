@@ -1,8 +1,8 @@
 import { fetchApi, FetchStatus, postApi, PostStatus } from './api/utils'
 import { AUTH_CONFIG } from './auth/config'
-import { APP_CATALOG } from './app/catalog'
-import { API_CATALOG } from './api/catalog'
 import HealthCheck from './components/HealthCheck'
+const API_CATALOG = require('./catalog/api.json')
+const APP_CATALOG = require('./catalog/app.json')
 
 export {
   fetchApi,

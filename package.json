@@ -14,12 +14,13 @@
   "scripts": {
     "build": "NODE_OPTIONS=\"--max-old-space-size=4096\" microbundle-crl --no-compress --format modern,cjs",
     "start": "NODE_OPTIONS=\"--max-old-space-size=4096\" microbundle-crl watch --no-compress --format modern,cjs",
-    "prepare": "NODE_OPTIONS=\"--max-old-space-size=4096\" run-s build",
+    "prepare": "NODE_OPTIONS=\"--max-old-space-size=4096\" run-s download:catalog build",
     "test": "NODE_OPTIONS=\"--max-old-space-size=4096\" run-s test:unit test:lint test:build",
     "test:build": "NODE_OPTIONS=\"--max-old-space-size=4096\" run-s build",
     "test:lint": "eslint .",
     "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
-    "test:watch": "react-scripts test --env=jsdom"
+    "test:watch": "react-scripts test --env=jsdom",
+    "download:catalog": "./bin/download_catalog.sh"
   },
   "peerDependencies": {
     "react": "^16.0.0",
