@@ -4,8 +4,10 @@
 #
 
 set -e
+set -x
 
-DIR=$(cd $(dirname ${BASH_SOURCE:-$0}); pwd)
+DIR=${C_D}
+[[ -z "${DIR}" ]] && DIR=$(cd $(dirname ${BASH_SOURCE:-$0}); pwd)
 
 function getFile() {
   set -e
@@ -31,11 +33,11 @@ do
   apiSchema=${line#*:}
   [[ ${apiSchema} =~ null ]] && continue
   echo "Generating OpenAPI client for API: ${apiName} (Schema: ${apiSchema})"
-  workdir=${DIR}/../dist/openapi/${apiName}
-  [[ ! -d ${workdir} ]] && mkdir -p ${workdir}
-  getFile ${apiSchema} > ${workdir}/schema.yaml
+  outdir=${DIR}/../dist/openapi/${apiName}
+  [[ ! -d ${outdir} ]] && mkdir -p ${outdir}
+  getFile ${apiSchema} > ${outdir}/schema.yaml
   docker run --rm \
-    -v $workdir:/local openapitools/openapi-generator-cli generate \
+    -v $outdir:/local openapitools/openapi-generator-cli generate \
     -i /local/schema.yaml \
     -g typescript \
     -o /local/client
