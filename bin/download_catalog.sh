@@ -21,10 +21,10 @@ function getCatalog() {
 }
 
 # Default parameters
-#DEFAULT_API_CATALOG=https://raw.githubusercontent.com/dataware-tools/catalog/master/api.json
-#DEFAULT_APP_CATALOG=https://raw.githubusercontent.com/dataware-tools/catalog/master/app.json
-DEFAULT_API_CATALOG=git@github.com:dataware-tools/catalog.git/api.json
-DEFAULT_APP_CATALOG=git@github.com:dataware-tools/catalog.git/app.json
+#DEFAULT_API_CATALOG=https://raw.githubusercontent.com/dataware-tools/protocols/master/catalogs/api.json
+#DEFAULT_APP_CATALOG=https://raw.githubusercontent.com/dataware-tools/protocols/master/catalogs/app.json
+DEFAULT_API_CATALOG=git@github.com:dataware-tools/protocols.git/catalogs/api.json
+DEFAULT_APP_CATALOG=git@github.com:dataware-tools/protocols.git/catalogs/app.json
 
 # Set the default parameters if not specified
 [[ -z "${API_CATALOG}" ]] && echo "Setting API_CATALOG to ${DEFAULT_API_CATALOG}" && API_CATALOG=${DEFAULT_API_CATALOG}
