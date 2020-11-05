@@ -49,7 +49,7 @@ export const fetchApi = (
       .then((res: any) => {
         setState(
           {
-            res: res.data,
+            res: res.config && res.data ? res.data : res,
             isFetchFailed: false,
             isFetchDone: true,
             isFetching: false

@@ -36,5 +36,5 @@ getCatalog ${APP_CATALOG} > src/catalog/app.json
 getCatalog ${API_CATALOG} > src/catalog/api.json
 
 [[ ! -d dist/catalog ]] && mkdir -p dist/catalog
-getCatalog ${APP_CATALOG} > dist/catalog/app.json
-getCatalog ${API_CATALOG} > dist/catalog/api.json
+cat src/catalog/app.json > dist/catalog/app.json
+cat src/catalog/api.json > dist/catalog/api.json
