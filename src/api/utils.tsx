@@ -151,7 +151,7 @@ export const postApi = (
       .then((res: any) => {
         setState(
           {
-            res: res.data,
+            res: res.config && res.data ? res.data : res,
             isPostFailed: false,
             isPostDone: true,
             isPosting: false
