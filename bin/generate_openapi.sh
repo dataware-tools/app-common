@@ -42,10 +42,11 @@ do
   outdir=${apidir}/${apiName}
   [[ ! -d ${outdir} ]] && mkdir -p ${outdir}
   getFile ${apiSchema} > ${outdir}/schema.yaml
-  docker run --rm \
-    -v $outdir:/local openapitools/openapi-generator-cli:v4.3.1 generate \
-    -i /local/schema.yaml \
-    -g typescript-axios \
-    -o /local/client
+#  docker run --rm \
+#    -v $outdir:/local openapitools/openapi-generator-cli:v4.3.1 generate \
+#    -i /local/schema.yaml \
+#    -g typescript-axios \
+#    -o /local/client
+  npx openapi-typescript-codegen --input ${outdir}/schema.yaml --output ${outdir}/client
   echo "export * from './${apiName}/client'" >> ${apidir}/index.tsx
 done
