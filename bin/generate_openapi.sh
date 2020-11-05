@@ -27,13 +27,19 @@ function getFile() {
 # Check
 [[ ! -f src/catalog/api.json ]] && echo "Please download catalogs first." >&2 && exit 1
 
+# Create index.tsx
+apidir=${DIR}/../src/openapi
+[[ ! -d ${apidir} ]] && mkdir -p ${apidir}
+echo -n "" > ${apidir}/index.tsx
+
+# Download schema and generate OpenAPI clients
 for line in $(cat src/catalog/api.json | jq -r 'keys[] as $k | "\($k):\(.[$k] | .schema)"')
 do
   apiName=${line%%:*}
   apiSchema=${line#*:}
   [[ ${apiSchema} =~ null ]] && continue
   echo "Generating OpenAPI client for API: ${apiName} (Schema: ${apiSchema})"
-  outdir=${DIR}/../dist/openapi/${apiName}
+  outdir=${apidir}/${apiName}
   [[ ! -d ${outdir} ]] && mkdir -p ${outdir}
   getFile ${apiSchema} > ${outdir}/schema.yaml
   docker run --rm \
@@ -41,4 +47,5 @@ do
     -i /local/schema.yaml \
     -g typescript-axios \
     -o /local/client
+  echo "export * from './${apiName}/client'" >> ${apidir}/index.tsx
 done
