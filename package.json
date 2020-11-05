@@ -14,7 +14,7 @@
   "scripts": {
     "build": "NODE_OPTIONS=\"--max-old-space-size=4096\" microbundle-crl --no-compress --format modern,cjs",
     "start": "NODE_OPTIONS=\"--max-old-space-size=4096\" microbundle-crl watch --no-compress --format modern,cjs",
-    "postinstall": "NODE_OPTIONS=\"--max-old-space-size=4096\" run-s download:catalog generate:openapi build",
+    "prepare": "NODE_OPTIONS=\"--max-old-space-size=4096\" run-s download:catalog generate:openapi build",
     "test": "NODE_OPTIONS=\"--max-old-space-size=4096\" run-s test:unit test:lint test:build",
     "test:build": "NODE_OPTIONS=\"--max-old-space-size=4096\" run-s build",
     "test:lint": "eslint .",
