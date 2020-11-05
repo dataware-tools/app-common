@@ -37,7 +37,7 @@ do
   [[ ! -d ${outdir} ]] && mkdir -p ${outdir}
   getFile ${apiSchema} > ${outdir}/schema.yaml
   docker run --rm \
-    -v $outdir:/local openapitools/openapi-generator-cli generate \
+    -v $outdir:/local openapitools/openapi-generator-cli:v4.3.1 generate \
     -i /local/schema.yaml \
     -g typescript-axios \
     -o /local/client
