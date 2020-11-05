@@ -39,6 +39,6 @@ do
   docker run --rm \
     -v $outdir:/local openapitools/openapi-generator-cli generate \
     -i /local/schema.yaml \
-    -g typescript \
+    -g typescript-axios \
     -o /local/client
 done
