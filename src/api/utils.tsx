@@ -3,7 +3,7 @@ import { Loader, Message } from 'semantic-ui-react'
 import request from 'superagent'
 
 export const fetchApi = (
-  endpoint: string,
+  api: string | Promise<any>,
   accessToken: string | undefined = undefined,
   setState = (..._: any) => {},
   callback = (_: any | undefined) => {},
@@ -15,34 +15,62 @@ export const fetchApi = (
     isFetchDone: false,
     isFetching: true
   })
-  request
-    .get(endpoint)
-    .set('Authorization', 'Bearer ' + accessToken || '')
-    .query(query)
-    .then((res: any) => {
-      setState(
-        {
-          res: res.body,
-          isFetchFailed: false,
-          isFetchDone: true,
-          isFetching: false
-        },
-        callback(res)
-      )
-    })
-    .catch((err: any) => {
-      console.error(err)
-      setState(
-        {
-          res:
-            err && err.response && err.response.body ? err.response.body : {},
-          isFetchFailed: true,
-          isFetchDone: true,
-          isFetching: false
-        },
-        callback(undefined)
-      )
-    })
+  if (typeof api === 'string') {
+    request
+      .get(api)
+      .set('Authorization', 'Bearer ' + accessToken || '')
+      .query(query)
+      .then((res: any) => {
+        setState(
+          {
+            res: res.body,
+            isFetchFailed: false,
+            isFetchDone: true,
+            isFetching: false
+          },
+          callback(res)
+        )
+      })
+      .catch((err: any) => {
+        console.error(err)
+        setState(
+          {
+            res:
+              err && err.response && err.response.body ? err.response.body : {},
+            isFetchFailed: true,
+            isFetchDone: true,
+            isFetching: false
+          },
+          callback(undefined)
+        )
+      })
+  } else {
+    api
+      .then((res: any) => {
+        setState(
+          {
+            res: res.data,
+            isFetchFailed: false,
+            isFetchDone: true,
+            isFetching: false
+          },
+          callback(res)
+        )
+      })
+      .catch((err: any) => {
+        console.error(err)
+        setState(
+          {
+            res:
+              err && err.response && err.response.body ? err.response.body : {},
+            isFetchFailed: true,
+            isFetchDone: true,
+            isFetching: false
+          },
+          callback(undefined)
+        )
+      })
+  }
 }
 
 type FetchStatusProps = {
@@ -77,7 +105,7 @@ export const FetchStatus = (props: FetchStatusProps) => {
 }
 
 export const postApi = (
-  endpoint: string,
+  api: string | Promise<any>,
   accessToken: string | undefined = undefined,
   setState = (..._: any) => {},
   callback = (_: any | undefined) => {},
@@ -89,34 +117,62 @@ export const postApi = (
     isPostDone: false,
     isPosting: true
   })
-  request
-    .get(endpoint)
-    .set('Authorization', 'Bearer ' + accessToken || '')
-    .send(data)
-    .then((res: any) => {
-      setState(
-        {
-          res: res.body,
-          isPostFailed: false,
-          isPostDone: true,
-          isPosting: false
-        },
-        callback(res)
-      )
-    })
-    .catch((err: any) => {
-      console.error(err)
-      setState(
-        {
-          res:
-            err && err.response && err.response.body ? err.response.body : {},
-          isPostFailed: true,
-          isPostDone: true,
-          isPosting: false
-        },
-        callback(undefined)
-      )
-    })
+  if (typeof api === 'string') {
+    request
+      .get(api)
+      .set('Authorization', 'Bearer ' + accessToken || '')
+      .send(data)
+      .then((res: any) => {
+        setState(
+          {
+            res: res.body,
+            isPostFailed: false,
+            isPostDone: true,
+            isPosting: false
+          },
+          callback(res)
+        )
+      })
+      .catch((err: any) => {
+        console.error(err)
+        setState(
+          {
+            res:
+              err && err.response && err.response.body ? err.response.body : {},
+            isPostFailed: true,
+            isPostDone: true,
+            isPosting: false
+          },
+          callback(undefined)
+        )
+      })
+  } else {
+    api
+      .then((res: any) => {
+        setState(
+          {
+            res: res.data,
+            isPostFailed: false,
+            isPostDone: true,
+            isPosting: false
+          },
+          callback(res)
+        )
+      })
+      .catch((err: any) => {
+        console.error(err)
+        setState(
+          {
+            res:
+              err && err.response && err.response.body ? err.response.body : {},
+            isPostFailed: true,
+            isPostDone: true,
+            isPosting: false
+          },
+          callback(undefined)
+        )
+      })
+  }
 }
 
 type PostStatusProps = {
