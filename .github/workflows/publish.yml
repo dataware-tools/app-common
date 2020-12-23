@@ -30,10 +30,9 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.HDL_SERVICE_TOKEN }}
         REF: ${{ github.ref }}
-    - uses: actions/delete-package-versions@v1
-      with:
-        package-name: 'app-common'
-        num-old-versions-to-delete: 100
+#     - uses: actions/delete-package-versions@v1
+#       with:
+#         package-name: 'app-common'
     - run: npm publish
       env:
         NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
