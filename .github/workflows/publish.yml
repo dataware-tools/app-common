@@ -17,7 +17,7 @@ jobs:
         node-version: '14'
         registry-url: 'https://npm.pkg.github.com'
     - name: Setup ssh-agent
-      uses: webfactory/ssh-agent@v0.4.0
+      uses: webfactory/ssh-agent@v0.4.1
       with:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
     - run: npm install
@@ -29,7 +29,7 @@ jobs:
     - uses: actions/delete-package-versions@v1
       with:
         package-name: 'app-common'
-        num-old-versions-to-delete: 10
+        num-old-versions-to-delete: 100
     - run: npm publish
       env:
         NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
