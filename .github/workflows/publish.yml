@@ -2,8 +2,8 @@ name: Publish to GitHub Registry
 
 on:
   push:
-    branches:
-      - master
+    tags:
+      - v*
 
 jobs:
   publish:
@@ -24,6 +24,9 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.HDL_SERVICE_TOKEN }}
     - run: npm build
+      env:
+        GITHUB_TOKEN: ${{ secrets.HDL_SERVICE_TOKEN }}
+    - run: npm version from-git
       env:
         GITHUB_TOKEN: ${{ secrets.HDL_SERVICE_TOKEN }}
     - uses: actions/delete-package-versions@v1
