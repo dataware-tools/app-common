@@ -24,7 +24,7 @@
     "generate:openapi": "C_D=$PWD/bin ./bin/generate_openapi.sh"
   },
   "peerDependencies": {
-    "react": "^16.0.0",
+    "react": ">=16.0.0",
     "semantic-ui-react": "^2.0.3"
   },
   "devDependencies": {
