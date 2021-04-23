@@ -1,12 +1,21 @@
 {
   "parser": "@typescript-eslint/parser",
   "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
     "standard",
+    "standard-jsx",
     "standard-react",
-    "plugin:prettier/recommended",
-    "prettier/standard",
-    "prettier/react",
-    "plugin:@typescript-eslint/eslint-recommended"
+    "plugin:eslint-comments/recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
+    // "plugin:jsx-a11y/recommended",
+    "plugin:compat/recommended",
+    "prettier"
   ],
   "env": {
     "node": true
@@ -20,20 +29,40 @@
   },
   "settings": {
     "react": {
-      "version": "16"
+      "version": "detect"
+    },
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true,
+        "project": ["./tsconfig.json"]
+      }
     }
   },
-  "plugins": [
-    "react-hooks"
-  ],
+  "plugins": ["react-hooks"],
   "rules": {
-    "space-before-function-paren": 0,
-    "react/prop-types": 0,
-    "react/jsx-handler-names": 0,
-    "react/jsx-fragments": 0,
-    "react/no-unused-prop-types": 0,
-    "import/export": 0,
-    "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
-    "react-hooks/exhaustive-deps": "warn" // Checks effect dependencies
+    "eslint-comments/no-unused-disable": "error",
+    "react/prop-types": "off",
+    // https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/FAQ.md#eslint-plugin-import
+    "import/named": "off",
+    "import/namespace": "off",
+    "import/default": "off",
+    "import/no-named-as-default-member": "off",
+    "indent": "off",
+    "@typescript-eslint/indent": "off",
+    // https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/FAQ.md#i-am-using-a-rule-from-eslint-core-and-it-doesnt-work-correctly-with-typescript-code
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      { "argsIgnorePattern": "^_" }
+    ],
+    // https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/FAQ.md#i-get-errors-from-the-no-undef-rule-about-global-variables-not-being-defined-even-though-there-are-no-typescript-errors
+    "no-undef": "off",
+    // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-use-before-define.md
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": ["error"],
+    "react/jsx-fragments": "off"
   }
 }
