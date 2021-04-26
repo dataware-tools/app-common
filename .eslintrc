@@ -15,10 +15,12 @@
     "plugin:import/typescript",
     // "plugin:jsx-a11y/recommended",
     "plugin:compat/recommended",
+    "plugin:jest/recommended",
     "prettier"
   ],
   "env": {
-    "browser": true
+    "browser": true,
+    "jest/globals": true
   },
   "parserOptions": {
     "ecmaVersion": 2020,
