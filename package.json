@@ -28,7 +28,7 @@
     "react": ">=16.0.0",
     "semantic-ui-react": "^2.0.3",
     "@material-ui/core": "^5.0.0-alpha.30",
-    "@material-ui/icons": "^5.0.0-alpha.29",
+    "@material-ui/icons": "^5.0.0-alpha.28",
     "@material-ui/lab": "^5.0.0-alpha.30",
     "@auth0/auth0-react": "^1.4.0"
   },
@@ -38,7 +38,7 @@
     "@emotion/react": "^11.1.5",
     "@emotion/styled": "^11.3.0",
     "@material-ui/core": "^5.0.0-alpha.30",
-    "@material-ui/icons": "^5.0.0-alpha.29",
+    "@material-ui/icons": "^5.0.0-alpha.28",
     "@material-ui/lab": "^5.0.0-alpha.30",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -100,5 +100,17 @@
   ],
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
-  }
+  },
+  "browserslist": [
+    "last 2 Android versions",
+    "last 2 Chrome versions",
+    "last 2 ChromeAndroid versions",
+    "last 2 Edge versions",
+    "last 2 Electron versions",
+    "last 2 Firefox versions",
+    "last 2 FirefoxAndroid versions",
+    "maintained Node versions",
+    "last 2 Safari versions",
+    "last 2 Samsung versions"
+  ]
 }
