@@ -1,3 +1,4 @@
 module.exports = {
-  preset: 'ts-jest'
+  preset: 'ts-jest',
+  moduleDirectories: ['node_modules', 'src']
 }
