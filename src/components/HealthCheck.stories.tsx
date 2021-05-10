@@ -1,13 +1,12 @@
-import React from 'react';
-import { storiesOf } from '@storybook/react';
-import HealthCheck from "./HealthCheck";
+import React from 'react'
+import { HealthCheck } from './HealthCheck'
+import { Story } from '@storybook/react'
 
+export default {
+  component: HealthCheck,
+  title: 'HealthCheck'
+}
 
-storiesOf('HealthCheck/HealthCheck', module)
-  .add('default', () =>
-    <div>
-      <HealthCheck/>
-    </div>
-  )
+const Template: Story = (args) => <HealthCheck {...args} />
 
-
+export const Default = Template.bind({})

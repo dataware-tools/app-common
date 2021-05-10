@@ -1,6 +1,9 @@
 import React from 'react'
 
-const HealthCheck = () => {
+const Component = (): JSX.Element => {
   return <div className='health-check'>OK</div>
 }
-export default HealthCheck
+export { Component as HealthCheck }
+
+// this is remain for compatibility
+export default Component
