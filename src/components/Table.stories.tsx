@@ -65,3 +65,9 @@ export const StickyHeader = (): JSX.Element => (
     <Table stickyHeader {...testArgs} />
   </div>
 )
+
+export const disableHover = (): JSX.Element => (
+  <div style={{ height: '60vh', overflow: 'auto' }}>
+    <Table stickyHeader disableHoverRow disableHoverCell {...testArgs} />
+  </div>
+)

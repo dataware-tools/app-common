@@ -12,6 +12,8 @@ type Props = {
   columns: TableRowProps['columns']
   onDeleteRow?: TableRowProps['onDelete']
   onClickRow?: TableRowProps['onClick']
+  disableHoverRow?: TableRowProps['disableHoverRow']
+  disableHoverCell?: TableRowProps['disableHoverCell']
   stickyHeader?: boolean
   bottomRef?: RefObject<HTMLDivElement>
 }
@@ -22,7 +24,9 @@ const Component = ({
   onDeleteRow,
   onClickRow,
   stickyHeader,
-  bottomRef
+  bottomRef,
+  disableHoverRow,
+  disableHoverCell
 }: Props): JSX.Element => {
   const getAlign: TableRowProps['getAlign'] = (columnType) =>
     columnType === 'number' ? 'right' : 'left'
@@ -49,6 +53,8 @@ const Component = ({
               onDelete={onDeleteRow}
               onClick={onClickRow}
               getAlign={getAlign}
+              disableHoverRow={disableHoverRow}
+              disableHoverCell={disableHoverCell}
             />
           ))}
         </TableBody>
