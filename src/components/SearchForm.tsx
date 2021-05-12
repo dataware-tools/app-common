@@ -7,7 +7,7 @@ import OutlinedInput from '@material-ui/core/OutlinedInput'
 type Props = {
   searchText: string
   setSearchText: React.Dispatch<string>
-} & ContainerProps
+} & Omit<ContainerProps, 'defaultValue'>
 
 type ContainerProps = {
   onSearch: (searchText: string) => void
@@ -19,8 +19,7 @@ const Component = ({
   onSearch,
   searchText,
   setSearchText,
-  value,
-  defaultValue: _unused
+  value
 }: Props): JSX.Element => {
   return (
     <form

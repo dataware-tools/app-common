@@ -29,7 +29,7 @@ type Props = {
     cellContent: CellContent,
     ifEmpty?: string | number
   ) => string | number | undefined
-} & ContainerProps
+} & Omit<ContainerProps, 'onDelete' | 'onClick' | 'disableHoverRow' | 'unknown'>
 
 type ContainerProps = {
   row: Row
@@ -38,6 +38,8 @@ type ContainerProps = {
   onClick?: (targetDetail: TargetDetail) => void
   columns: Columns
   getAlign: (columnType: Columns[number]['type']) => TableCellProps['align']
+  disableHoverRow?: boolean
+  disableHoverCell?: boolean
 }
 
 const Component = ({
@@ -49,9 +51,7 @@ const Component = ({
   haveDeleteButton,
   index,
   fixCellContent,
-  getAlign,
-  onDelete: _unUsed1,
-  onClick: _unUsed2
+  getAlign
 }: Props): JSX.Element => {
   return (
     <TableRow className={classes.row}>
@@ -96,16 +96,25 @@ const Component = ({
 }
 
 const useStyles = makeStyles((theme: typeof themeInstance) => ({
-  row: {
-    cursor: 'pointer',
-    '&:hover': {
-      backgroundColor: theme.palette.action.hover
-    }
+  row: (props: ContainerProps) => {
+    return props.disableHoverRow
+      ? {}
+      : {
+          cursor: 'pointer',
+          '&:hover': {
+            backgroundColor: theme.palette.action.hover
+          }
+        }
   },
-  cell: {
-    '&:hover': {
-      backgroundColor: theme.palette.action.hover
-    }
+  cell: (props: ContainerProps) => {
+    return props.disableHoverCell
+      ? {}
+      : {
+          cursor: 'pointer',
+          '&:hover': {
+            backgroundColor: theme.palette.action.hover
+          }
+        }
   },
   deleteButton: {
     '&:hover': {
@@ -119,7 +128,7 @@ const Container = ({
   onDelete,
   ...delegated
 }: ContainerProps): JSX.Element => {
-  const classes = useStyles()
+  const classes = useStyles({ onClick, onDelete, ...delegated })
 
   const haveDeleteButton = onDelete != null
   const isEmpty = (cellContent: CellContent): boolean => {
