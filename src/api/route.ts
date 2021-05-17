@@ -11,6 +11,7 @@ const jobStorePrefix: string = API_CATALOG.jobStore.endpoint
 const contentStorePrefix: string = API_CATALOG.contentStore.endpoint
 const fileProviderPrefix: string = API_CATALOG.fileProvider.endpoint
 const permissionManagerPrefix: string = API_CATALOG.permissionManager.endpoint
+const metaStorePrefix: string = API_CATALOG.metaStore.endpoint
 
 const API_ROUTE = {
   RECORD: {
@@ -30,6 +31,9 @@ const API_ROUTE = {
   },
   PERMISSION: {
     BASE: constructApiBaseUrl(permissionManagerPrefix)
+  },
+  META: {
+    BASE: constructApiBaseUrl(metaStorePrefix)
   }
 }
 
