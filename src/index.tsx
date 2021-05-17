@@ -1,6 +1,7 @@
+export { default as API_CATALOG } from './api/catalog'
+export { API_ROUTE } from './api/route'
 export { fetchApi, FetchStatus, postApi, PostStatus } from './api/utils'
 export { AUTH_CONFIG } from './auth/config'
-export { default as API_CATALOG } from './api/catalog'
 export { default as APP_CATALOG } from './app/catalog'
 export { default as theme } from './theme'
 
