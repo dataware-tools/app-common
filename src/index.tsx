@@ -7,6 +7,8 @@ export { default as theme } from './theme'
 
 export { ErrorMessage } from './components/ErrorMessage'
 export type { ErrorMessageProps } from './components/ErrorMessage'
+export { FetchContainer } from './components/FetchContainer'
+export type { FetchContainerProps } from './components/FetchContainer'
 export { Footer } from './components/Footer'
 export type { FooterProps } from './components/Footer'
 export { Header } from './components/Header'
