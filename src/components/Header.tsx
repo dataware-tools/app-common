@@ -81,15 +81,20 @@ const useStyles = makeStyles((theme: typeof themeInstance) => ({
 const Container = (): JSX.Element => {
   const classes = useStyles()
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0()
+  const redirectUri =
+    typeof window === 'undefined' ? null : window.location.href
+  const returnTo = typeof window === 'undefined' ? null : window.location.origin
 
   return (
     <Component
       classes={classes}
       isAuthenticated={isAuthenticated}
       onLogin={() => {
-        loginWithRedirect({ redirectUri: window.location.href })
+        // @ts-expect-error redirectUri is not null in client side
+        loginWithRedirect({ redirectUri: redirectUri })
       }}
-      onLogout={() => logout({ returnTo: window.location.origin })}
+      // @ts-expect-error returnTO is not null in client side
+      onLogout={() => logout({ returnTo: returnTo })}
     />
   )
 }
