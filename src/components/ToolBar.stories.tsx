@@ -1,3 +1,4 @@
+import Dialog from '@material-ui/core/Dialog'
 import Button from '@material-ui/core/Button'
 import React from 'react'
 import { ToolBar } from './ToolBar'
@@ -7,23 +8,21 @@ export default {
   title: 'ToolBar'
 }
 
+// ! Want know why Mui component used? See: https://github.com/dataware-tools/app-common/pull/33
+
 export const Default = (): JSX.Element => (
-  <div style={{ overflowY: 'auto' }}>
+  <Dialog open fullWidth maxWidth='xl'>
     <div
       style={{
-        height: '50vh',
-        border: '3px solid black',
+        height: '90vh',
         display: 'flex',
         flexDirection: 'column',
         padding: '10px'
       }}
     >
-      <div style={{ display: 'flex', flexDirection: 'row' }}>
-        <div> this is virtual modal</div>
-        <ToolBar>
-          <Button>test</Button>
-        </ToolBar>
-      </div>
+      <ToolBar>
+        <Button>test</Button>
+      </ToolBar>
       <div
         style={{
           overflow: 'auto',
@@ -43,5 +42,5 @@ export const Default = (): JSX.Element => (
         <Button>test</Button>
       </ToolBar>
     </div>
-  </div>
+  </Dialog>
 )
