@@ -8,7 +8,7 @@ export default {
   title: 'ToolBar'
 }
 
-// ! Want know why Mui component used? See: https://github.com/dataware-tools/app-common/pull/33
+// ! Want know why story is so complex? See: https://github.com/dataware-tools/app-common/pull/33
 
 export const Default = (): JSX.Element => (
   <Dialog open fullWidth maxWidth='xl'>
