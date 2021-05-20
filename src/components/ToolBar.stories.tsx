@@ -1,5 +1,3 @@
-import Dialog from '@material-ui/core/Dialog'
-import Button from '@material-ui/core/Button'
 import React from 'react'
 import { ToolBar } from './ToolBar'
 
@@ -8,39 +6,42 @@ export default {
   title: 'ToolBar'
 }
 
-// ! Want know why story is so complex? See: https://github.com/dataware-tools/app-common/pull/33
-
 export const Default = (): JSX.Element => (
-  <Dialog open fullWidth maxWidth='xl'>
+  <ToolBar>
+    <button>Test</button>
+    <button>Test</button>
+    <button>Test</button>
+  </ToolBar>
+)
+
+// ! Want know why story is so complex? See: https://github.com/dataware-tools/app-common/pull/33
+export const RegressionTestForPR33 = (): JSX.Element => (
+  // this div element simulate Material UI Dialog
+  <div
+    style={{
+      display: 'flex',
+      flexDirection: 'column'
+    }}
+  >
+    {/* this div element is necessary to keep non main contents of dialog within viewport (e.g toolbar, tab, close button etc...) */}
     <div
       style={{
-        height: '90vh',
+        height: '50vh',
         display: 'flex',
-        flexDirection: 'column',
-        padding: '10px'
+        flexDirection: 'column'
       }}
     >
+      {/* if size of main contents in dialog over a certain size, ToolBar shrinks */}
       <ToolBar>
-        <Button>test</Button>
+        <button>test</button>
       </ToolBar>
       <div
         style={{
-          overflowY: 'auto',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          flex: 1
+          overflowY: 'auto'
         }}
       >
-        {Array(30)
-          .fill(0)
-          .map((_, index) => (
-            <div key={index}>test</div>
-          ))}
+        <div style={{ height: '200vh' }} />
       </div>
-      <ToolBar>
-        <Button>test</Button>
-      </ToolBar>
     </div>
-  </Dialog>
+  </div>
 )
