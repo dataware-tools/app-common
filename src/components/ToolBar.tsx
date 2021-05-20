@@ -23,7 +23,7 @@ const Component = ({ classes, children }: Props): JSX.Element => {
 const useStyles = makeStyles(() => ({
   toolBar: {
     justifyContent: 'space-between',
-    overflow: 'auto'
+    overflowX: 'auto'
   },
   span: {
     flex: 1
