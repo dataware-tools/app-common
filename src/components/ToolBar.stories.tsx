@@ -16,7 +16,7 @@ export const Default = (): JSX.Element => (
 
 // ! Want know why story is so complex? See: https://github.com/dataware-tools/app-common/pull/33
 export const RegressionTestForPR33 = (): JSX.Element => (
-  // this div element simulate Material UI Dialog
+  // this div element is minimum simulation Material UI Dialog
   <div
     style={{
       display: 'flex',
