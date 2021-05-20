@@ -25,7 +25,7 @@ export const Default = (): JSX.Element => (
       </ToolBar>
       <div
         style={{
-          overflow: 'auto',
+          overflowY: 'auto',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
