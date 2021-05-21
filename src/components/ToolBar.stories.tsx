@@ -1,5 +1,6 @@
 import React from 'react'
 import { ToolBar } from './ToolBar'
+import Button from '@material-ui/core/Button'
 
 export default {
   component: ToolBar,
@@ -8,11 +9,8 @@ export default {
 
 export const Default = (): JSX.Element => (
   <ToolBar>
+    <input />
     <button>Test</button>
-    {/* if you want to use shrinkable content (e.g. input) in ToolBox, you should protect it by using flex-shrink: 0 */}
-    <div style={{ flexShrink: 0 }}>
-      <input />
-    </div>
   </ToolBar>
 )
 
@@ -34,17 +32,13 @@ export const HorizontalScrolling = (): JSX.Element => (
     <div>test</div>
     <div style={{ overflowX: 'auto' }}>
       <ToolBar>
-        <div style={{ flexShrink: 0 }}>
-          <input />
-        </div>
+        <input />
         {Array(40)
           .fill(0)
           .map((_, i) => (
             <button key={i}>Test</button>
           ))}
-        <div style={{ flexShrink: 0 }}>
-          <input />
-        </div>
+        <input />
       </ToolBar>
     </div>
   </div>
@@ -71,5 +65,17 @@ export const RegressionTestForPR33 = (): JSX.Element => (
     >
       <div style={{ height: '200vh' }} />
     </div>
+  </div>
+)
+
+export const NarrowViewPort = (): JSX.Element => (
+  <div style={{ overflow: 'auto', width: '10vw' }}>
+    <ToolBar>
+      <Button>This is test</Button>
+      <span style={{ width: '10px', flexShrink: 0 }} />
+      <div style={{ flexShrink: 0 }}>
+        <Button>This is test</Button>
+      </div>
+    </ToolBar>
   </div>
 )
