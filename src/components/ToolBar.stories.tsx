@@ -9,8 +9,10 @@ export default {
 export const Default = (): JSX.Element => (
   <ToolBar>
     <button>Test</button>
-    <button>Test</button>
-    <button>Test</button>
+    {/* if you want to use shrinkable content (e.g. input) in ToolBox, you should protect it by using flex-shrink: 0 */}
+    <div style={{ flexShrink: 0 }}>
+      <input />
+    </div>
   </ToolBar>
 )
 
@@ -28,13 +30,24 @@ export const WithOtherContent = (): JSX.Element => (
 )
 
 export const HorizontalScrolling = (): JSX.Element => (
-  <ToolBar>
-    {Array(100)
-      .fill(0)
-      .map((_, i) => (
-        <button key={i}>Test</button>
-      ))}
-  </ToolBar>
+  <div style={{ display: 'flex', width: '80vw' }}>
+    <div>test</div>
+    <div style={{ overflowX: 'auto' }}>
+      <ToolBar>
+        <div style={{ flexShrink: 0 }}>
+          <input />
+        </div>
+        {Array(40)
+          .fill(0)
+          .map((_, i) => (
+            <button key={i}>Test</button>
+          ))}
+        <div style={{ flexShrink: 0 }}>
+          <input />
+        </div>
+      </ToolBar>
+    </div>
+  </div>
 )
 
 // ! Want know why story is so complex? See: https://github.com/dataware-tools/app-common/pull/33
