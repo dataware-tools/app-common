@@ -11,18 +11,27 @@ type ContainerProps = {
 
 const Component = ({ classes, children }: Props): JSX.Element => {
   return (
-    <div>
+    <div className={classes.toolBar}>
+      <span className={classes.span} />
       <div className={classes.toolsContainer}>{children}</div>
     </div>
   )
 }
 
 const useStyles = makeStyles(() => ({
+  toolBar: {
+    display: 'flex',
+    flexShrink: 0,
+    overflowX: 'auto'
+  },
+  span: {
+    flex: 1
+  },
   toolsContainer: {
     alignItems: 'center',
     display: 'flex',
-    justifyContent: 'flex-end',
-    overflowX: 'auto'
+    flex: 0,
+    justifyContent: 'flex-end'
   }
 }))
 
