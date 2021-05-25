@@ -34,7 +34,6 @@ const Component = ({
       <Select
         value={perPage}
         onChange={handleChange}
-        variant='outlined'
         size='small'
         labelId={labelId}
       >
