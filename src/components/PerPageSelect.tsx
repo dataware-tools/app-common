@@ -30,7 +30,7 @@ const Component = ({
       <label className={classes.label} id={labelId}>
         {label || 'Rows per page'}
       </label>
-      <Spacer direction='horizontal' size='3px' />
+      <Spacer direction='horizontal' size='8px' />
       <Select
         value={perPage}
         onChange={handleChange}
@@ -51,14 +51,13 @@ const useStyles = makeStyles((theme: typeof themeInstance) => ({
   root: {
     color: theme.palette.text.secondary,
     display: 'flex',
-    flexDirection: 'row',
-    fontSize: '0.9rem'
+    flexDirection: 'row'
   },
   label: {
     alignItems: 'center',
     display: 'flex',
-    justifyContent: 'center',
-    marginRight: '5px'
+    fontSize: '0.9rem',
+    justifyContent: 'center'
   }
 }))
 
