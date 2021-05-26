@@ -36,6 +36,7 @@ const Component = ({
         onChange={handleChange}
         size='small'
         labelId={labelId}
+        variant='outlined'
       >
         {values.map((value) => (
           <MenuItem key={value} value={value}>
