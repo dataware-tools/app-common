@@ -6,14 +6,15 @@ type Props = {
 } & ContainerProps
 
 type ContainerProps = {
-  children: React.ReactNode
+  right?: React.ReactNode
+  left?: React.ReactNode
 }
 
-const Component = ({ classes, children }: Props): JSX.Element => {
+const Component = ({ classes, right, left }: Props): JSX.Element => {
   return (
     <div className={classes.toolsContainer}>
-      <span style={{ flex: 1 }} />
-      {children}
+      <div className={classes.left}>{left}</div>
+      <div className={classes.right}>{right}</div>
     </div>
   )
 }
@@ -23,6 +24,16 @@ const useStyles = makeStyles(() => ({
     alignItems: 'center',
     display: 'flex',
     flexShrink: 0,
+    justifyContent: 'space-between'
+  },
+  left: {
+    alignItems: 'center',
+    display: 'flex',
+    textAlign: 'left'
+  },
+  right: {
+    alignItems: 'center',
+    display: 'flex',
     textAlign: 'right'
   }
 }))

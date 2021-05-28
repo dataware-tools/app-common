@@ -7,39 +7,42 @@ export default {
   title: 'ToolBar'
 }
 
-export const Default = (): JSX.Element => (
-  <ToolBar>
-    <input />
+const Content = () => (
+  <>
     <button>Test</button>
-  </ToolBar>
+    <input />
+  </>
+)
+export const Default = (): JSX.Element => (
+  <ToolBar left={<Content />} right={<Content />} />
 )
 
 export const WithOtherContent = (): JSX.Element => (
   <div style={{ display: 'flex' }}>
     <div>test</div>
     <div style={{ flexGrow: 1 }}>
-      <ToolBar>
-        <button>Test</button>
-        <button>Test</button>
-        <button>Test</button>
-      </ToolBar>
+      <ToolBar left={<Content />} right={<Content />} />
     </div>
   </div>
+)
+
+const LongContent = () => (
+  <>
+    <input />
+    {Array(40)
+      .fill(0)
+      .map((_, i) => (
+        <button key={i}>Test</button>
+      ))}
+    <input />
+  </>
 )
 
 export const HorizontalScrolling = (): JSX.Element => (
   <div style={{ display: 'flex', width: '80vw' }}>
     <div>test</div>
     <div style={{ overflowX: 'auto' }}>
-      <ToolBar>
-        <input />
-        {Array(40)
-          .fill(0)
-          .map((_, i) => (
-            <button key={i}>Test</button>
-          ))}
-        <input />
-      </ToolBar>
+      <ToolBar left={<LongContent />} right={<LongContent />} />
     </div>
   </div>
 )
@@ -55,9 +58,7 @@ export const RegressionTestForPR33 = (): JSX.Element => (
     }}
   >
     {/* if size of main contents in dialog over a certain size, ToolBar shrinks */}
-    <ToolBar>
-      <button>Test</button>
-    </ToolBar>
+    <ToolBar left={<Content />} right={<Content />} />
     <div
       style={{
         overflowY: 'auto'
@@ -68,14 +69,18 @@ export const RegressionTestForPR33 = (): JSX.Element => (
   </div>
 )
 
+const FixedContent = () => (
+  <>
+    <Button>This is test</Button>
+    <span style={{ width: '10px', flexShrink: 0 }} />
+    <div style={{ flexShrink: 0 }}>
+      <Button>This is test</Button>
+    </div>
+  </>
+)
+
 export const NarrowViewPort = (): JSX.Element => (
   <div style={{ overflow: 'auto', width: '10vw' }}>
-    <ToolBar>
-      <Button>This is test</Button>
-      <span style={{ width: '10px', flexShrink: 0 }} />
-      <div style={{ flexShrink: 0 }}>
-        <Button>This is test</Button>
-      </div>
-    </ToolBar>
+    <ToolBar left={<FixedContent />} right={<FixedContent />} />
   </div>
 )
