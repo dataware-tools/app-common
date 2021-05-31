@@ -47,6 +47,6 @@ do
 #    -i /local/schema.yaml \
 #    -g typescript-axios \
 #    -o /local/client
-  npx openapi-typescript-codegen --input ${outdir}/schema.yaml --output ${outdir}/client
+  npx openapi-typescript-codegen --input ${outdir}/schema.yaml --output ${outdir}/client --useOptions
   echo "export * as ${apiName} from './${apiName}/client'" >> ${apidir}/index.tsx
 done
