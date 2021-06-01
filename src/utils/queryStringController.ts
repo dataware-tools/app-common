@@ -41,7 +41,7 @@ export type QueryStringConvertibleObj = Record<
   string | number | undefined | null
 >
 
-export function ObjToQueryString(obj: QueryStringConvertibleObj): string {
+export function objToQueryString(obj: QueryStringConvertibleObj): string {
   let flag = true
   let paramString = ''
   for (const [key, value] of Object.entries(obj)) {
@@ -66,7 +66,7 @@ export function addQueryString(
   const newQueryObj = new URLSearchParams(
     typeof queryString === 'string'
       ? queryString
-      : ObjToQueryString(queryString)
+      : objToQueryString(queryString)
   )
 
   for (const key of newQueryObj.keys()) {

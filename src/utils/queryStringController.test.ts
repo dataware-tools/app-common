@@ -1,6 +1,6 @@
 import {
   addQueryString,
-  ObjToQueryString,
+  objToQueryString,
   getQueryString,
   deleteQueryString,
   resetQueryString
@@ -62,7 +62,7 @@ describe('resetQueryString', () => {
 describe('objToQueryString', () => {
   test('can convert object to query string', () => {
     const obj = { sample: 'test', test: 123, experiment: undefined, hoge: null }
-    const queryString = ObjToQueryString(obj)
+    const queryString = objToQueryString(obj)
     expect(queryString === '?sample=test&test=123').toBeTruthy()
   })
 })
