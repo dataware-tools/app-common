@@ -16,7 +16,7 @@ Default.args = {
     { name: 'admin', description: '教員', role_id: '3' }
   ],
   columns: [
-    { field: 'role_id', type: 'number' },
+    { field: 'role_id', type: 'number', label: 'Role ID' },
     { field: 'name', type: 'string' },
     { field: 'description' }
   ],
@@ -49,7 +49,7 @@ const testArgs = {
   ],
   columns: [
     { field: 'role_id', type: 'number' as const },
-    { field: 'name', type: 'string' as const },
+    { field: 'name', type: 'string' as const, label: 'Name' },
     { field: 'description' }
   ],
   onDeleteRow: (detail: any) => {

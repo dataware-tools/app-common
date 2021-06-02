@@ -9,7 +9,7 @@ import { TableRow, TableRowProps } from './TableRow'
 
 type Props = {
   rows: TableRowProps['row'][]
-  columns: TableRowProps['columns']
+  columns: (TableRowProps['columns'][number] & { label?: string })[]
   onDeleteRow?: TableRowProps['onDelete']
   onClickRow?: TableRowProps['onClick']
   disableHoverRow?: TableRowProps['disableHoverRow']
@@ -37,7 +37,7 @@ const Component = ({
           <MuiTableRow>
             {columns.map((column) => (
               <TableCell key={column.field} align={getAlign(column.type)}>
-                {column.field}
+                {column.label || column.field}
               </TableCell>
             ))}
             {onDeleteRow ? <TableCell /> : null}
