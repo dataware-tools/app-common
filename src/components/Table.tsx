@@ -4,10 +4,12 @@ import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
 import TableHead from '@material-ui/core/TableHead'
 import MuiTableRow from '@material-ui/core/TableRow'
+import { makeStyles } from '@material-ui/core/styles'
 
 import { TableRow, TableRowProps } from './TableRow'
 
-type Props = {
+type Props = { classes: ReturnType<typeof useStyles> } & ContainerProps
+type ContainerProps = {
   rows: TableRowProps['row'][]
   columns: (TableRowProps['columns'][number] & { label?: string })[]
   onDeleteRow?: TableRowProps['onDelete']
@@ -18,6 +20,13 @@ type Props = {
   bottomRef?: RefObject<HTMLDivElement>
 }
 
+const useStyles = makeStyles({
+  headerText: {
+    fontSize: '1rem',
+    fontWeight: 'bolder'
+  }
+})
+
 const Component = ({
   rows,
   columns,
@@ -26,7 +35,8 @@ const Component = ({
   stickyHeader,
   bottomRef,
   disableHoverRow,
-  disableHoverCell
+  disableHoverCell,
+  classes
 }: Props): JSX.Element => {
   const getAlign: TableRowProps['getAlign'] = (columnType) =>
     columnType === 'number' ? 'right' : 'left'
@@ -37,7 +47,9 @@ const Component = ({
           <MuiTableRow>
             {columns.map((column) => (
               <TableCell key={column.field} align={getAlign(column.type)}>
-                {column.label || column.field}
+                <span className={classes.headerText}>
+                  {column.label || column.field}
+                </span>
               </TableCell>
             ))}
             {onDeleteRow ? <TableCell /> : null}
@@ -64,5 +76,10 @@ const Component = ({
   )
 }
 
-export { Component as Table }
-export type { Props as TableProps }
+const Container = ({ ...delegated }: ContainerProps): JSX.Element => {
+  const classes = useStyles()
+  return <Component classes={classes} {...delegated} />
+}
+
+export { Container as Table }
+export type { ContainerProps as TableProps }
