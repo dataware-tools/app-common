@@ -1,6 +1,7 @@
 import React from 'react'
 import themeInstance from 'theme'
 import { makeStyles } from '@material-ui/core/styles'
+import { NoticeableLetters } from './NoticeableLetters'
 
 type Props = { classes: ReturnType<typeof useStyles> } & ContainerProps
 
@@ -11,7 +12,7 @@ type ContainerProps = {
 const Component = ({ classes, sample }: Props): JSX.Element => {
   return (
     <div role='main' className={classes.sample}>
-      {sample}
+      <NoticeableLetters>{sample}</NoticeableLetters>
     </div>
   )
 }
