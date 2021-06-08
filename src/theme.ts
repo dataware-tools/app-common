@@ -3,17 +3,6 @@ import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles'
 const HDLBaseColor = 200
 const BasicSaturation = '10%'
 let theme = createMuiTheme({
-  typography: {
-    fontFamily: [
-      'Oxanium',
-      'Helvetica Neue',
-      'Arial',
-      'Helvetica',
-      'Roboto',
-      'Noto Sans JP',
-      'sans-serif'
-    ].join(',')
-  },
   palette: {
     common: {
       black: `hsl(${HDLBaseColor}, ${BasicSaturation}, 2%)`,
