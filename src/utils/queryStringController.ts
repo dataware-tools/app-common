@@ -38,18 +38,26 @@ export function resetQueryString(method: 'push' | 'replace'): void {
 
 export type QueryStringConvertibleObj = Record<
   string,
-  string | number | undefined | null
+  string | number | undefined | null | (string | number)[]
 >
 
 export function objToQueryString(obj: QueryStringConvertibleObj): string {
   let flag = true
   let paramString = ''
   for (const [key, value] of Object.entries(obj)) {
-    if (flag && value != null) {
-      paramString += `?${key}=${value}`
-      flag = false
-    } else if (value != null) {
-      paramString += `&${key}=${value}`
+    if (value != null) {
+      if (flag) {
+        paramString += '?'
+        flag = false
+      } else {
+        paramString += '&'
+      }
+
+      if (Array.isArray(value)) {
+        paramString += `${key}=${JSON.stringify(value)}`
+      } else {
+        paramString += `${key}=${value}`
+      }
     }
   }
   return paramString
