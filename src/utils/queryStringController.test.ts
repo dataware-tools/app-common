@@ -61,9 +61,17 @@ describe('resetQueryString', () => {
 
 describe('objToQueryString', () => {
   test('can convert object to query string', () => {
-    const obj = { sample: 'test', test: 123, experiment: undefined, hoge: null }
+    const obj = {
+      sample: 'test',
+      test: 123,
+      experiment: undefined,
+      hoge: null,
+      array: ['test', 1234]
+    }
     const queryString = objToQueryString(obj)
-    expect(queryString === '?sample=test&test=123').toBeTruthy()
+    expect(
+      queryString === '?sample=test&test=123&array=["test",1234]'
+    ).toBeTruthy()
   })
 })
 
