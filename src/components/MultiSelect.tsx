@@ -260,5 +260,5 @@ const Container = <
 }
 
 export { Container as MultiSelect }
-export { createFilterOptions } from '@material-ui/core/Autocomplete'
+export { createFilterOptions as createFilterOptionsForMultiSelect } from '@material-ui/core/Autocomplete'
 export type { ContainerProps as MultiSelectProps }
