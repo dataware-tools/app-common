@@ -14,7 +14,10 @@ export type { FooterProps } from './components/Footer'
 export { Header } from './components/Header'
 export { HealthCheck } from './components/HealthCheck'
 export { LoadingIndicator } from './components/LoadingIndicator'
-export { MultiSelect } from './components/MultiSelect'
+export {
+  MultiSelect,
+  createFilterOptionsForMultiSelect
+} from './components/MultiSelect'
 export type { MultiSelectProps } from './components/MultiSelect'
 export { PageWrapper } from './components/PageWrapper'
 export type { PageWrapperProps } from './components/PageWrapper'
