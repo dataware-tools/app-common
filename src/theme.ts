@@ -85,6 +85,10 @@ let theme = createMuiTheme({
         root: {
           lineHeight: 1.2,
           borderBottom: `solid 1px hsl(${HDLBaseColor}, ${BasicSaturation}, 88%)`
+        },
+        head: {
+          fontSize: '1rem',
+          fontWeight: 'bolder'
         }
       }
     },
