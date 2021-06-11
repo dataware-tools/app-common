@@ -7,7 +7,7 @@ const useStyles = makeStyles({
   div: {
     display: 'flex',
     flexDirection: 'column',
-    height: (props: Props) => (props.height ? props.height : '90vh'),
+    height: (props: Props) => (props.height ? props.height : '100%'),
     padding: '10px'
   }
 })
