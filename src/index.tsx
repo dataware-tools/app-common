@@ -33,6 +33,8 @@ export {
   createFilterOptionsForMultiSelect
 } from './components/MultiSelect'
 export type { MultiSelectProps } from './components/MultiSelect'
+export { NoticeableLetters } from './components/NoticeableLetters'
+export type { NoticeableLettersProps } from './components/NoticeableLetters'
 export { PageBody } from './components/PageBody'
 export type { PageBodyProps } from './components/PageBody'
 export { PageContainer } from './components/PageContainer'

@@ -23,7 +23,8 @@ module.exports = {
     'rule-empty-line-before': null,
     'value-keyword-case': null,
     'property-no-unknown': null,
-    'max-nesting-depth': 2
+    'max-nesting-depth': 2,
+    'font-family-no-missing-generic-family-keyword': null
   },
   reportNeedlessDisables: true,
   reportInvalidScopeDisables: true
