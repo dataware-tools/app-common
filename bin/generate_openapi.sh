@@ -9,6 +9,8 @@ set -x
 DIR=${C_D}
 [[ -z "${DIR}" ]] && DIR=$(cd $(dirname ${BASH_SOURCE:-$0}); pwd)
 
+CODEGEN=${DIR}/../node_modules/.bin/openapi
+
 function getFile() {
   set -e
   URL=$1
@@ -42,11 +44,12 @@ do
   outdir=${apidir}/${apiName}
   [[ ! -d ${outdir} ]] && mkdir -p ${outdir}
   getFile ${apiSchema} > ${outdir}/schema.yaml
-#  docker run --rm \
-#    -v $outdir:/local openapitools/openapi-generator-cli:v4.3.1 generate \
-#    -i /local/schema.yaml \
-#    -g typescript-axios \
-#    -o /local/client
-  npx openapi-typescript-codegen --input ${outdir}/schema.yaml --output ${outdir}/client --useOptions
+
+  # Generate API-clients
+  if [[ -f ${CODEGEN} ]]; then
+    ${CODEGEN} --input ${outdir}/schema.yaml --output ${outdir}/client --useOptions
+  else
+    npx openapi-typescript-codegen --input ${outdir}/schema.yaml --output ${outdir}/client --useOptions
+  fi
   echo "export * as ${apiName} from './${apiName}/client'" >> ${apidir}/index.tsx
 done

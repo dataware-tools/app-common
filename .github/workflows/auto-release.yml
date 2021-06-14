@@ -1,0 +1,36 @@
+name: Automatic release
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  check-skip:
+    runs-on: ubuntu-18.04
+    if: "! contains(github.event.head_commit.message, 'Release')"
+    steps:
+      - run: echo "${{ github.event.head_commit.message }}"
+
+  publish:
+    runs-on: ubuntu-18.04
+    timeout-minutes: 300
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '16'
+        registry-url: 'https://npm.pkg.github.com'
+    - name: Setup ssh-agent
+      uses: webfactory/ssh-agent@v0.4.1
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+    - name: git config
+      run: |
+        git config --global user.email "hdl-service@hdwlab.co.jp"
+        git config --global user.name "hdl-service"
+    - run: npm install
+    - run: npm run release-it
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
