@@ -28,7 +28,8 @@
     "strict": true,
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
-    "target": "ESNext"
+    "target": "ESNext",
+    "downlevelIteration": true
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist", "example"]
