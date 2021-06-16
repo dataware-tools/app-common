@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import themeInstance from 'theme'
 import Link from '@material-ui/core/Link'
 import Divider from '@material-ui/core/Divider'
+import { NoticeableLetters } from './NoticeableLetters'
 
 type Props = {
   classes: ReturnType<typeof useStyles>
@@ -25,7 +26,7 @@ const Component = ({ classes, repository }: Props): JSX.Element => {
             target='_blank'
             rel='noopener noreferrer'
           >
-            &copy; Human Dataware Lab.
+            <NoticeableLetters>&copy; Human Dataware Lab.</NoticeableLetters>
           </Link>
         </div>
         <div className={classes.rightContainer}>
@@ -36,7 +37,7 @@ const Component = ({ classes, repository }: Props): JSX.Element => {
             target='_blank'
             rel='noopener noreferrer'
           >
-            GitHub
+            <NoticeableLetters>GitHub</NoticeableLetters>
           </Link>
         </div>
       </div>
