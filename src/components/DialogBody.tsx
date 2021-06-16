@@ -12,7 +12,7 @@ const useStyles = makeStyles({
     flex: 1,
     flexDirection: (props: Props) => props.flexDirection || 'initial',
     overflow: 'auto',
-    padding: '0 2vw'
+    padding: '3px 2vw'
   }
 })
 
