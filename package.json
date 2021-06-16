@@ -25,7 +25,8 @@
     "download:catalog": "./bin/download_catalog.sh",
     "generate:openapi": "cross-env C_D=$PWD/bin ./bin/generate_openapi.sh",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "release-it": "release-it --ci"
   },
   "peerDependencies": {
     "react": ">=16.0.0 < 18",
@@ -40,6 +41,7 @@
   "devDependencies": {
     "@auth0/auth0-react": "^1.4.0",
     "@babel/preset-react": "^7.13.13",
+    "@csmith/release-it-calver-plugin": "^2021.5.7",
     "@emotion/react": "^11.1.5",
     "@emotion/styled": "^11.3.0",
     "@material-ui/core": "^5.0.0-alpha.30",
@@ -85,6 +87,7 @@
     "prettier": "^2.2.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "release-it": "^14.9.0",
     "semantic-ui-react": "^2.0.3",
     "stylelint": "^13.12.0",
     "stylelint-config-prettier": "^8.0.2",

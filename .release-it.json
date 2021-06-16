@@ -1,0 +1,11 @@
+{
+  "git": {
+    "requireCleanWorkingDir": false,
+    "requireBranch": "master"
+  },
+  "plugins": {
+    "@csmith/release-it-calver-plugin": {
+      "format": "YY.MM.MICRO"
+    }
+  }
+}
