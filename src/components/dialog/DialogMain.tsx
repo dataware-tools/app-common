@@ -4,18 +4,16 @@ import { makeStyles } from '@material-ui/core/styles'
 type Props = { children: ReactNode }
 
 const useStyles = makeStyles(() => ({
-  div: {
-    display: 'flex',
-    flexDirection: 'column',
-    height: '75vh',
-    padding: '0 10vw'
+  dialogMain: {
+    flex: 1,
+    overflow: 'auto'
   }
 }))
 
 const Component = ({ children }: Props): JSX.Element => {
   const classes = useStyles()
-  return <div className={classes.div}>{children}</div>
+  return <div className={classes.dialogMain}>{children}</div>
 }
 
-export { Component as PageContainer }
-export type { Props as PageContainerProps }
+export { Component as DialogMain }
+export type { Props as DialogMainProps }

@@ -4,21 +4,21 @@ import { makeStyles } from '@material-ui/core/styles'
 type Props = {
   children: ReactNode
   flexDirection?: 'row' | 'row-reverse' | 'column' | 'column-reverse'
+  padding?: string
 }
 
 const useStyles = makeStyles({
-  div: {
+  dialogBody: {
     display: 'flex',
     flex: 1,
-    flexDirection: (props: Props) => props.flexDirection || 'initial',
-    overflow: 'auto',
-    padding: '3px 2vw'
+    flexDirection: (props: Props) => props.flexDirection || 'column',
+    padding: (props: Props) => props.padding || '0 2vw'
   }
 })
 
-const Component = ({ children, flexDirection }: Props): JSX.Element => {
-  const classes = useStyles({ children, flexDirection })
-  return <div className={classes.div}>{children}</div>
+const Component = ({ children, ...delegated }: Props): JSX.Element => {
+  const classes = useStyles({ children, ...delegated })
+  return <div className={classes.dialogBody}>{children}</div>
 }
 
 export { Component as DialogBody }

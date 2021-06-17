@@ -1,7 +1,7 @@
 import React from 'react'
 import themeInstance from 'theme'
 import { makeStyles } from '@material-ui/core/styles'
-import Tabs from '@material-ui/core/Tabs'
+import Tabs, { TabsProps } from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 
 type Props = { styles: ReturnType<typeof useStyles> } & ContainerProps
@@ -10,18 +10,21 @@ type ContainerProps = {
   tabNames: string[]
   onChange: (newValue: number) => void
   value: number
-}
+} & Omit<TabsProps, 'value' | 'onChange'>
 
 const Component = ({
   tabNames,
   onChange,
   value,
-  styles
+  styles,
+  ...delegated
 }: Props): JSX.Element => {
   return (
     <Tabs
       orientation='vertical'
       variant='scrollable'
+      scrollButtons
+      {...delegated}
       onChange={(_, newValue) => {
         onChange(newValue)
       }}
