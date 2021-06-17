@@ -7,7 +7,7 @@
   "repository": "dataware-tools/app-common",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
-  "source": "src/index.tsx",
+  "source": "src/index.ts",
   "engines": {
     "node": ">=10"
   },
@@ -24,7 +24,7 @@
     "test:build": "cross-env NODE_OPTIONS=\"--max-old-space-size=4096\" run-s build",
     "download:catalog": "./bin/download_catalog.sh",
     "generate:openapi": "cross-env C_D=$PWD/bin ./bin/generate_openapi.sh",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -p 9009",
     "build-storybook": "build-storybook",
     "release-it": "release-it --ci"
   },
