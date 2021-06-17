@@ -77,7 +77,16 @@ let theme = createMuiTheme({
         },
         head: {
           fontSize: '1rem',
-          fontWeight: 'bolder'
+          fontWeight: 'bolder',
+          fontFamily: [
+            'Oxanium',
+            'Helvetica Neue',
+            'Arial',
+            'Helvetica',
+            'Roboto',
+            'Noto Sans JP',
+            'sans-serif'
+          ].join(',')
         }
       }
     },
