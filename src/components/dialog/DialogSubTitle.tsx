@@ -2,11 +2,11 @@ import React, { ReactNode } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles({
-  title: {
+  dialogTitle: {
     alignItems: 'center',
     display: 'flex',
-    fontSize: '1.5rem',
-    padding: '2vh 1vw'
+    fontSize: '1.3rem',
+    padding: '1vh 0'
   }
 })
 
@@ -14,8 +14,8 @@ type ContainerProps = { children: ReactNode }
 
 const Container = ({ children }: ContainerProps): JSX.Element => {
   const classes = useStyles()
-  return <div className={classes.title}>{children}</div>
+  return <div className={classes.dialogTitle}>{children}</div>
 }
 
-export { Container as DialogTitle }
-export type { ContainerProps as DialogTitleProps }
+export { Container as DialogSubTitle }
+export type { ContainerProps as DialogSubTitleProps }

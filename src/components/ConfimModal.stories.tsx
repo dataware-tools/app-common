@@ -13,7 +13,7 @@ const Template: Story<ConfirmModalProps> = (args) => <ConfirmModal {...args} />
 export const Default = Template.bind({})
 Default.args = {
   onClose: (res) => window.alert(res),
-  body: 'test',
+  body: 'This is test! please click button!',
   title: 'test'
 }
 
@@ -21,10 +21,10 @@ export const ConfirmOnClick = (): JSX.Element => (
   <button
     onClick={async () => {
       const res = await confirm({
-        body: 'test',
+        body: 'This is test! please click button!',
         title: 'test',
-        confirmText: 'test',
-        cancelText: 'test'
+        confirmText: 'yes',
+        cancelText: 'no'
       })
       window.alert(res)
     }}

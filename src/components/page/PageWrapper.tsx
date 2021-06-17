@@ -1,9 +1,9 @@
 import React from 'react'
-import { Header } from './Header'
-import { Footer } from './Footer'
+import { Header } from '../Header'
+import { Footer } from '../Footer'
 import { useAuth0 } from '@auth0/auth0-react'
-import { LoadingIndicator } from './LoadingIndicator'
-import { ErrorMessage } from './ErrorMessage'
+import { LoadingIndicator } from '../LoadingIndicator'
+import { ErrorMessage } from '../ErrorMessage'
 import { makeStyles } from '@material-ui/core/styles'
 
 export type ContainerProps = {

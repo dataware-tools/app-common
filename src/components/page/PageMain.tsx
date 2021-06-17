@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles'
 type Props = { children: ReactNode }
 
 const useStyles = makeStyles(() => ({
-  div: {
+  pageMain: {
     flex: 1,
     overflow: 'auto'
   }
@@ -12,8 +12,8 @@ const useStyles = makeStyles(() => ({
 
 const Component = ({ children }: Props): JSX.Element => {
   const classes = useStyles()
-  return <div className={classes.div}>{children}</div>
+  return <div className={classes.pageMain}>{children}</div>
 }
 
-export { Component as PageBody }
-export type { Props as PageBodyProps }
+export { Component as PageMain }
+export type { Props as PageMainProps }
