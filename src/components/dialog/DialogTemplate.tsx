@@ -7,12 +7,14 @@ import { DialogMain } from './DialogMain'
 import { DialogTabBar } from './DialogTabBar'
 import { DialogTitle } from './DialogTitle'
 import { DialogToolBar } from './DialogToolBar'
+import { DialogSubTitle } from './DialogSubTitle'
 import Dialog, { DialogProps } from '@material-ui/core/Dialog'
 
 const Component = ({ ...delegated }: DialogProps): JSX.Element => (
   <Dialog {...delegated}>
     <DialogWrapper>
       <DialogCloseButton onClick={() => window.alert('close!')} />
+      <DialogTitle>Title</DialogTitle>
       <DialogContainer height='60vh' padding='0 0 20px'>
         <DialogTabBar
           tabNames={Array(20)
@@ -22,7 +24,7 @@ const Component = ({ ...delegated }: DialogProps): JSX.Element => (
           value={1}
         />
         <DialogBody>
-          <DialogTitle>title</DialogTitle>
+          <DialogSubTitle>Sub title</DialogSubTitle>
           <DialogMain>
             main <br />
             {Array(20)
