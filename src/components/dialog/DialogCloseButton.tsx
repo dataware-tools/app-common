@@ -1,7 +1,7 @@
 import React from 'react'
-import { ToolBar } from './ToolBar'
+import { ToolBar } from '../ToolBar'
 import CloseIcon from '@material-ui/icons/Close'
-import { SquareIconButton } from './SquareIconButton'
+import { SquareIconButton } from '../SquareIconButton'
 
 type ComponentProps = { onClick: () => void }
 const Component = ({ onClick }: ComponentProps): JSX.Element => (

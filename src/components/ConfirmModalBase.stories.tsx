@@ -16,6 +16,6 @@ export const Default = Template.bind({})
 Default.args = {
   open: true,
   title: 'test',
-  body: 'test',
+  body: 'This is test! please click button!',
   buttons: <Button>Test</Button>
 }

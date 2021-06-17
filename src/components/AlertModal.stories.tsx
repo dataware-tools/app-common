@@ -14,7 +14,7 @@ export const Default = Template.bind({})
 Default.args = {
   onClose: (res) => window.alert(res),
   body: 'test',
-  title: 'test'
+  title: 'This is test! please click button!'
 }
 
 export const AlertOnClick = (): JSX.Element => (
@@ -22,8 +22,8 @@ export const AlertOnClick = (): JSX.Element => (
     onClick={async () => {
       const res = await alert({
         body: 'test',
-        title: 'test',
-        confirmText: 'test'
+        title: 'This is test! please click button!',
+        confirmText: 'yes'
       })
       window.alert(res)
     }}
