@@ -5,6 +5,7 @@ import Toolbar from '@material-ui/core/Toolbar'
 import AppBar from '@material-ui/core/AppBar'
 import Link from '@material-ui/core/Link'
 import { useAuth0 } from '@auth0/auth0-react'
+import { NoticeableLetters } from './NoticeableLetters'
 
 type Props = {
   classes: ReturnType<typeof useStyles>
@@ -25,7 +26,7 @@ const Component = ({
         <Toolbar className={classes.toolBar}>
           <div className={classes.leftContainer}>
             <Link href='/' color='inherit' className={classes.homeLink}>
-              Dataware Tools
+              <NoticeableLetters>Dataware Tool</NoticeableLetters>
             </Link>
           </div>
           <div className={classes.rightContainer}>
@@ -35,7 +36,7 @@ const Component = ({
                 className={classes.authLink}
                 onClick={onLogin}
               >
-                Login
+                <NoticeableLetters>Login</NoticeableLetters>
               </Link>
             ) : (
               <Link
@@ -43,7 +44,7 @@ const Component = ({
                 className={classes.authLink}
                 onClick={onLogout}
               >
-                Logout
+                <NoticeableLetters>Logout</NoticeableLetters>
               </Link>
             )}
           </div>

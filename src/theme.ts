@@ -65,7 +65,16 @@ let theme = createMuiTheme({
       },
       styleOverrides: {
         root: {
-          borderRadius: 0
+          borderRadius: 0,
+          fontFamily: [
+            'Oxanium',
+            'Helvetica Neue',
+            'Arial',
+            'Helvetica',
+            'Roboto',
+            'Noto Sans JP',
+            'sans-serif'
+          ].join(',')
         }
       }
     },
@@ -77,7 +86,16 @@ let theme = createMuiTheme({
         },
         head: {
           fontSize: '1rem',
-          fontWeight: 'bolder'
+          fontWeight: 'bolder',
+          fontFamily: [
+            'Oxanium',
+            'Helvetica Neue',
+            'Arial',
+            'Helvetica',
+            'Roboto',
+            'Noto Sans JP',
+            'sans-serif'
+          ].join(',')
         }
       }
     },
@@ -88,7 +106,18 @@ let theme = createMuiTheme({
     },
     MuiTab: {
       styleOverrides: {
-        root: { maxWidth: 'none' }
+        root: {
+          maxWidth: 'none',
+          fontFamily: [
+            'Oxanium',
+            'Helvetica Neue',
+            'Arial',
+            'Helvetica',
+            'Roboto',
+            'Noto Sans JP',
+            'sans-serif'
+          ].join(',')
+        }
       }
     }
   }
