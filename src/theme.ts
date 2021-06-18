@@ -106,7 +106,18 @@ let theme = createMuiTheme({
     },
     MuiTab: {
       styleOverrides: {
-        root: { maxWidth: 'none' }
+        root: {
+          maxWidth: 'none',
+          fontFamily: [
+            'Oxanium',
+            'Helvetica Neue',
+            'Arial',
+            'Helvetica',
+            'Roboto',
+            'Noto Sans JP',
+            'sans-serif'
+          ].join(',')
+        }
       }
     }
   }
