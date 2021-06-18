@@ -65,7 +65,16 @@ let theme = createMuiTheme({
       },
       styleOverrides: {
         root: {
-          borderRadius: 0
+          borderRadius: 0,
+          fontFamily: [
+            'Oxanium',
+            'Helvetica Neue',
+            'Arial',
+            'Helvetica',
+            'Roboto',
+            'Noto Sans JP',
+            'sans-serif'
+          ].join(',')
         }
       }
     },
