@@ -6,7 +6,8 @@ const useStyles = makeStyles({
     alignItems: 'center',
     display: 'flex',
     fontSize: '1.5rem',
-    padding: '2vh 1vw'
+    padding: '2vh 1vw',
+    paddingRight: 50
   }
 })
 

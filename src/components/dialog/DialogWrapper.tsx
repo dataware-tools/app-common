@@ -7,7 +7,7 @@ const useStyles = makeStyles({
   dialogWrapper: {
     display: 'flex',
     flexDirection: 'column',
-    padding: (props: Props) => props.padding || '10px'
+    padding: (props: Props) => props.padding || '20px'
   }
 })
 

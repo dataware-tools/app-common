@@ -1,18 +1,12 @@
 import React from 'react'
-import { ToolBar } from '../ToolBar'
 import CloseIcon from '@material-ui/icons/Close'
 import { SquareIconButton } from '../SquareIconButton'
 
 type ComponentProps = { onClick: () => void }
 const Component = ({ onClick }: ComponentProps): JSX.Element => (
-  <ToolBar
-    right={
-      <SquareIconButton
-        onClick={onClick}
-        icon={<CloseIcon fontSize='large' />}
-      />
-    }
-  />
+  <div style={{ position: 'absolute', top: 10, right: 10 }}>
+    <SquareIconButton onClick={onClick} icon={<CloseIcon />} />
+  </div>
 )
 
 export { Component as DialogCloseButton }
