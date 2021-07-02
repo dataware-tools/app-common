@@ -15,19 +15,19 @@ const useStyles = makeStyles((theme: typeof themeInstance) => ({
     border: `1px solid ${theme.palette.grey[600]}`,
     borderRadius: '50%',
     color: theme.palette.grey[600],
+    cursor: 'pointer',
     display: 'flex',
     height: 30,
     justifyContent: 'center',
     position: 'fixed',
-    textAlign: 'center',
     width: 30
   }
 }))
 const Component = ({ onClick }: ComponentProps): JSX.Element => {
   const classes = useStyles()
   return (
-    <div className={classes.root} onClick={onClick}>
-      <div className={classes.fixed}>
+    <div className={classes.root}>
+      <div className={classes.fixed} onClick={onClick}>
         <CloseIcon />
       </div>
     </div>
