@@ -4,7 +4,10 @@
   "description": "Common components for dataware-tools",
   "author": "dataware-tools",
   "license": "Apache-2.0",
-  "repository": "dataware-tools/app-common",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dataware-tools/app-common.git"
+  },
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.ts",
