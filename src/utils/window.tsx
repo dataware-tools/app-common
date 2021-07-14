@@ -1,5 +1,5 @@
-import { ConfirmModal, ConfirmModalProps } from 'components/ConfirmModal'
-import { AlertModal, AlertModalProps } from 'components/AlertModal'
+import { ConfirmModal, ConfirmModalProps } from '../components/ConfirmModal'
+import { AlertModal, AlertModalProps } from '../components/AlertModal'
 import React from 'react'
 import ReactDOM from 'react-dom'
 

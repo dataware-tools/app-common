@@ -1,5 +1,5 @@
 import React from 'react'
-import themeInstance from 'theme'
+import themeInstance from '../theme'
 import { makeStyles } from '@material-ui/core/styles'
 import { NoticeableLetters } from './NoticeableLetters'
 

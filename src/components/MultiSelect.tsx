@@ -7,7 +7,7 @@ import Autocomplete, {
   AutocompleteProps
 } from '@material-ui/core/Autocomplete'
 import ClearIcon from '@material-ui/icons/Clear'
-import themeInstance from 'theme'
+import themeInstance from '../theme'
 import { TextField } from '@material-ui/core'
 
 type Props<

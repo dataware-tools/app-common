@@ -3,7 +3,7 @@ import { render, RenderOptions } from '@testing-library/react'
 
 import CssBaseline from '@material-ui/core/CssBaseline'
 import { ThemeProvider, StylesProvider } from '@material-ui/core/styles'
-import theme from 'theme'
+import theme from './theme'
 import { SWRConfig } from 'swr'
 import { AppState, Auth0Provider } from '@auth0/auth0-react'
 import { AUTH_CONFIG } from './auth/config'
