@@ -2,6 +2,8 @@ import { ConfirmModal, ConfirmModalProps } from '../components/ConfirmModal'
 import { AlertModal, AlertModalProps } from '../components/AlertModal'
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { ThemeProvider } from '@material-ui/core/styles'
+import theme from '../theme'
 
 type ConfirmArgs = Omit<ConfirmModalProps, 'onClose'>
 
@@ -15,13 +17,15 @@ const confirm = ({ ...delegated }: ConfirmArgs): Promise<boolean> => {
   const promise = new Promise<boolean>((resolve, reject) => {
     try {
       ReactDOM.render(
-        <ConfirmModal
-          onClose={(result) => {
-            resolve(result)
-            cleanUp()
-          }}
-          {...delegated}
-        />,
+        <ThemeProvider theme={theme}>
+          <ConfirmModal
+            onClose={(result) => {
+              resolve(result)
+              cleanUp()
+            }}
+            {...delegated}
+          />
+        </ThemeProvider>,
         wrapper
       )
     } catch (e) {
@@ -46,13 +50,15 @@ const alert = ({ ...delegated }: AlertArgs): Promise<boolean> => {
   const promise = new Promise<boolean>((resolve, reject) => {
     try {
       ReactDOM.render(
-        <AlertModal
-          onClose={(result) => {
-            resolve(result)
-            cleanUp()
-          }}
-          {...delegated}
-        />,
+        <ThemeProvider theme={theme}>
+          <AlertModal
+            onClose={(result) => {
+              resolve(result)
+              cleanUp()
+            }}
+            {...delegated}
+          />
+        </ThemeProvider>,
         wrapper
       )
     } catch (e) {
