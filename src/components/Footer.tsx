@@ -1,6 +1,6 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import themeInstance from 'theme'
+import themeInstance from '../theme'
 import Link from '@material-ui/core/Link'
 import Divider from '@material-ui/core/Divider'
 import { NoticeableLetters } from './NoticeableLetters'

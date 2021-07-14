@@ -1,7 +1,7 @@
 import React from 'react'
 import MenuItem from '@material-ui/core/MenuItem'
 import Select from '@material-ui/core/Select'
-import themeInstance from 'theme'
+import themeInstance from '../theme'
 import { makeStyles } from '@material-ui/core/styles'
 import { Spacer } from './Spacer'
 

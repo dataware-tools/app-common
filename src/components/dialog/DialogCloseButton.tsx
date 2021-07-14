@@ -1,7 +1,7 @@
 import React from 'react'
 import CloseIcon from '@material-ui/icons/Close'
 import { makeStyles } from '@material-ui/styles'
-import themeInstance from 'theme'
+import themeInstance from '../../theme'
 type ComponentProps = { onClick: () => void }
 const useStyles = makeStyles((theme: typeof themeInstance) => ({
   root: {
