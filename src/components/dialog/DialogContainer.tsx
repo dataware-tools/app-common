@@ -1,26 +1,27 @@
-import React, { ReactNode } from 'react'
+import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
+import Box, { BoxProps } from '@material-ui/core/Box'
 
-type Props = {
-  children: ReactNode
-  height?: string
-  maxHeight?: string
-  padding?: string
-}
+type Props = BoxProps
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(() => ({
   dialogContainer: {
     display: 'flex',
-    flexDirection: 'row',
-    height: (props: Props) => (props.height ? props.height : '100%'),
-    maxHeight: (props: Props) => (props.maxHeight ? props.maxHeight : '100%'),
-    padding: (props: Props) => (props.padding ? props.padding : '0')
+    flexDirection: 'row'
   }
-})
+}))
 
-const Component = ({ children, ...delegated }: Props): JSX.Element => {
-  const classes = useStyles({ children, ...delegated })
-  return <div className={classes.dialogContainer}>{children}</div>
+const Component = ({
+  children,
+  className,
+  ...delegated
+}: Props): JSX.Element => {
+  const classes = useStyles()
+  return (
+    <Box className={`${classes.dialogContainer} ${className}`} {...delegated}>
+      {children}
+    </Box>
+  )
 }
 
 export { Component as DialogContainer }

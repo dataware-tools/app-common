@@ -12,5 +12,6 @@ const Template: Story<DialogTemplateProps> = (args) => (
 )
 export const Default = Template.bind({})
 Default.args = {
-  open: true
+  open: true,
+  maxWidth: 'xl'
 }

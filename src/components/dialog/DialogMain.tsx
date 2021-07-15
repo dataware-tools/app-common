@@ -1,7 +1,8 @@
-import React, { ReactNode } from 'react'
+import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
+import Box, { BoxProps } from '@material-ui/core/Box'
 
-type Props = { children: ReactNode }
+type Props = BoxProps
 
 const useStyles = makeStyles(() => ({
   dialogMain: {
@@ -10,9 +11,17 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-const Component = ({ children }: Props): JSX.Element => {
+const Component = ({
+  children,
+  className,
+  ...delegated
+}: Props): JSX.Element => {
   const classes = useStyles()
-  return <div className={classes.dialogMain}>{children}</div>
+  return (
+    <Box className={`${classes.dialogMain} ${className}`} {...delegated}>
+      {children}
+    </Box>
+  )
 }
 
 export { Component as DialogMain }

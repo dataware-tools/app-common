@@ -4,6 +4,7 @@ import themeInstance from '../theme'
 import Link from '@material-ui/core/Link'
 import Divider from '@material-ui/core/Divider'
 import { NoticeableLetters } from './NoticeableLetters'
+import AppBar from '@material-ui/core/AppBar'
 
 type Props = {
   classes: ReturnType<typeof useStyles>
@@ -15,41 +16,52 @@ type ContainerProps = {
 
 const Component = ({ classes, repository }: Props): JSX.Element => {
   return (
-    <div className={classes.footer}>
-      <Divider variant='middle' sx={{ mt: '3vh', mb: '1vh' }} />
-      <div className={classes.footerBody}>
-        <div className={classes.leftContainer}>
-          <Link
-            variant='body2'
-            color='inherit'
-            href='http://www.hdwlab.co.jp'
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            <NoticeableLetters>&copy; Human Dataware Lab.</NoticeableLetters>
-          </Link>
+    <>
+      <AppBar
+        position='sticky'
+        sx={{ bottom: 0, backgroundColor: 'common.white' }}
+        elevation={0}
+      >
+        <div className={classes.footer}>
+          <Divider variant='middle' sx={{ pt: '10px', pb: '5px' }} />
+          <div className={classes.footerBody}>
+            <div className={classes.leftContainer}>
+              <Link
+                variant='body2'
+                color='inherit'
+                href='http://www.hdwlab.co.jp'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                <NoticeableLetters>
+                  &copy; Human Dataware Lab.
+                </NoticeableLetters>
+              </Link>
+            </div>
+            <div className={classes.rightContainer}>
+              <Link
+                variant='body2'
+                color='inherit'
+                href={repository}
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                <NoticeableLetters>GitHub</NoticeableLetters>
+              </Link>
+            </div>
+          </div>
         </div>
-        <div className={classes.rightContainer}>
-          <Link
-            variant='body2'
-            color='inherit'
-            href={repository}
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            <NoticeableLetters>GitHub</NoticeableLetters>
-          </Link>
-        </div>
-      </div>
-    </div>
+      </AppBar>
+    </>
   )
 }
 
 const useStyles = makeStyles((theme: typeof themeInstance) => ({
   footer: {
     color: theme.palette.text.secondary,
-    marginLeft: '10vw',
-    marginRight: '10vw'
+    paddingBottom: '15px',
+    paddingLeft: '10vw',
+    paddingRight: '10vw'
   },
   footerBody: {
     display: 'flex',
