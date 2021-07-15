@@ -7,7 +7,8 @@ import { ThemeProvider, StylesProvider } from '@material-ui/core/styles'
 import theme from '../src/theme'
 
 export const parameters = {
-  actions: { argTypesRegex: '^on[A-Z].*' }
+  actions: { argTypesRegex: '^on[A-Z].*' },
+  layout: 'fullscreen'
 }
 const redirectUri = window.location.origin
 
