@@ -17,5 +17,5 @@ Default.args = {
   onFileChange: (files) => window.alert(`upload ${files?.[0].name}`)
 }
 
-export const Pending = Template.bind({})
-Pending.args = { children: 'test', pending: true }
+export const Loading = Template.bind({})
+Loading.args = { children: 'test', loading: true }

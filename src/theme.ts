@@ -1,8 +1,8 @@
-import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles'
+import { createTheme, responsiveFontSizes } from '@material-ui/core/styles'
 
 const HDLBaseColor = 200
 const BasicSaturation = '10%'
-let theme = createMuiTheme({
+let theme = createTheme({
   palette: {
     common: {
       black: `hsl(${HDLBaseColor}, ${BasicSaturation}, 2%)`,

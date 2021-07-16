@@ -1,5 +1,5 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/styles'
 import Alert from '@material-ui/core/Alert'
 import AlertTitle from '@material-ui/core/AlertTitle'
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import themeInstance from '../theme'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/styles'
 import Tabs, { TabsProps } from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 

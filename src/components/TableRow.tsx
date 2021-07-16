@@ -2,7 +2,7 @@ import React from 'react'
 import TableCell, { TableCellProps } from '@material-ui/core/TableCell'
 import TableRow from '@material-ui/core/TableRow'
 import themeInstance from '../theme'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/styles'
 
 import DeleteIcon from '@material-ui/icons/Delete'
 import IconButton from '@material-ui/core/IconButton'
