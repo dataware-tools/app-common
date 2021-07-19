@@ -1,25 +1,29 @@
-import React, { ReactNode } from 'react'
+import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
+import Box, { BoxProps } from '@material-ui/core/Box'
 
-type Props = {
-  children: ReactNode
-  flexDirection?: 'row' | 'row-reverse' | 'column' | 'column-reverse'
-  padding?: string
-}
+type Props = BoxProps
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(() => ({
   dialogBody: {
     display: 'flex',
     flex: 1,
-    flexDirection: (props: Props) => props.flexDirection || 'column',
-    padding: (props: Props) => props.padding || '0 2vw'
+    flexDirection: 'column',
+    padding: '0 2vw'
   }
-})
+}))
 
-const Component = ({ children, ...delegated }: Props): JSX.Element => {
-  const classes = useStyles({ children, ...delegated })
-  return <div className={classes.dialogBody}>{children}</div>
+const Component = ({
+  children,
+  className,
+  ...delegated
+}: Props): JSX.Element => {
+  const classes = useStyles()
+  return (
+    <Box className={`${classes.dialogBody} ${className}`} {...delegated}>
+      {children}
+    </Box>
+  )
 }
-
 export { Component as DialogBody }
 export type { Props as DialogBodyProps }

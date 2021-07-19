@@ -5,11 +5,11 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { LoadingIndicator } from '../LoadingIndicator'
 import { ErrorMessage } from '../ErrorMessage'
 import { makeStyles } from '@material-ui/core/styles'
+import Box, { BoxProps } from '@material-ui/core/Box'
 
 export type ContainerProps = {
-  children: JSX.Element | JSX.Element[] | string
   repository: string
-}
+} & BoxProps
 
 const useStyles = makeStyles(() => ({
   loadingIndicatorContainer: {
@@ -25,22 +25,34 @@ const useStyles = makeStyles(() => ({
     height: '100vh',
     justifyContent: 'center',
     width: '100vw'
+  },
+  pageWrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+    // 100vh - Header size - Footer size
+    height: 'calc(100vh - 64px - 55px)',
+    width: '100vw'
   }
 }))
 
-const Container = ({ children, repository }: ContainerProps): JSX.Element => {
-  const styles = useStyles()
+const Container = ({
+  children,
+  repository,
+  className,
+  ...delegated
+}: ContainerProps): JSX.Element => {
+  const classes = useStyles()
   const { isLoading, error } = useAuth0()
   if (isLoading) {
     return (
-      <div className={styles.loadingIndicatorContainer}>
+      <div className={classes.loadingIndicatorContainer}>
         <LoadingIndicator />
       </div>
     )
   }
   if (error) {
     return (
-      <div className={styles.errorMessageContainer}>
+      <div className={classes.errorMessageContainer}>
         <ErrorMessage reason={error.message} />
       </div>
     )
@@ -48,7 +60,9 @@ const Container = ({ children, repository }: ContainerProps): JSX.Element => {
   return (
     <div>
       <Header />
-      {children}
+      <Box className={`${classes.pageWrapper} ${className}`} {...delegated}>
+        {children}
+      </Box>
       <Footer repository={repository} />
     </div>
   )

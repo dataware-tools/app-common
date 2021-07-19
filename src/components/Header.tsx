@@ -22,7 +22,7 @@ const Component = ({
 }: Props): JSX.Element => {
   return (
     <>
-      <AppBar className={classes.appBar} elevation={0} position='fixed'>
+      <AppBar className={classes.appBar} elevation={0} position='sticky'>
         <Toolbar className={classes.toolBar}>
           <div className={classes.leftContainer}>
             <Link href='/' color='inherit' className={classes.homeLink}>
@@ -50,7 +50,6 @@ const Component = ({
           </div>
         </Toolbar>
       </AppBar>
-      <Toolbar />
     </>
   )
 }
