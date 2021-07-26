@@ -119,6 +119,30 @@ let theme = createMuiTheme({
           ].join(',')
         }
       }
+    },
+    // @ts-expect-error M-ui v5 does not support
+    MuiDataGrid: {
+      styleOverrides: {
+        row: {
+          borderBottom: `solid 2px hsl(${HDLBaseColor}, ${BasicSaturation}, 88%)`
+        },
+        columnHeader: {
+          fontSize: '1rem',
+          fontWeight: 'bolder',
+          fontFamily: [
+            'Oxanium',
+            'Helvetica Neue',
+            'Arial',
+            'Helvetica',
+            'Roboto',
+            'Noto Sans JP',
+            'sans-serif'
+          ].join(',')
+        },
+        columnHeaderWrapper: {
+          borderBottom: `solid 2px hsl(${HDLBaseColor}, ${BasicSaturation}, 88%)`
+        }
+      }
     }
   }
 })
