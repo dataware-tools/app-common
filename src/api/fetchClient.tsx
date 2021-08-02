@@ -38,4 +38,21 @@ const fetchFileProvider = async <T, U>(
   return await fetchAPI(fetcher, param)
 }
 
-export { fetchAPI, fetchMetaStore, fetchFileProvider }
+const extractReasonFromFetchError = (fetchError: {
+  body?: { detail?: unknown }
+}): string => {
+  if (typeof fetchError.body?.detail === 'string') {
+    return fetchError.body?.detail
+  } else if (fetchError.body?.detail) {
+    return JSON.stringify(fetchError.body.detail)
+  } else {
+    return JSON.stringify(fetchError)
+  }
+}
+
+export {
+  fetchAPI,
+  fetchMetaStore,
+  fetchFileProvider,
+  extractReasonFromFetchError
+}
