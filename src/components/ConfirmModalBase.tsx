@@ -9,8 +9,8 @@ import { DialogMain } from './dialog/DialogMain'
 
 type Props = {
   open: boolean
-  body?: string
-  title?: string
+  body?: ReactNode
+  title?: ReactNode
   height?: string
   buttons: ReactNode
 } & Omit<DialogProps, 'onClose'>
@@ -28,9 +28,21 @@ const Component = ({
       <DialogWrapper>
         <DialogContainer height={height}>
           <DialogBody padding='0'>
-            {title ? <DialogTitle>{title}</DialogTitle> : null}
+            {title ? (
+              typeof title === 'string' ? (
+                <DialogTitle>{title}</DialogTitle>
+              ) : (
+                title
+              )
+            ) : null}
             <DialogMain>
-              {body ? <DialogBody>{body}</DialogBody> : null}
+              {body ? (
+                typeof body === 'string' ? (
+                  <DialogBody>{body}</DialogBody>
+                ) : (
+                  body
+                )
+              ) : null}
             </DialogMain>
             <DialogToolBar right={buttons} />
           </DialogBody>
