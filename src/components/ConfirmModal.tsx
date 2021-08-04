@@ -15,7 +15,12 @@ type ContainerProps = {
   cancelText?: string
   cancelButtonProps?: ButtonProps
   reverseButtons?: boolean
-  onClose: (confirmResult: boolean) => void
+  onClose: (
+    confirmResult: boolean
+  ) =>
+    | Promise<{ cancelCloseModal?: boolean } | undefined>
+    | { cancelCloseModal?: boolean }
+    | undefined
 } & Omit<ConfirmModalBaseProps, 'buttons' | 'open'>
 
 const Component = ({
@@ -61,13 +66,19 @@ const Container = ({
 }: ContainerProps): JSX.Element | null => {
   const [open, setOpen] = useState(true)
 
-  const onCancel = () => {
-    onClose(false)
+  const onCancel = async () => {
+    const res = await onClose(false)
+    if (res?.cancelCloseModal) {
+      return
+    }
     setOpen(false)
   }
 
-  const onConfirm = () => {
-    onClose(true)
+  const onConfirm = async () => {
+    const res = await onClose(true)
+    if (res?.cancelCloseModal) {
+      return
+    }
     setOpen(false)
   }
 

@@ -12,7 +12,10 @@ const Template: Story<ConfirmModalProps> = (args) => <ConfirmModal {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
-  onClose: (res) => window.alert(res),
+  onClose: (res) => {
+    window.alert(res)
+    return {}
+  },
   body: 'This is test! please click button!',
   title: 'test'
 }
