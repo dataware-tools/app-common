@@ -78,5 +78,6 @@ export {
   fetchAPI,
   fetchMetaStore,
   fetchFileProvider,
+  extractReasonFromFetchError,
   extractErrorMessageFromFetchError
 }
