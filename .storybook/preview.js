@@ -3,7 +3,8 @@ import { AUTH_CONFIG } from '../src/auth/config'
 import { Auth0Provider } from '@auth0/auth0-react'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import React from 'react'
-import { ThemeProvider, StylesProvider } from '@material-ui/core/styles'
+import { ThemeProvider } from '@material-ui/core/styles'
+import { StylesProvider } from '@material-ui/styles'
 import theme from '../src/theme'
 
 export const parameters = {

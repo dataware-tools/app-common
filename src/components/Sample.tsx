@@ -1,6 +1,6 @@
 import React from 'react'
 import themeInstance from '../theme'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/styles'
 import { NoticeableLetters } from './NoticeableLetters'
 
 type Props = { classes: ReturnType<typeof useStyles> } & ContainerProps

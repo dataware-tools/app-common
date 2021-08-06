@@ -18,4 +18,4 @@ Default.args = {
 }
 
 export const Pending = Template.bind({})
-Pending.args = { children: 'test', pending: true }
+Pending.args = { children: 'test', loading: true }

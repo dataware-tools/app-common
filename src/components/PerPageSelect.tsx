@@ -1,8 +1,8 @@
 import React from 'react'
 import MenuItem from '@material-ui/core/MenuItem'
-import Select from '@material-ui/core/Select'
+import Select, { SelectChangeEvent } from '@material-ui/core/Select'
 import themeInstance from '../theme'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/styles'
 import { Spacer } from './Spacer'
 
 type Props = { classes: ReturnType<typeof useStyles> } & ContainerProps
@@ -20,8 +20,8 @@ const Component = ({
   values,
   label
 }: Props): JSX.Element => {
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setPerPage(event.target.value as number)
+  const handleChange = (event: SelectChangeEvent) => {
+    setPerPage(parseInt(event.target.value, 10))
   }
   const labelId = `PerPageSelect_${Date.now()}`
 
@@ -32,7 +32,7 @@ const Component = ({
       </label>
       <Spacer direction='horizontal' size='8px' />
       <Select
-        value={perPage}
+        value={perPage.toString()}
         onChange={handleChange}
         size='small'
         labelId={labelId}

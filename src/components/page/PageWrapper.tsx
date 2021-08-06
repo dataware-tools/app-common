@@ -4,7 +4,7 @@ import { Footer } from '../Footer'
 import { useAuth0 } from '@auth0/auth0-react'
 import { LoadingIndicator } from '../LoadingIndicator'
 import { ErrorMessage } from '../ErrorMessage'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/styles'
 import Box, { BoxProps } from '@material-ui/core/Box'
 
 export type ContainerProps = {

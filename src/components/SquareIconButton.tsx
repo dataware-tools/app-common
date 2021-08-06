@@ -1,5 +1,5 @@
 import React, { MouseEventHandler, ReactNode } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/styles'
 import themeInstance from '../theme'
 
 const useStyles = makeStyles((theme: typeof themeInstance) => ({

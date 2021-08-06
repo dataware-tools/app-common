@@ -1,6 +1,6 @@
 import React, { SyntheticEvent, useState } from 'react'
 import ClickAwayListener from '@material-ui/core/ClickAwayListener'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/styles'
 import LoadingButton from '@material-ui/lab/LoadingButton'
 import Autocomplete, {
   AutocompleteCloseReason,
@@ -80,7 +80,7 @@ const Component = <
     return (
       <LoadingButton
         id={saveButtonId}
-        pending={isSaving}
+        loading={isSaving}
         className={styles.saveButton}
         onClick={onClickSaveButton}
       >
