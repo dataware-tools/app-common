@@ -39,7 +39,7 @@ const fetchFileProvider = async <T, U>(
 }
 
 type FetchErrorType = {
-  body?: { detail?: unknown; instruction: unknown }
+  body?: { detail?: unknown; instruction?: unknown }
   status: number
 }
 
