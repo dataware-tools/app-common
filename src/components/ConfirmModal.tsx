@@ -12,6 +12,7 @@ type Props = {
 type ContainerProps = {
   confirmText?: string
   confirmButtonProps?: ButtonProps
+  confirmMode?: 'default' | 'delete'
   cancelText?: string
   cancelButtonProps?: ButtonProps
   reverseButtons?: boolean
@@ -32,13 +33,37 @@ const Component = ({
   onCancel,
   cancelButtonProps,
   reverseButtons,
+  confirmMode,
   ...delegated
 }: Props) => {
-  const ConfirmButton = () => (
-    <Button variant='contained' {...confirmButtonProps} onClick={onConfirm}>
-      {confirmText || 'confirm'}
-    </Button>
-  )
+  const ConfirmButton = () => {
+    switch (confirmMode) {
+      case 'delete':
+        return (
+          <Button
+            variant='contained'
+            {...confirmButtonProps}
+            onClick={onConfirm}
+            // @ts-expect-error Material-UI v5 beta version will solve this error
+            color='error'
+          >
+            {confirmText || 'delete'}
+          </Button>
+        )
+
+      case 'default':
+      default:
+        return (
+          <Button
+            variant='contained'
+            {...confirmButtonProps}
+            onClick={onConfirm}
+          >
+            {confirmText || 'confirm'}
+          </Button>
+        )
+    }
+  }
   const CancelButton = () => (
     <Button variant='text' {...cancelButtonProps} onClick={onCancel}>
       {cancelText || 'cancel'}
