@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 import IconButton from '@material-ui/core/IconButton'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import SearchIcon from '@material-ui/icons/Search'
-import OutlinedInput from '@material-ui/core/OutlinedInput'
+import OutlinedInput, {
+  OutlinedInputProps
+} from '@material-ui/core/OutlinedInput'
 
 type Props = {
   searchText: string
@@ -13,13 +15,15 @@ type ContainerProps = {
   onSearch: (searchText: string) => void
   defaultValue?: string
   value?: string
+  inputProps?: Omit<OutlinedInputProps, 'onChange' | 'value' | 'endAdornment'>
 }
 
 const Component = ({
   onSearch,
   searchText,
   setSearchText,
-  value
+  value,
+  inputProps
 }: Props): JSX.Element => {
   return (
     <form
@@ -31,6 +35,7 @@ const Component = ({
       <OutlinedInput
         size='small'
         placeholder='Search...'
+        {...inputProps}
         endAdornment={
           <InputAdornment position='end'>
             <IconButton
