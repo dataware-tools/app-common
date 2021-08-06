@@ -22,6 +22,7 @@ const confirm = ({ ...delegated }: ConfirmArgs): Promise<boolean> => {
             onClose={(result) => {
               resolve(result)
               cleanUp()
+              return {}
             }}
             {...delegated}
           />
