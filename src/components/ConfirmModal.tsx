@@ -44,7 +44,6 @@ const Component = ({
             variant='contained'
             {...confirmButtonProps}
             onClick={onConfirm}
-            // @ts-expect-error Material-UI v5 beta version will solve this error
             color='error'
           >
             {confirmText || 'delete'}

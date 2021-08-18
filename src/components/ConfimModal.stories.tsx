@@ -22,7 +22,10 @@ Default.args = {
 
 export const DeleteMode = Template.bind({})
 DeleteMode.args = {
-  onClose: (res) => window.alert(res),
+  onClose: (res) => {
+    window.alert(res)
+    return {}
+  },
   body: 'This is test! please click button!',
   title: 'Confirm delete',
   confirmMode: 'delete'
