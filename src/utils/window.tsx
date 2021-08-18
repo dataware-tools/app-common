@@ -2,7 +2,7 @@ import { ConfirmModal, ConfirmModalProps } from '../components/ConfirmModal'
 import { AlertModal, AlertModalProps } from '../components/AlertModal'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { ThemeProvider } from '@material-ui/styles'
+import { ThemeProvider } from '@material-ui/core/styles'
 import theme from '../theme'
 
 type ConfirmArgs = Omit<ConfirmModalProps, 'onClose'>
