@@ -20,6 +20,14 @@ Default.args = {
   title: 'test'
 }
 
+export const DeleteMode = Template.bind({})
+DeleteMode.args = {
+  onClose: (res) => window.alert(res),
+  body: 'This is test! please click button!',
+  title: 'Confirm delete',
+  confirmMode: 'delete'
+}
+
 export const ConfirmOnClick = (): JSX.Element => (
   <button
     onClick={async () => {
