@@ -1,20 +1,17 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/styles'
-import themeInstance from '../theme'
 import Link from '@material-ui/core/Link'
 import Divider from '@material-ui/core/Divider'
 import { NoticeableLetters } from './NoticeableLetters'
 import AppBar from '@material-ui/core/AppBar'
+import Box from '@material-ui/core/Box'
 
-type Props = {
-  classes: ReturnType<typeof useStyles>
-} & ContainerProps
+type Props = ContainerProps
 
 type ContainerProps = {
   repository: string
 }
 
-const Component = ({ classes, repository }: Props): JSX.Element => {
+const Component = ({ repository }: Props): JSX.Element => {
   return (
     <>
       <AppBar
@@ -22,10 +19,23 @@ const Component = ({ classes, repository }: Props): JSX.Element => {
         sx={{ bottom: 0, backgroundColor: 'common.white' }}
         elevation={0}
       >
-        <div className={classes.footer}>
+        <Box
+          sx={{
+            color: 'text.secondary',
+            paddingBottom: '15px',
+            paddingLeft: '10vw',
+            paddingRight: '10vw'
+          }}
+        >
           <Divider variant='middle' sx={{ pt: '10px', pb: '5px' }} />
-          <div className={classes.footerBody}>
-            <div className={classes.leftContainer}>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'space-between'
+            }}
+          >
+            <Box sx={{ flex: 1 }}>
               <Link
                 variant='body2'
                 color='inherit'
@@ -37,8 +47,8 @@ const Component = ({ classes, repository }: Props): JSX.Element => {
                   &copy; Human Dataware Lab.
                 </NoticeableLetters>
               </Link>
-            </div>
-            <div className={classes.rightContainer}>
+            </Box>
+            <Box sx={{ display: 'flex', flex: 1, justifyContent: 'flex-end' }}>
               <Link
                 variant='body2'
                 color='inherit'
@@ -48,39 +58,16 @@ const Component = ({ classes, repository }: Props): JSX.Element => {
               >
                 <NoticeableLetters>GitHub</NoticeableLetters>
               </Link>
-            </div>
-          </div>
-        </div>
+            </Box>
+          </Box>
+        </Box>
       </AppBar>
     </>
   )
 }
 
-const useStyles = makeStyles((theme: typeof themeInstance) => ({
-  footer: {
-    color: theme.palette.text.secondary,
-    paddingBottom: '15px',
-    paddingLeft: '10vw',
-    paddingRight: '10vw'
-  },
-  footerBody: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  },
-  leftContainer: {
-    flex: 1
-  },
-  rightContainer: {
-    display: 'flex',
-    flex: 1,
-    justifyContent: 'flex-end'
-  }
-}))
-
 const Container = ({ ...delegated }: ContainerProps): JSX.Element => {
-  const classes = useStyles()
-  return <Component classes={classes} {...delegated} />
+  return <Component {...delegated} />
 }
 
 export { Container as Footer }

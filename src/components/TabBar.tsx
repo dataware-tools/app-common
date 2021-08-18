@@ -1,10 +1,8 @@
 import React from 'react'
-import themeInstance from '../theme'
-import { makeStyles } from '@material-ui/styles'
 import Tabs, { TabsProps } from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 
-type Props = { styles: ReturnType<typeof useStyles> } & ContainerProps
+type Props = ContainerProps
 
 type ContainerProps = {
   tabNames: string[]
@@ -16,7 +14,6 @@ const Component = ({
   tabNames,
   onChange,
   value,
-  styles,
   ...delegated
 }: Props): JSX.Element => {
   return (
@@ -29,31 +26,30 @@ const Component = ({
         onChange(newValue)
       }}
       value={value}
-      className={styles.tabs}
+      sx={{
+        borderRight: 3,
+        borderColor: 'divider',
+        boxSizing: 'border-box',
+        height: '100%'
+      }}
     >
       {tabNames.map((tabName) => (
-        <Tab key={tabName} label={tabName} className={styles.tab} />
+        <Tab
+          key={tabName}
+          label={tabName}
+          sx={{
+            ':hover': {
+              backgroundColor: 'action.hover'
+            }
+          }}
+        />
       ))}
     </Tabs>
   )
 }
 
-const useStyles = makeStyles((theme: typeof themeInstance) => ({
-  tabs: {
-    borderRight: `solid 3px ${theme.palette.divider}`,
-    boxSizing: 'border-box',
-    height: '100%'
-  },
-  tab: {
-    '&:hover': {
-      backgroundColor: theme.palette.action.hover
-    }
-  }
-}))
-
 const Container = ({ ...delegated }: ContainerProps): JSX.Element => {
-  const styles = useStyles()
-  return <Component {...delegated} styles={styles} />
+  return <Component {...delegated} />
 }
 
 export { Container as TabBar }

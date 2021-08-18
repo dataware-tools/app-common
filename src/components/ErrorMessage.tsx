@@ -1,31 +1,27 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/styles'
 import Alert from '@material-ui/core/Alert'
 import AlertTitle from '@material-ui/core/AlertTitle'
+import Box from '@material-ui/core/Box'
 
-type Props = {
-  classes: ReturnType<typeof useStyles>
-} & ContainerProps
+type Props = ContainerProps
 
 type ContainerProps = {
   reason?: string
   instruction?: string
 }
 
-const useStyles = makeStyles(() => ({
-  root: {
-    alignItems: 'center',
-    display: 'flex',
-    height: '100%',
-    justifyContent: 'center',
-    overflow: 'auto',
-    width: '100%'
-  }
-}))
-
-const Component = ({ reason, instruction, classes }: Props): JSX.Element => {
+const Component = ({ reason, instruction }: Props): JSX.Element => {
   return (
-    <div className={classes.root}>
+    <Box
+      sx={{
+        alignItems: 'center',
+        display: 'flex',
+        height: '100%',
+        justifyContent: 'center',
+        overflow: 'auto',
+        width: '100%'
+      }}
+    >
       <Alert severity='error'>
         <AlertTitle>Error</AlertTitle>
         {reason ? <div>{reason}</div> : null}
@@ -35,13 +31,12 @@ const Component = ({ reason, instruction, classes }: Props): JSX.Element => {
           </div>
         ) : null}
       </Alert>
-    </div>
+    </Box>
   )
 }
 
 const Container = ({ ...delegated }: ContainerProps): JSX.Element => {
-  const classes = useStyles()
-  return <Component classes={classes} {...delegated} />
+  return <Component {...delegated} />
 }
 
 export { Container as ErrorMessage }
