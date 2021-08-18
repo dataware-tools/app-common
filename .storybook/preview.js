@@ -19,7 +19,7 @@ const onRedirectCallback = (appState) => {
   history.replaceState(null, '', nonQueryParamURL)
 }
 export const decorators = [
-  (story) => {
+  (Story, context) => {
     return (
       <>
         <link rel='preconnect' href='https://fonts.gstatic.com' />
@@ -37,7 +37,7 @@ export const decorators = [
               redirectUri={redirectUri}
               onRedirectCallback={onRedirectCallback}
             >
-              {story()}
+              <Story {...context} />
             </Auth0Provider>
           </ThemeProvider>
         </StylesProvider>
