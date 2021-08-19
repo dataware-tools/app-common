@@ -37,6 +37,7 @@
     "@material-ui/core": "^5.0.0-beta.4",
     "@material-ui/icons": "^5.0.0-beta.4",
     "@material-ui/lab": "^5.0.0-alpha.43",
+    "@material-ui/styles": "^5.0.0-beta.4",
     "@auth0/auth0-react": ">=1.4.0 < 2",
     "@emotion/react": ">= 11.4.1 < 12",
     "@emotion/styled": ">= 11.3.0 < 12"
@@ -50,6 +51,7 @@
     "@material-ui/core": "^5.0.0-beta.4",
     "@material-ui/icons": "^5.0.0-beta.4",
     "@material-ui/lab": "^5.0.0-alpha.43",
+    "@material-ui/styles": "^5.0.0-beta.4",
     "@storybook/addon-actions": "^6.2.9",
     "@storybook/addon-essentials": "^6.2.9",
     "@storybook/addon-links": "^6.2.9",
@@ -122,8 +124,5 @@
     "maintained Node versions",
     "last 2 Safari versions",
     "last 2 Samsung versions"
-  ],
-  "dependencies": {
-    "@material-ui/styles": "^5.0.0-beta.4"
-  }
+  ]
 }
