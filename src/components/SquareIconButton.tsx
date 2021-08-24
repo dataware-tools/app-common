@@ -1,22 +1,5 @@
 import React, { MouseEventHandler, ReactNode } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import themeInstance from '../theme'
-
-const useStyles = makeStyles((theme: typeof themeInstance) => ({
-  button: {
-    alignItems: 'center',
-    cursor: (props: ContainerProps) => (props.disabled ? 'unset' : 'pointer'),
-    display: 'flex',
-    height: '40px',
-    justifyContent: 'center',
-    opacity: (props: ContainerProps) => (props.disabled ? '50%' : 'unset'),
-    width: '40px',
-    '&:hover': {
-      backgroundColor: (props: ContainerProps) =>
-        props.disabled ? 'unset' : theme.palette.action.hover
-    }
-  }
-}))
+import Box from '@material-ui/core/Box'
 
 type ContainerProps = {
   onClick: MouseEventHandler<HTMLDivElement>
@@ -29,11 +12,24 @@ const Container = ({
   onClick,
   disabled
 }: ContainerProps): JSX.Element => {
-  const classes = useStyles({ icon, onClick, disabled })
   return (
-    <div className={classes.button} onClick={disabled ? undefined : onClick}>
+    <Box
+      sx={{
+        alignItems: 'center',
+        cursor: disabled ? 'unset' : 'pointer',
+        display: 'flex',
+        height: '40px',
+        justifyContent: 'center',
+        opacity: disabled ? '50%' : 'unset',
+        width: '40px',
+        '&:hover': {
+          backgroundColor: disabled ? 'unset' : 'action.hover'
+        }
+      }}
+      onClick={disabled ? undefined : onClick}
+    >
       {icon}
-    </div>
+    </Box>
   )
 }
 

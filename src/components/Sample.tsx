@@ -1,33 +1,23 @@
 import React from 'react'
-import themeInstance from '../theme'
-import { makeStyles } from '@material-ui/core/styles'
 import { NoticeableLetters } from './NoticeableLetters'
+import Box from '@material-ui/core/Box'
 
-type Props = { classes: ReturnType<typeof useStyles> } & ContainerProps
+type Props = ContainerProps
 
 type ContainerProps = {
   sample: string
 }
 
-const Component = ({ classes, sample }: Props): JSX.Element => {
+const Component = ({ sample }: Props): JSX.Element => {
   return (
-    <div role='main' className={classes.sample}>
+    <Box role='main' sx={{ ':hover': { backgroundColor: 'action.hover' } }}>
       <NoticeableLetters>{sample}</NoticeableLetters>
-    </div>
+    </Box>
   )
 }
 
-const useStyles = makeStyles((theme: typeof themeInstance) => ({
-  sample: {
-    '&:hover': {
-      backgroundColor: theme.palette.action.hover
-    }
-  }
-}))
-
 const Container = ({ ...delegated }: ContainerProps): JSX.Element => {
-  const classes = useStyles()
-  return <Component classes={classes} {...delegated} />
+  return <Component {...delegated} />
 }
 
 export { Container as Sample }

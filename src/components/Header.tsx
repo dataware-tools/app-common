@@ -1,6 +1,5 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import themeInstance from '../theme'
+import { makeStyles } from '@material-ui/styles'
 import Toolbar from '@material-ui/core/Toolbar'
 import AppBar from '@material-ui/core/AppBar'
 import Link from '@material-ui/core/Link'
@@ -22,8 +21,13 @@ const Component = ({
 }: Props): JSX.Element => {
   return (
     <>
-      <AppBar className={classes.appBar} elevation={0} position='sticky'>
-        <Toolbar className={classes.toolBar}>
+      <AppBar sx={{ color: 'common.white' }} elevation={0} position='sticky'>
+        <Toolbar
+          sx={{
+            backgroundColor: 'common.black',
+            justifyContent: 'space-between'
+          }}
+        >
           <div className={classes.leftContainer}>
             <Link href='/' color='inherit' className={classes.homeLink}>
               <NoticeableLetters>Dataware Tool</NoticeableLetters>
@@ -54,14 +58,7 @@ const Component = ({
   )
 }
 
-const useStyles = makeStyles((theme: typeof themeInstance) => ({
-  appBar: {
-    color: theme.palette.common.white
-  },
-  toolBar: {
-    backgroundColor: theme.palette.common.black,
-    justifyContent: 'space-between'
-  },
+const useStyles = makeStyles({
   leftContainer: {
     flex: 1
   },
@@ -76,7 +73,7 @@ const useStyles = makeStyles((theme: typeof themeInstance) => ({
   authLink: {
     cursor: 'pointer'
   }
-}))
+})
 
 const Container = (): JSX.Element => {
   const classes = useStyles()

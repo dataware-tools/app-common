@@ -1,9 +1,6 @@
 import React from 'react'
 import TableCell, { TableCellProps } from '@material-ui/core/TableCell'
 import TableRow from '@material-ui/core/TableRow'
-import themeInstance from '../theme'
-import { makeStyles } from '@material-ui/core/styles'
-
 import DeleteIcon from '@material-ui/icons/Delete'
 import IconButton from '@material-ui/core/IconButton'
 
@@ -21,7 +18,6 @@ type Columns = {
 }[]
 
 type Props = {
-  classes: ReturnType<typeof useStyles>
   onClickCell: (targetDetail: TargetDetail) => void
   onClickDeleteButton: (targetDetail: TargetDetail) => void
   haveDeleteButton: boolean
@@ -29,7 +25,7 @@ type Props = {
     cellContent: CellContent,
     ifEmpty?: string | number
   ) => string | number | undefined
-} & Omit<ContainerProps, 'onDelete' | 'onClick' | 'disableHoverRow' | 'unknown'>
+} & Omit<ContainerProps, 'onDelete' | 'onClick'>
 
 type ContainerProps = {
   row: Row
@@ -43,7 +39,6 @@ type ContainerProps = {
 }
 
 const Component = ({
-  classes,
   columns,
   row,
   onClickDeleteButton,
@@ -51,17 +46,39 @@ const Component = ({
   haveDeleteButton,
   index,
   fixCellContent,
-  getAlign
+  getAlign,
+  disableHoverRow,
+  disableHoverCell
 }: Props): JSX.Element => {
   return (
-    <TableRow className={classes.row}>
+    <TableRow
+      sx={
+        disableHoverRow
+          ? undefined
+          : {
+              cursor: 'pointer',
+              ':hover': {
+                backgroundColor: 'action.hover'
+              }
+            }
+      }
+    >
       {columns.map((column) => {
         const field = column.field
         const cellContent = row[field]
         const fixedCellContent = fixCellContent(cellContent, column.ifEmpty)
         return (
           <TableCell
-            className={classes.cell}
+            sx={
+              disableHoverCell
+                ? {}
+                : {
+                    cursor: 'pointer',
+                    ':hover': {
+                      backgroundColor: 'action.hover'
+                    }
+                  }
+            }
             key={field}
             align={getAlign(column.type)}
             onClick={() =>
@@ -95,41 +112,11 @@ const Component = ({
   )
 }
 
-const useStyles = makeStyles((theme: typeof themeInstance) => ({
-  row: (props: ContainerProps) => {
-    return props.disableHoverRow
-      ? {}
-      : {
-          cursor: 'pointer',
-          '&:hover': {
-            backgroundColor: theme.palette.action.hover
-          }
-        }
-  },
-  cell: (props: ContainerProps) => {
-    return props.disableHoverCell
-      ? {}
-      : {
-          cursor: 'pointer',
-          '&:hover': {
-            backgroundColor: theme.palette.action.hover
-          }
-        }
-  },
-  deleteButton: {
-    '&:hover': {
-      backgroundColor: theme.palette.action.hover
-    }
-  }
-}))
-
 const Container = ({
   onClick,
   onDelete,
   ...delegated
 }: ContainerProps): JSX.Element => {
-  const classes = useStyles({ onClick, onDelete, ...delegated })
-
   const haveDeleteButton = onDelete != null
   const isEmpty = (cellContent: CellContent): boolean => {
     if (!cellContent) {
@@ -178,7 +165,6 @@ const Container = ({
 
   return (
     <Component
-      classes={classes}
       {...delegated}
       onClickCell={onClickCell}
       onClickDeleteButton={onClickDeleteButton}

@@ -1,6 +1,6 @@
 import React, { SyntheticEvent, useState } from 'react'
 import ClickAwayListener from '@material-ui/core/ClickAwayListener'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/styles'
 import LoadingButton from '@material-ui/lab/LoadingButton'
 import Autocomplete, {
   AutocompleteCloseReason,
@@ -9,6 +9,7 @@ import Autocomplete, {
 import ClearIcon from '@material-ui/icons/Clear'
 import themeInstance from '../theme'
 import { TextField } from '@material-ui/core'
+import Box from '@material-ui/core/Box'
 
 type Props<
   T,
@@ -80,7 +81,7 @@ const Component = <
     return (
       <LoadingButton
         id={saveButtonId}
-        pending={isSaving}
+        loading={isSaving}
         className={styles.saveButton}
         onClick={onClickSaveButton}
       >
@@ -111,12 +112,22 @@ const Component = <
       </div>
     </ClickAwayListener>
   ) : (
-    <div
-      className={
-        value && value.length > 0
-          ? styles.deactiveSelect
-          : styles.deactiveEmptySelect
-      }
+    <Box
+      sx={{
+        alignItems: 'center',
+        borderRadius: '4px',
+        cursor: 'pointer',
+        display: 'flex',
+        flexWrap: 'wrap',
+        padding: '6px',
+        paddingLeft: value && value.length > 0 ? undefined : '1rem',
+        color: value && value.length > 0 ? undefined : 'text.disabled',
+        height: value && value.length > 0 ? undefined : '40px',
+        width: '100%',
+        ':hover': {
+          backgroundColor: 'action.hover'
+        }
+      }}
       onClick={onFocusSelect}
     >
       {value && value.length > 0 ? (
@@ -134,36 +145,11 @@ const Component = <
       ) : (
         <div>Select...</div>
       )}
-    </div>
+    </Box>
   )
 }
 
-const useStyles = makeStyles((theme: typeof themeInstance) => ({
-  deactiveSelect: {
-    alignItems: 'center',
-    borderRadius: '4px',
-    cursor: 'pointer',
-    display: 'flex',
-    flexWrap: 'wrap',
-    padding: '6px',
-    width: '100%',
-    '&:hover': {
-      backgroundColor: theme.palette.action.hover
-    }
-  },
-  deactiveEmptySelect: {
-    alignItems: 'center',
-    borderRadius: '4px',
-    color: theme.palette.text.disabled,
-    cursor: 'pointer',
-    display: 'flex',
-    height: '40px',
-    paddingLeft: '1rem',
-    width: '100%',
-    '&:hover': {
-      backgroundColor: theme.palette.action.hover
-    }
-  },
+const useStyles = makeStyles({
   selectContainer: {
     display: 'flex',
     flexDirection: 'row'
@@ -173,7 +159,7 @@ const useStyles = makeStyles((theme: typeof themeInstance) => ({
   },
   selectedItem: { ...selectedItemStyleBase, padding: '2px 6px' },
   saveButton: { marginLeft: '5px' }
-}))
+})
 
 const Container = <
   T,
