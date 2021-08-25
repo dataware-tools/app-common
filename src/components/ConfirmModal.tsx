@@ -1,30 +1,30 @@
-import React, { useState } from 'react'
-import Button, { ButtonProps } from '@material-ui/core/Button'
-import { Spacer } from './Spacer'
-import { ConfirmModalBase, ConfirmModalBaseProps } from './ConfirmModalBase'
+import Button, { ButtonProps } from "@material-ui/core/Button";
+import React, { useState } from "react";
+import { ConfirmModalBase, ConfirmModalBaseProps } from "./ConfirmModalBase";
+import { Spacer } from "./Spacer";
 
-type Props = {
-  onCancel: () => void
-  onConfirm: () => void
-  open: boolean
-} & Omit<ContainerProps, 'onClose'>
+export type ConfirmModalPresentationProps = {
+  onCancel: () => void;
+  onConfirm: () => void;
+  open: boolean;
+} & Omit<ConfirmModalProps, "onClose">;
 
-type ContainerProps = {
-  confirmText?: string
-  confirmButtonProps?: ButtonProps
-  confirmMode?: 'default' | 'delete'
-  cancelText?: string
-  cancelButtonProps?: ButtonProps
-  reverseButtons?: boolean
+export type ConfirmModalProps = {
+  confirmText?: string;
+  confirmButtonProps?: ButtonProps;
+  confirmMode?: "default" | "delete";
+  cancelText?: string;
+  cancelButtonProps?: ButtonProps;
+  reverseButtons?: boolean;
   onClose: (
     confirmResult: boolean
   ) =>
     | Promise<{ cancelCloseModal?: boolean } | undefined>
     | { cancelCloseModal?: boolean }
-    | undefined
-} & Omit<ConfirmModalBaseProps, 'buttons' | 'open'>
+    | undefined;
+} & Omit<ConfirmModalBaseProps, "buttons" | "open">;
 
-const Component = ({
+export const ConfirmModalPresentation = ({
   open,
   confirmText,
   onConfirm,
@@ -35,39 +35,39 @@ const Component = ({
   reverseButtons,
   confirmMode,
   ...delegated
-}: Props) => {
+}: ConfirmModalPresentationProps): JSX.Element => {
   const ConfirmButton = () => {
     switch (confirmMode) {
-      case 'delete':
+      case "delete":
         return (
           <Button
-            variant='contained'
+            variant="contained"
             {...confirmButtonProps}
             onClick={onConfirm}
-            color='error'
+            color="error"
           >
-            {confirmText || 'delete'}
+            {confirmText || "delete"}
           </Button>
-        )
+        );
 
-      case 'default':
+      case "default":
       default:
         return (
           <Button
-            variant='contained'
+            variant="contained"
             {...confirmButtonProps}
             onClick={onConfirm}
           >
-            {confirmText || 'confirm'}
+            {confirmText || "confirm"}
           </Button>
-        )
+        );
     }
-  }
+  };
   const CancelButton = () => (
-    <Button variant='text' {...cancelButtonProps} onClick={onCancel}>
-      {cancelText || 'cancel'}
+    <Button variant="text" {...cancelButtonProps} onClick={onCancel}>
+      {cancelText || "cancel"}
     </Button>
-  )
+  );
   return (
     <ConfirmModalBase
       {...delegated}
@@ -75,39 +75,39 @@ const Component = ({
       buttons={
         <>
           {reverseButtons ? <CancelButton /> : <ConfirmButton />}
-          <Spacer direction='horizontal' size='10px' />
+          <Spacer direction="horizontal" size="10px" />
           {reverseButtons ? <ConfirmButton /> : <CancelButton />}
         </>
       }
     />
-  )
-}
-const Container = ({
+  );
+};
+export const ConfirmModal = ({
   body,
   title,
   onClose,
   ...delegated
-}: ContainerProps): JSX.Element | null => {
-  const [open, setOpen] = useState(true)
+}: ConfirmModalProps): JSX.Element | null => {
+  const [open, setOpen] = useState(true);
 
   const onCancel = async () => {
-    const res = await onClose(false)
+    const res = await onClose(false);
     if (res?.cancelCloseModal) {
-      return
+      return;
     }
-    setOpen(false)
-  }
+    setOpen(false);
+  };
 
   const onConfirm = async () => {
-    const res = await onClose(true)
+    const res = await onClose(true);
     if (res?.cancelCloseModal) {
-      return
+      return;
     }
-    setOpen(false)
-  }
+    setOpen(false);
+  };
 
   return (
-    <Component
+    <ConfirmModalPresentation
       {...delegated}
       open={open}
       body={body}
@@ -115,8 +115,5 @@ const Container = ({
       onCancel={onCancel}
       onConfirm={onConfirm}
     />
-  )
-}
-
-export { Container as ConfirmModal }
-export type { ContainerProps as ConfirmModalProps }
+  );
+};

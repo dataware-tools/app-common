@@ -1,15 +1,15 @@
-import React from 'react'
-import { Sample, SampleProps } from './Sample'
-import { Story } from '@storybook/react'
+import { Story } from "@storybook/react";
+import React from "react";
+import { Sample, SampleProps } from "./Sample";
 
 export default {
   component: Sample,
-  title: 'Sample'
-}
+  title: "Sample",
+};
 
-const Template: Story<SampleProps> = (args) => <Sample {...args} />
+const Template: Story<SampleProps> = (args) => <Sample {...args} />;
 
-export const Default = Template.bind({})
+export const Default = Template.bind({});
 Default.args = {
-  sample: 'this is simple template for making component'
-}
+  sample: "this is simple template for making component",
+};

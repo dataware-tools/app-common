@@ -1,44 +1,44 @@
-import React from 'react'
-import TableCell, { TableCellProps } from '@material-ui/core/TableCell'
-import TableRow from '@material-ui/core/TableRow'
-import DeleteIcon from '@material-ui/icons/Delete'
-import IconButton from '@material-ui/core/IconButton'
+import IconButton from "@material-ui/core/IconButton";
+import TableCell, { TableCellProps } from "@material-ui/core/TableCell";
+import MuiTableRow from "@material-ui/core/TableRow";
+import DeleteIcon from "@material-ui/icons/Delete";
+import React from "react";
 
-type CellContent = string | number | Record<string, any> | any[]
-type Row = Record<string, CellContent>
-type TargetDetail = {
-  index: number
-  row: Record<string, CellContent>
-  cell: { field: string; content: CellContent }
-}
+type CellContent = string | number | Record<string, any> | any[];
+type Row = Record<string, CellContent>;
+export type TargetDetail = {
+  index: number;
+  row: Record<string, CellContent>;
+  cell: { field: string; content: CellContent };
+};
 type Columns = {
-  field: string
-  type?: 'string' | 'number'
-  ifEmpty?: string | number
-}[]
+  field: string;
+  type?: "string" | "number";
+  ifEmpty?: string | number;
+}[];
 
-type Props = {
-  onClickCell: (targetDetail: TargetDetail) => void
-  onClickDeleteButton: (targetDetail: TargetDetail) => void
-  haveDeleteButton: boolean
+export type TableRowPresentationProps = {
+  onClickCell: (targetDetail: TargetDetail) => void;
+  onClickDeleteButton: (targetDetail: TargetDetail) => void;
+  haveDeleteButton: boolean;
   fixCellContent: (
     cellContent: CellContent,
     ifEmpty?: string | number
-  ) => string | number | undefined
-} & Omit<ContainerProps, 'onDelete' | 'onClick'>
+  ) => string | number | undefined;
+} & Omit<TableRowProps, "onDelete" | "onClick">;
 
-type ContainerProps = {
-  row: Row
-  index: number
-  onDelete?: (targetDetail: TargetDetail) => void
-  onClick?: (targetDetail: TargetDetail) => void
-  columns: Columns
-  getAlign: (columnType: Columns[number]['type']) => TableCellProps['align']
-  disableHoverRow?: boolean
-  disableHoverCell?: boolean
-}
+export type TableRowProps = {
+  row: Row;
+  index: number;
+  onDelete?: (targetDetail: TargetDetail) => void;
+  onClick?: (targetDetail: TargetDetail) => void;
+  columns: Columns;
+  getAlign: (columnType: Columns[number]["type"]) => TableCellProps["align"];
+  disableHoverRow?: boolean;
+  disableHoverCell?: boolean;
+};
 
-const Component = ({
+export const TableRowPresentation = ({
   columns,
   row,
   onClickDeleteButton,
@@ -48,35 +48,35 @@ const Component = ({
   fixCellContent,
   getAlign,
   disableHoverRow,
-  disableHoverCell
-}: Props): JSX.Element => {
+  disableHoverCell,
+}: TableRowPresentationProps): JSX.Element => {
   return (
-    <TableRow
+    <MuiTableRow
       sx={
         disableHoverRow
           ? undefined
           : {
-              cursor: 'pointer',
-              ':hover': {
-                backgroundColor: 'action.hover'
-              }
+              cursor: "pointer",
+              ":hover": {
+                backgroundColor: "action.hover",
+              },
             }
       }
     >
       {columns.map((column) => {
-        const field = column.field
-        const cellContent = row[field]
-        const fixedCellContent = fixCellContent(cellContent, column.ifEmpty)
+        const field = column.field;
+        const cellContent = row[field];
+        const fixedCellContent = fixCellContent(cellContent, column.ifEmpty);
         return (
           <TableCell
             sx={
               disableHoverCell
                 ? {}
                 : {
-                    cursor: 'pointer',
-                    ':hover': {
-                      backgroundColor: 'action.hover'
-                    }
+                    cursor: "pointer",
+                    ":hover": {
+                      backgroundColor: "action.hover",
+                    },
                   }
             }
             key={field}
@@ -85,22 +85,22 @@ const Component = ({
               onClickCell({
                 index,
                 row,
-                cell: { field: field, content: cellContent }
+                cell: { field: field, content: cellContent },
               })
             }
           >
             {fixedCellContent}
           </TableCell>
-        )
+        );
       })}
       {haveDeleteButton ? (
-        <TableCell align='center' padding='none' size='small'>
+        <TableCell align="center" padding="none" size="small">
           <IconButton
             onClick={() =>
               onClickDeleteButton({
                 index,
                 row,
-                cell: { field: '__deleteButton', content: '__deleteButton' }
+                cell: { field: "__deleteButton", content: "__deleteButton" },
               })
             }
           >
@@ -108,71 +108,75 @@ const Component = ({
           </IconButton>
         </TableCell>
       ) : null}
-    </TableRow>
-  )
-}
+    </MuiTableRow>
+  );
+};
 
-const Container = ({
+export const TableRow = ({
   onClick,
   onDelete,
   ...delegated
-}: ContainerProps): JSX.Element => {
-  const haveDeleteButton = onDelete != null
+}: TableRowProps): JSX.Element => {
+  const haveDeleteButton = onDelete != null;
   const isEmpty = (cellContent: CellContent): boolean => {
     if (!cellContent) {
-      return true
+      return true;
     }
-    if (typeof cellContent === 'string') {
-      return cellContent === ''
+    if (typeof cellContent === "string") {
+      return cellContent === "";
     }
-    if (typeof cellContent === 'number') {
-      return false
+    if (typeof cellContent === "number") {
+      return false;
     }
     if (Array.isArray(cellContent)) {
-      return cellContent.length <= 0
+      return cellContent.length <= 0;
     }
-    return Object.keys(cellContent).length <= 0
-  }
+    return Object.keys(cellContent).length <= 0;
+  };
 
-  const fixCellContent: Props['fixCellContent'] = (cellContent, ifEmpty) => {
+  const fixCellContent: TableRowPresentationProps["fixCellContent"] = (
+    cellContent,
+    ifEmpty
+  ) => {
     if (isEmpty(cellContent)) {
-      return ifEmpty
+      return ifEmpty;
     } else if (
-      typeof cellContent === 'string' ||
-      typeof cellContent === 'number'
+      typeof cellContent === "string" ||
+      typeof cellContent === "number"
     ) {
-      return cellContent
+      return cellContent;
     } else {
-      return JSON.stringify(cellContent)
+      return JSON.stringify(cellContent);
     }
-  }
+  };
 
-  const onClickCell: Props['onClickCell'] = ({ index, row, cell }) => {
-    if (onClick) {
-      onClick({ index, row, cell })
-    }
-  }
-
-  const onClickDeleteButton: Props['onClickDeleteButton'] = ({
+  const onClickCell: TableRowPresentationProps["onClickCell"] = ({
     index,
     row,
-    cell
+    cell,
+  }) => {
+    if (onClick) {
+      onClick({ index, row, cell });
+    }
+  };
+
+  const onClickDeleteButton: TableRowPresentationProps["onClickDeleteButton"] = ({
+    index,
+    row,
+    cell,
   }) => {
     if (onDelete) {
-      onDelete({ index, row, cell })
+      onDelete({ index, row, cell });
     }
-  }
+  };
 
   return (
-    <Component
+    <TableRowPresentation
       {...delegated}
       onClickCell={onClickCell}
       onClickDeleteButton={onClickDeleteButton}
       haveDeleteButton={haveDeleteButton}
       fixCellContent={fixCellContent}
     />
-  )
-}
-
-export { Container as TableRow }
-export type { ContainerProps as TableRowProps, TargetDetail }
+  );
+};

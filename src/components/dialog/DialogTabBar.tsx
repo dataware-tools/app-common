@@ -1,22 +1,15 @@
-import React from 'react'
-import { makeStyles } from '@material-ui/styles'
-import { TabBar, TabBarProps } from '../TabBar'
+import Box from "@material-ui/core/Box";
+import React from "react";
+import { TabBar, TabBarProps } from "../TabBar";
 
-type Props = TabBarProps
+export type DialogTabBarProps = TabBarProps;
 
-const useStyles = makeStyles({
-  dialogTabBar: {
-    flex: 0
-  }
-})
-const Component = ({ ...delegated }: Props): JSX.Element => {
-  const styles = useStyles()
+export const DialogTabBar = ({
+  ...delegated
+}: DialogTabBarProps): JSX.Element => {
   return (
-    <div className={styles.dialogTabBar}>
+    <Box sx={{ flex: 0 }}>
       <TabBar {...delegated} />
-    </div>
-  )
-}
-
-export { Component as DialogTabBar }
-export type { Props as DialogTabBarProps }
+    </Box>
+  );
+};

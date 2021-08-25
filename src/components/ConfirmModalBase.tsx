@@ -1,35 +1,35 @@
-import React, { ReactNode } from 'react'
-import Dialog, { DialogProps } from '@material-ui/core/Dialog'
-import { DialogWrapper } from './dialog/DialogWrapper'
-import { DialogTitle } from './dialog/DialogTitle'
-import { DialogBody } from './dialog/DialogBody'
-import { DialogToolBar } from './dialog/DialogToolBar'
-import { DialogContainer } from './dialog/DialogContainer'
-import { DialogMain } from './dialog/DialogMain'
+import Dialog, { DialogProps } from "@material-ui/core/Dialog";
+import React, { ReactNode } from "react";
+import { DialogBody } from "./dialog/DialogBody";
+import { DialogContainer } from "./dialog/DialogContainer";
+import { DialogMain } from "./dialog/DialogMain";
+import { DialogTitle } from "./dialog/DialogTitle";
+import { DialogToolBar } from "./dialog/DialogToolBar";
+import { DialogWrapper } from "./dialog/DialogWrapper";
 
-type Props = {
-  open: boolean
-  body?: ReactNode
-  title?: ReactNode
-  height?: string
-  buttons: ReactNode
-} & Omit<DialogProps, 'onClose'>
+export type ConfirmModalBaseProps = {
+  open: boolean;
+  body?: ReactNode;
+  title?: ReactNode;
+  height?: string;
+  buttons: ReactNode;
+} & Omit<DialogProps, "onClose">;
 
-const Component = ({
+export const ConfirmModalBase = ({
   open,
   body,
   title,
   height,
   buttons,
   ...dialogProps
-}: Props): JSX.Element => {
+}: ConfirmModalBaseProps): JSX.Element => {
   return (
     <Dialog {...dialogProps} open={open}>
       <DialogWrapper>
         <DialogContainer height={height}>
-          <DialogBody padding='0'>
+          <DialogBody padding="0">
             {title ? (
-              typeof title === 'string' ? (
+              typeof title === "string" ? (
                 <DialogTitle>{title}</DialogTitle>
               ) : (
                 title
@@ -37,7 +37,7 @@ const Component = ({
             ) : null}
             <DialogMain>
               {body ? (
-                typeof body === 'string' ? (
+                typeof body === "string" ? (
                   <DialogBody>{body}</DialogBody>
                 ) : (
                   body
@@ -49,8 +49,5 @@ const Component = ({
         </DialogContainer>
       </DialogWrapper>
     </Dialog>
-  )
-}
-
-export { Component as ConfirmModalBase }
-export type { Props as ConfirmModalBaseProps }
+  );
+};

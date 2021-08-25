@@ -1,28 +1,16 @@
-import React from 'react'
-import { makeStyles } from '@material-ui/styles'
-import Box, { BoxProps } from '@material-ui/core/Box'
+import Box, { BoxProps } from "@material-ui/core/Box";
+import React from "react";
 
-type Props = BoxProps
+export type DialogMainProps = BoxProps;
 
-const useStyles = makeStyles(() => ({
-  dialogMain: {
-    flex: 1,
-    overflow: 'auto'
-  }
-}))
-
-const Component = ({
+export const DialogMain = ({
   children,
-  className,
+  sx,
   ...delegated
-}: Props): JSX.Element => {
-  const classes = useStyles()
+}: DialogMainProps): JSX.Element => {
   return (
-    <Box className={`${classes.dialogMain} ${className}`} {...delegated}>
+    <Box sx={{ flex: 1, overflow: "auto", ...sx }} {...delegated}>
       {children}
     </Box>
-  )
-}
-
-export { Component as DialogMain }
-export type { Props as DialogMainProps }
+  );
+};

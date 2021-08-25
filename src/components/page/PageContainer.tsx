@@ -1,30 +1,25 @@
-import React from 'react'
-import { makeStyles } from '@material-ui/styles'
-import Box, { BoxProps } from '@material-ui/core/Box'
+import Box, { BoxProps } from "@material-ui/core/Box";
+import React from "react";
 
-type Props = BoxProps
+export type PageContainerProps = BoxProps;
 
-const useStyles = makeStyles({
-  pageContainer: {
-    display: 'flex',
-    flex: 1,
-    flexDirection: 'row',
-    overflow: 'auto'
-  }
-})
-
-const Component = ({
+export const PageContainer = ({
   children,
-  className,
+  sx,
   ...delegated
-}: Props): JSX.Element => {
-  const classes = useStyles()
+}: PageContainerProps): JSX.Element => {
   return (
-    <Box className={`${classes.pageContainer} ${className}`} {...delegated}>
+    <Box
+      sx={{
+        display: "flex",
+        flex: 1,
+        flexDirection: "row",
+        overflow: "auto",
+        ...sx,
+      }}
+      {...delegated}
+    >
       {children}
     </Box>
-  )
-}
-
-export { Component as PageContainer }
-export type { Props as PageContainerProps }
+  );
+};

@@ -1,21 +1,13 @@
-import React from 'react'
-import { makeStyles } from '@material-ui/styles'
-import { TabBar, TabBarProps } from '../TabBar'
+import Box from "@material-ui/core/Box";
+import React from "react";
+import { TabBar, TabBarProps } from "../TabBar";
 
-type Props = TabBarProps
+export type PageTabBarProps = TabBarProps;
 
-const useStyles = makeStyles({
-  pageTabBar: { flex: 0 }
-})
-
-const Component = ({ ...delegated }: Props): JSX.Element => {
-  const styles = useStyles()
+export const PageTabBar = ({ ...delegated }: PageTabBarProps): JSX.Element => {
   return (
-    <div className={styles.pageTabBar}>
+    <Box sx={{ flex: 0 }}>
       <TabBar {...delegated} />
-    </div>
-  )
-}
-
-export { Component as PageTabBar }
-export type { Props as PageTabBarProps }
+    </Box>
+  );
+};

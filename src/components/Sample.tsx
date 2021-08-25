@@ -1,24 +1,23 @@
-import React from 'react'
-import { NoticeableLetters } from './NoticeableLetters'
-import Box from '@material-ui/core/Box'
+import Box from "@material-ui/core/Box";
+import React from "react";
+import { NoticeableLetters } from "./NoticeableLetters";
 
-type Props = ContainerProps
+export type SamplePresentationProps = SampleProps;
 
-type ContainerProps = {
-  sample: string
-}
+export type SampleProps = {
+  sample: string;
+};
 
-const Component = ({ sample }: Props): JSX.Element => {
+export const SamplePresentation = ({
+  sample,
+}: SamplePresentationProps): JSX.Element => {
   return (
-    <Box role='main' sx={{ ':hover': { backgroundColor: 'action.hover' } }}>
+    <Box role="main" sx={{ ":hover": { backgroundColor: "action.hover" } }}>
       <NoticeableLetters>{sample}</NoticeableLetters>
     </Box>
-  )
-}
+  );
+};
 
-const Container = ({ ...delegated }: ContainerProps): JSX.Element => {
-  return <Component {...delegated} />
-}
-
-export { Container as Sample }
-export type { ContainerProps as SampleProps }
+export const Sample = ({ ...delegated }: SampleProps): JSX.Element => {
+  return <SamplePresentation {...delegated} />;
+};

@@ -1,18 +1,14 @@
-import React from 'react'
-import { makeStyles } from '@material-ui/styles'
+import Box from "@material-ui/core/Box";
+import React, { ReactNode } from "react";
 
-type Props = { children: string }
+export type TextCenteringSpanProps = { children: ReactNode };
 
-const useStyles = makeStyles(() => ({
-  span: {
-    paddingTop: '0.1em'
-  }
-}))
-
-const Component = ({ children }: Props): JSX.Element => {
-  const classes = useStyles()
-  return <span className={classes.span}>{children}</span>
-}
-
-export { Component as TextCenteringSpan }
-export type { Props as TextCenteringSpanProps }
+export const TextCenteringSpan = ({
+  children,
+}: TextCenteringSpanProps): JSX.Element => {
+  return (
+    <Box component="span" sx={{ paddingTop: "0.1rem" }}>
+      {children}
+    </Box>
+  );
+};

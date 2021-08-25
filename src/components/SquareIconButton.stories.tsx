@@ -1,23 +1,23 @@
-import React from 'react'
-import AddCircle from '@material-ui/icons/AddCircle'
-import { Story } from '@storybook/react'
-import { SquareIconButton, SquareIconButtonProps } from './SquareIconButton'
+import AddCircle from "@material-ui/icons/AddCircle";
+import { Story } from "@storybook/react";
+import React from "react";
+import { SquareIconButton, SquareIconButtonProps } from "./SquareIconButton";
 
 export default {
   component: SquareIconButton,
-  title: 'SquareIconButton'
-}
+  title: "SquareIconButton",
+};
 
 const Template: Story<SquareIconButtonProps> = (args) => (
   <SquareIconButton {...args} />
-)
+);
 
-export const Default = Template.bind({})
-Default.args = { icon: <AddCircle />, onClick: () => window.alert('click!') }
+export const Default = Template.bind({});
+Default.args = { icon: <AddCircle />, onClick: () => window.alert("click!") };
 
-export const Disabled = Template.bind({})
+export const Disabled = Template.bind({});
 Disabled.args = {
   icon: <AddCircle />,
-  onClick: () => window.alert('click!'),
-  disabled: true
-}
+  onClick: () => window.alert("click!"),
+  disabled: true,
+};

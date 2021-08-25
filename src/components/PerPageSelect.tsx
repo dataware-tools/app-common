@@ -1,48 +1,54 @@
-import React from 'react'
-import MenuItem from '@material-ui/core/MenuItem'
-import Select, { SelectChangeEvent } from '@material-ui/core/Select'
-import { makeStyles } from '@material-ui/styles'
-import { Spacer } from './Spacer'
-import Box from '@material-ui/core/Box'
+import Box from "@material-ui/core/Box";
+import MenuItem from "@material-ui/core/MenuItem";
+import Select, { SelectChangeEvent } from "@material-ui/core/Select";
+import React from "react";
+import { Spacer } from "./Spacer";
 
-type Props = { classes: ReturnType<typeof useStyles> } & ContainerProps
-type ContainerProps = {
-  perPage: number
-  setPerPage: (perPage: number) => void
-  values: number[]
-  label?: string
-}
+export type PerPageSelectProps = {
+  perPage: number;
+  setPerPage: (perPage: number) => void;
+  values: number[];
+  label?: string;
+};
 
-const Component = ({
-  classes,
+export const PerPageSelect = ({
   perPage,
   setPerPage,
   values,
-  label
-}: Props): JSX.Element => {
+  label,
+}: PerPageSelectProps): JSX.Element => {
   const handleChange = (event: SelectChangeEvent) => {
-    setPerPage(parseInt(event.target.value, 10))
-  }
-  const labelId = `PerPageSelect_${Date.now()}`
+    setPerPage(parseInt(event.target.value, 10));
+  };
+  const labelId = `PerPageSelect_${Date.now()}`;
 
   return (
     <Box
       sx={{
-        color: 'text.secondary',
-        display: 'flex',
-        flexDirection: 'row'
+        color: "text.secondary",
+        display: "flex",
+        flexDirection: "row",
       }}
     >
-      <label className={classes.label} id={labelId}>
-        {label || 'Rows per page'}
-      </label>
-      <Spacer direction='horizontal' size='8px' />
+      <Box
+        component="label"
+        sx={{
+          alignItems: "center",
+          display: "flex",
+          fontSize: "0.9rem",
+          justifyContent: "center",
+        }}
+        id={labelId}
+      >
+        {label || "Rows per page"}
+      </Box>
+      <Spacer direction="horizontal" size="8px" />
       <Select
         value={perPage.toString()}
         onChange={handleChange}
-        size='small'
+        size="small"
         labelId={labelId}
-        variant='outlined'
+        variant="outlined"
       >
         {values.map((value) => (
           <MenuItem key={value} value={value}>
@@ -51,22 +57,5 @@ const Component = ({
         ))}
       </Select>
     </Box>
-  )
-}
-
-const useStyles = makeStyles({
-  label: {
-    alignItems: 'center',
-    display: 'flex',
-    fontSize: '0.9rem',
-    justifyContent: 'center'
-  }
-})
-
-const Container = ({ ...delegated }: ContainerProps): JSX.Element => {
-  const classes = useStyles()
-  return <Component classes={classes} {...delegated} />
-}
-
-export { Container as PerPageSelect }
-export type { ContainerProps as PerPageSelectProps }
+  );
+};

@@ -1,24 +1,24 @@
-import React, { RefObject } from 'react'
-import Table from '@material-ui/core/Table'
-import TableBody from '@material-ui/core/TableBody'
-import TableCell from '@material-ui/core/TableCell'
-import TableHead from '@material-ui/core/TableHead'
-import MuiTableRow from '@material-ui/core/TableRow'
+import MuiTable from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableHead from "@material-ui/core/TableHead";
+import MuiTableRow from "@material-ui/core/TableRow";
+import React, { RefObject } from "react";
 
-import { TableRow, TableRowProps } from './TableRow'
+import { TableRow, TableRowProps } from "./TableRow";
 
-type Props = {
-  rows: TableRowProps['row'][]
-  columns: (TableRowProps['columns'][number] & { label?: string })[]
-  onDeleteRow?: TableRowProps['onDelete']
-  onClickRow?: TableRowProps['onClick']
-  disableHoverRow?: TableRowProps['disableHoverRow']
-  disableHoverCell?: TableRowProps['disableHoverCell']
-  stickyHeader?: boolean
-  bottomRef?: RefObject<HTMLDivElement>
-}
+export type TableProps = {
+  rows: TableRowProps["row"][];
+  columns: (TableRowProps["columns"][number] & { label?: string })[];
+  onDeleteRow?: TableRowProps["onDelete"];
+  onClickRow?: TableRowProps["onClick"];
+  disableHoverRow?: TableRowProps["disableHoverRow"];
+  disableHoverCell?: TableRowProps["disableHoverCell"];
+  stickyHeader?: boolean;
+  bottomRef?: RefObject<HTMLDivElement>;
+};
 
-const Component = ({
+export const Table = ({
   rows,
   columns,
   onDeleteRow,
@@ -26,13 +26,13 @@ const Component = ({
   stickyHeader,
   bottomRef,
   disableHoverRow,
-  disableHoverCell
-}: Props): JSX.Element => {
-  const getAlign: TableRowProps['getAlign'] = (columnType) =>
-    columnType === 'number' ? 'right' : 'left'
+  disableHoverCell,
+}: TableProps): JSX.Element => {
+  const getAlign: TableRowProps["getAlign"] = (columnType) =>
+    columnType === "number" ? "right" : "left";
   return (
     <>
-      <Table stickyHeader={stickyHeader}>
+      <MuiTable stickyHeader={stickyHeader}>
         <TableHead>
           <MuiTableRow>
             {columns.map((column) => (
@@ -58,11 +58,8 @@ const Component = ({
             />
           ))}
         </TableBody>
-      </Table>
+      </MuiTable>
       <div ref={bottomRef} />
     </>
-  )
-}
-
-export { Component as Table }
-export type { Props as TableProps }
+  );
+};

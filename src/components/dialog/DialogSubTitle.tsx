@@ -1,21 +1,21 @@
-import React, { ReactNode } from 'react'
-import { makeStyles } from '@material-ui/styles'
+import Box from "@material-ui/core/Box";
+import React, { ReactNode } from "react";
 
-const useStyles = makeStyles({
-  dialogTitle: {
-    alignItems: 'center',
-    display: 'flex',
-    fontSize: '1.3rem',
-    padding: '1vh 0'
-  }
-})
+export type DialogSubTitleProps = { children: ReactNode };
 
-type ContainerProps = { children: ReactNode }
-
-const Container = ({ children }: ContainerProps): JSX.Element => {
-  const classes = useStyles()
-  return <div className={classes.dialogTitle}>{children}</div>
-}
-
-export { Container as DialogSubTitle }
-export type { ContainerProps as DialogSubTitleProps }
+export const DialogSubTitle = ({
+  children,
+}: DialogSubTitleProps): JSX.Element => {
+  return (
+    <Box
+      sx={{
+        alignItems: "center",
+        display: "flex",
+        fontSize: "1.3rem",
+        padding: "1vh 0",
+      }}
+    >
+      {children}
+    </Box>
+  );
+};

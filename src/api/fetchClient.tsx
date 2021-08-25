@@ -1,83 +1,83 @@
-import { API_ROUTE } from './route'
-import { fileProvider, metaStore } from '../openapi'
+import { fileProvider, metaStore } from "../openapi";
+import { API_ROUTE } from "./route";
 
 type Data<T> = T extends void | undefined | null
-  ? '__fetchSuccess__' | undefined
-  : T | undefined
+  ? "__fetchSuccess__" | undefined
+  : T | undefined;
 
 const fetchAPI = async <T, U>(
   fetcher: (args: T) => Promise<U>,
   param: T
 ): Promise<[data: Data<U>, error: any]> => {
   try {
-    const res = await fetcher(param)
+    const res = await fetcher(param);
     // See: https://miyauchi.dev/ja/posts/typescript-conditional-types#%E5%9E%8B%E5%AE%9A%E7%BE%A9%E3%81%A8-conditional-types
-    return [(res || '__fetchSuccess__') as Data<U>, undefined]
+    return [(res || "__fetchSuccess__") as Data<U>, undefined];
   } catch (error) {
-    return [undefined as Data<U>, error]
+    return [undefined as Data<U>, error];
   }
-}
+};
 
 const fetchMetaStore = async <T, U>(
   token: string | (() => Promise<string>),
   fetcher: (args: T) => Promise<U>,
   param: T
 ): Promise<[data: Data<U>, error: any]> => {
-  metaStore.OpenAPI.BASE = API_ROUTE.META.BASE
-  metaStore.OpenAPI.TOKEN = token
-  return await fetchAPI(fetcher, param)
-}
+  metaStore.OpenAPI.BASE = API_ROUTE.META.BASE;
+  metaStore.OpenAPI.TOKEN = token;
+  return await fetchAPI(fetcher, param);
+};
 
 const fetchFileProvider = async <T, U>(
   token: string | (() => Promise<string>),
   fetcher: (args: T) => Promise<U>,
   param: T
 ): Promise<[data: Data<U>, error: any]> => {
-  fileProvider.OpenAPI.BASE = API_ROUTE.FILE.BASE
-  fileProvider.OpenAPI.TOKEN = token
-  return await fetchAPI(fetcher, param)
-}
+  fileProvider.OpenAPI.BASE = API_ROUTE.FILE.BASE;
+  fileProvider.OpenAPI.TOKEN = token;
+  return await fetchAPI(fetcher, param);
+};
 
 type FetchErrorType = {
-  body?: { detail?: unknown; instruction?: unknown }
-  status: number
-}
+  body?: { detail?: unknown; instruction?: unknown };
+  status: number;
+};
 
 const extractReasonFromFetchError = (fetchError: FetchErrorType): string => {
-  if (typeof fetchError.body?.detail === 'string') {
-    return fetchError.body?.detail
+  if (typeof fetchError.body?.detail === "string") {
+    return fetchError.body?.detail;
   } else if (fetchError.body?.detail) {
-    return JSON.stringify(fetchError.body.detail)
+    return JSON.stringify(fetchError.body.detail);
   } else {
-    return JSON.stringify(fetchError)
+    return JSON.stringify(fetchError);
   }
-}
+};
 
 const extractInstructionFromFetchError = (
   fetchError: FetchErrorType
 ): string | undefined => {
-  if (typeof fetchError.body?.instruction === 'string') {
-    return fetchError.body?.instruction
+  if (typeof fetchError.body?.instruction === "string") {
+    return fetchError.body?.instruction;
   } else if (fetchError.body?.instruction) {
-    return JSON.stringify(fetchError.body.instruction)
+    return JSON.stringify(fetchError.body.instruction);
   } else if (fetchError.status >= 500 && fetchError.status < 600) {
-    return 'Something went wrong in the server. Please contact the administrator'
+    return "Something went wrong in the server. Please contact the administrator";
   }
-  return undefined
-}
+  return undefined;
+};
 
 const extractErrorMessageFromFetchError = (
   fetchError: FetchErrorType
 ): { reason: string; instruction: string | undefined } => {
-  const reason = extractReasonFromFetchError(fetchError)
-  const instruction = extractInstructionFromFetchError(fetchError)
-  return { reason, instruction }
-}
+  const reason = extractReasonFromFetchError(fetchError);
+  const instruction = extractInstructionFromFetchError(fetchError);
+  return { reason, instruction };
+};
 
 export {
   fetchAPI,
   fetchMetaStore,
   fetchFileProvider,
   extractReasonFromFetchError,
-  extractErrorMessageFromFetchError
-}
+  extractErrorMessageFromFetchError,
+};
