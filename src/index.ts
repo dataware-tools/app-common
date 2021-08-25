@@ -13,8 +13,6 @@ export { ConfirmModalBase } from "./components/ConfirmModalBase";
 export type { ConfirmModalBaseProps } from "./components/ConfirmModalBase";
 export { ErrorMessage } from "./components/ErrorMessage";
 export type { ErrorMessageProps } from "./components/ErrorMessage";
-export { FetchContainer } from "./components/FetchContainer";
-export type { FetchContainerProps } from "./components/FetchContainer";
 export { FileUploadButton } from "./components/FileUploadButton";
 export type { FileUploadButtonProps } from "./components/FileUploadButton";
 export { Footer } from "./components/Footer";
