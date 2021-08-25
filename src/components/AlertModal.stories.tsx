@@ -8,7 +8,13 @@ export default {
   title: "AlertModal",
 };
 
-const Template: Story<AlertModalProps> = (args) => <AlertModal {...args} />;
+const Template: Story<AlertModalProps> = (args) => (
+  <AlertModal
+    {...args}
+    // This option is necessary for visual regression test by loki
+    disablePortal
+  />
+);
 
 export const Default = Template.bind({});
 Default.args = {

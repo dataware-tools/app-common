@@ -9,7 +9,11 @@ export default {
 };
 
 const Template: Story<ConfirmModalBaseProps> = (args) => (
-  <ConfirmModalBase {...args} />
+  <ConfirmModalBase
+    {...args}
+    // This option is necessary for visual regression test by loki
+    disablePortal
+  />
 );
 
 export const Default = Template.bind({});
