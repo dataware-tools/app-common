@@ -1,23 +1,15 @@
-import React from 'react'
-import { makeStyles } from '@material-ui/styles'
-import { ToolBar, ToolBarProps } from '../ToolBar'
+import Box from "@material-ui/core/Box";
+import React from "react";
+import { ToolBar, ToolBarProps } from "../ToolBar";
 
-type Props = ToolBarProps
+export type DialogToolBarProps = ToolBarProps;
 
-const useStyles = makeStyles(() => ({
-  dialogToolBar: {
-    padding: '2vh 0 0 0'
-  }
-}))
-
-const Component = ({ ...delegated }: Props): JSX.Element => {
-  const classes = useStyles()
+export const DialogToolBar = ({
+  ...delegated
+}: DialogToolBarProps): JSX.Element => {
   return (
-    <div className={classes.dialogToolBar}>
+    <Box sx={{ padding: "2vh 0 0 0" }}>
       <ToolBar {...delegated} />
-    </div>
-  )
-}
-
-export { Component as DialogToolBar }
-export type { Props as DialogToolBarProps }
+    </Box>
+  );
+};

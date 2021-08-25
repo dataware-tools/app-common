@@ -1,26 +1,26 @@
-import React from 'react'
-import { render, RenderOptions } from '@testing-library/react'
+import { AppState, Auth0Provider } from "@auth0/auth0-react";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import { ThemeProvider } from "@material-ui/core/styles";
+import { StylesProvider } from "@material-ui/styles";
+import { render, RenderOptions } from "@testing-library/react";
+import React from "react";
 
-import CssBaseline from '@material-ui/core/CssBaseline'
-import { ThemeProvider } from '@material-ui/core/styles'
-import { StylesProvider } from '@material-ui/styles'
-import theme from './theme'
-import { SWRConfig } from 'swr'
-import { AppState, Auth0Provider } from '@auth0/auth0-react'
-import { AUTH_CONFIG } from './auth/config'
+import { SWRConfig } from "swr";
+import { AUTH_CONFIG } from "./auth/config";
+import theme from "./theme";
 
 export const authConfig = {
   domain: process.env.JEST_AUTH0_DOMAIN || AUTH_CONFIG.domain,
   clientId: process.env.JEST_AUTH0_CLIENT_ID || AUTH_CONFIG.clientId,
-  apiUrl: process.env.JEST_AUTH0_API_URL || AUTH_CONFIG.apiUrl
-}
-export const redirectUri = window.location.origin
+  apiUrl: process.env.JEST_AUTH0_API_URL || AUTH_CONFIG.apiUrl,
+};
+export const redirectUri = window.location.origin;
 
 export const onRedirectCallback = (appState: AppState): void => {
   const nonQueryParamURL =
-    appState && appState.returnTo ? appState.returnTo : window.location.origin
-  history.replaceState(null, '', nonQueryParamURL)
-}
+    appState && appState.returnTo ? appState.returnTo : window.location.origin;
+  history.replaceState(null, "", nonQueryParamURL);
+};
 
 const TestAuthProvider: React.FC = ({ children }) => {
   return (
@@ -33,8 +33,8 @@ const TestAuthProvider: React.FC = ({ children }) => {
     >
       {children}
     </Auth0Provider>
-  )
-}
+  );
+};
 
 const AllTheProviders: React.FC = ({ children }) => {
   return (
@@ -44,17 +44,17 @@ const AllTheProviders: React.FC = ({ children }) => {
         <SWRConfig value={{ dedupingInterval: 0 }}>{children}</SWRConfig>
       </ThemeProvider>
     </StylesProvider>
-  )
-}
+  );
+};
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const customRender = (
   ui: React.ReactElement,
-  options?: Omit<RenderOptions, 'queries'>
-) => render(ui, { wrapper: AllTheProviders, ...options })
+  options?: Omit<RenderOptions, "queries">
+) => render(ui, { wrapper: AllTheProviders, ...options });
 
 // eslint-disable-next-line import/export
-export * from '@testing-library/react'
+export * from "@testing-library/react";
 
 // eslint-disable-next-line import/export
-export { customRender as render, TestAuthProvider }
+export { customRender as render, TestAuthProvider };

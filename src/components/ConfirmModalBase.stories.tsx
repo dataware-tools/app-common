@@ -1,21 +1,21 @@
-import React from 'react'
-import { ConfirmModalBase, ConfirmModalBaseProps } from './ConfirmModalBase'
-import { Story } from '@storybook/react'
-import Button from '@material-ui/core/Button'
+import Button from "@material-ui/core/Button";
+import { Story } from "@storybook/react";
+import React from "react";
+import { ConfirmModalBase, ConfirmModalBaseProps } from "./ConfirmModalBase";
 
 export default {
   component: ConfirmModalBase,
-  title: 'ConfirmModalBase'
-}
+  title: "ConfirmModalBase",
+};
 
 const Template: Story<ConfirmModalBaseProps> = (args) => (
   <ConfirmModalBase {...args} />
-)
+);
 
-export const Default = Template.bind({})
+export const Default = Template.bind({});
 Default.args = {
   open: true,
-  title: 'test',
-  body: 'This is test! please click button!',
-  buttons: <Button>Test</Button>
-}
+  title: "test",
+  body: "This is test! please click button!",
+  buttons: <Button>Test</Button>,
+};

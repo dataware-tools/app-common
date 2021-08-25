@@ -1,12 +1,12 @@
-import React from 'react'
-import { TextCenteringSpan } from './TextCenteringSpan'
-import Button from '@material-ui/core/Button'
-import AddCircle from '@material-ui/icons/AddCircle'
+import Button from "@material-ui/core/Button";
+import AddCircle from "@material-ui/icons/AddCircle";
+import React from "react";
+import { TextCenteringSpan } from "./TextCenteringSpan";
 
 export default {
   component: TextCenteringSpan,
-  title: 'TextCenteringSpan'
-}
+  title: "TextCenteringSpan",
+};
 
 export const Default = (): JSX.Element => (
   <>
@@ -20,4 +20,4 @@ export const Default = (): JSX.Element => (
     <br />
     <Button startIcon={<AddCircle />}>test</Button>
   </>
-)
+);

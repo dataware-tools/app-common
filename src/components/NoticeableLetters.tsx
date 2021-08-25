@@ -1,34 +1,28 @@
-import React from 'react'
-import { makeStyles } from '@material-ui/styles'
+import Box, { BoxProps } from "@material-ui/core/Box";
+import React from "react";
 
-type Props = { classes: ReturnType<typeof useStyles> } & ContainerProps
+export type NoticeableLettersProps = BoxProps;
 
-type ContainerProps = {
-  children: string
-}
-
-const Component = ({ classes, children }: Props): JSX.Element => {
-  return <span className={classes.span}>{children}</span>
-}
-
-const useStyles = makeStyles({
-  span: {
-    fontFamily: [
-      'Oxanium',
-      'Helvetica Neue',
-      'Arial',
-      'Helvetica',
-      'Roboto',
-      'Noto Sans JP',
-      'sans-serif'
-    ].join(',')
-  }
-})
-
-const Container = ({ ...delegated }: ContainerProps): JSX.Element => {
-  const classes = useStyles()
-  return <Component classes={classes} {...delegated} />
-}
-
-export { Container as NoticeableLetters }
-export type { ContainerProps as NoticeableLettersProps }
+export const NoticeableLetters = ({
+  sx,
+  ...delegated
+}: NoticeableLettersProps): JSX.Element => {
+  return (
+    <Box
+      component="span"
+      sx={{
+        fontFamily: [
+          "Oxanium",
+          "Helvetica Neue",
+          "Arial",
+          "Helvetica",
+          "Roboto",
+          "Noto Sans JP",
+          "sans-serif",
+        ].join(","),
+        ...sx,
+      }}
+      {...delegated}
+    />
+  );
+};

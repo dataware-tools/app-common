@@ -1,12 +1,12 @@
-import React from 'react'
-import { HealthCheck } from './HealthCheck'
-import { Story } from '@storybook/react'
+import { Story } from "@storybook/react";
+import React from "react";
+import { HealthCheck } from "./HealthCheck";
 
 export default {
   component: HealthCheck,
-  title: 'HealthCheck'
-}
+  title: "HealthCheck",
+};
 
-const Template: Story = (args) => <HealthCheck {...args} />
+const Template: Story = (args) => <HealthCheck {...args} />;
 
-export const Default = Template.bind({})
+export const Default = Template.bind({});

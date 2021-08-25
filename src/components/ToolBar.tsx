@@ -1,47 +1,27 @@
-import React from 'react'
-import { makeStyles } from '@material-ui/styles'
+import Box from "@material-ui/core/Box";
+import React from "react";
 
-type Props = {
-  classes: ReturnType<typeof useStyles>
-} & ContainerProps
+export type ToolBarProps = {
+  right?: React.ReactNode;
+  left?: React.ReactNode;
+};
 
-type ContainerProps = {
-  right?: React.ReactNode
-  left?: React.ReactNode
-}
-
-const Component = ({ classes, right, left }: Props): JSX.Element => {
+export const ToolBar = ({ right, left }: ToolBarProps): JSX.Element => {
   return (
-    <div className={classes.toolsContainer}>
-      <div className={classes.left}>{left}</div>
-      <div className={classes.right}>{right}</div>
-    </div>
-  )
-}
-
-const useStyles = makeStyles(() => ({
-  toolsContainer: {
-    alignItems: 'center',
-    display: 'flex',
-    flexShrink: 0,
-    justifyContent: 'space-between'
-  },
-  left: {
-    alignItems: 'center',
-    display: 'flex',
-    textAlign: 'left'
-  },
-  right: {
-    alignItems: 'center',
-    display: 'flex',
-    textAlign: 'right'
-  }
-}))
-
-const Container = ({ ...delegated }: ContainerProps): JSX.Element => {
-  const classes = useStyles()
-  return <Component classes={classes} {...delegated} />
-}
-
-export { Container as ToolBar }
-export type { ContainerProps as ToolBarProps }
+    <Box
+      sx={{
+        alignItems: "center",
+        display: "flex",
+        flexShrink: 0,
+        justifyContent: "space-between",
+      }}
+    >
+      <Box sx={{ alignItems: "center", display: "flex", textAlign: "left" }}>
+        {left}
+      </Box>
+      <Box sx={{ alignItems: "center", display: "flex", textAlign: "right" }}>
+        {right}
+      </Box>
+    </Box>
+  );
+};

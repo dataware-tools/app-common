@@ -1,37 +1,34 @@
-import React, { MouseEventHandler, ReactNode } from 'react'
-import Box from '@material-ui/core/Box'
+import Box from "@material-ui/core/Box";
+import React, { MouseEventHandler, ReactNode } from "react";
 
-type ContainerProps = {
-  onClick: MouseEventHandler<HTMLDivElement>
-  disabled?: boolean
-  icon: ReactNode
-}
+export type SquareIconButtonProps = {
+  onClick: MouseEventHandler<HTMLDivElement>;
+  disabled?: boolean;
+  icon: ReactNode;
+};
 
-const Container = ({
+export const SquareIconButton = ({
   icon,
   onClick,
-  disabled
-}: ContainerProps): JSX.Element => {
+  disabled,
+}: SquareIconButtonProps): JSX.Element => {
   return (
     <Box
       sx={{
-        alignItems: 'center',
-        cursor: disabled ? 'unset' : 'pointer',
-        display: 'flex',
-        height: '40px',
-        justifyContent: 'center',
-        opacity: disabled ? '50%' : 'unset',
-        width: '40px',
-        '&:hover': {
-          backgroundColor: disabled ? 'unset' : 'action.hover'
-        }
+        alignItems: "center",
+        cursor: disabled ? "unset" : "pointer",
+        display: "flex",
+        height: "40px",
+        justifyContent: "center",
+        opacity: disabled ? "50%" : "unset",
+        width: "40px",
+        "&:hover": {
+          backgroundColor: disabled ? "unset" : "action.hover",
+        },
       }}
       onClick={disabled ? undefined : onClick}
     >
       {icon}
     </Box>
-  )
-}
-
-export { Container as SquareIconButton }
-export type { ContainerProps as SquareIconButtonProps }
+  );
+};

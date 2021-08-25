@@ -1,58 +1,55 @@
-import React, { useState } from 'react'
-import Button, { ButtonProps } from '@material-ui/core/Button'
-import { ConfirmModalBase, ConfirmModalBaseProps } from './ConfirmModalBase'
+import Button, { ButtonProps } from "@material-ui/core/Button";
+import React, { useState } from "react";
+import { ConfirmModalBase, ConfirmModalBaseProps } from "./ConfirmModalBase";
 
-type Props = {
-  onConfirm: () => void
-  open: boolean
-} & Omit<ContainerProps, 'onClose'>
+export type AlertModalPresentationProps = {
+  onConfirm: () => void;
+  open: boolean;
+} & Omit<AlertModalProps, "onClose">;
 
-type ContainerProps = {
-  confirmText?: string
-  confirmButtonProps?: ButtonProps
-  onClose: (confirmResult: boolean) => void
-} & Omit<ConfirmModalBaseProps, 'buttons' | 'open'>
+export type AlertModalProps = {
+  confirmText?: string;
+  confirmButtonProps?: ButtonProps;
+  onClose: (confirmResult: boolean) => void;
+} & Omit<ConfirmModalBaseProps, "buttons" | "open">;
 
-const Component = ({
+export const AlertModalPresentation = ({
   open,
   confirmText,
   onConfirm,
   confirmButtonProps,
   ...delegated
-}: Props) => {
+}: AlertModalPresentationProps): JSX.Element => {
   const ConfirmButton = () => (
-    <Button variant='contained' {...confirmButtonProps} onClick={onConfirm}>
-      {confirmText || 'confirm'}
+    <Button variant="contained" {...confirmButtonProps} onClick={onConfirm}>
+      {confirmText || "confirm"}
     </Button>
-  )
+  );
   return (
     <ConfirmModalBase {...delegated} buttons={<ConfirmButton />} open={open} />
-  )
-}
+  );
+};
 
-const Container = ({
+export const AlertModal = ({
   body,
   title,
   onClose,
   ...delegated
-}: ContainerProps): JSX.Element | null => {
-  const [open, setOpen] = useState(true)
+}: AlertModalProps): JSX.Element | null => {
+  const [open, setOpen] = useState(true);
 
   const onConfirm = () => {
-    onClose(true)
-    setOpen(false)
-  }
+    onClose(true);
+    setOpen(false);
+  };
 
   return (
-    <Component
+    <AlertModalPresentation
       {...delegated}
       open={open}
       body={body}
       title={title}
       onConfirm={onConfirm}
     />
-  )
-}
-
-export { Container as AlertModal }
-export type { ContainerProps as AlertModalProps }
+  );
+};

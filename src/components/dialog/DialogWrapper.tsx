@@ -1,29 +1,19 @@
-import React from 'react'
-import { makeStyles } from '@material-ui/styles'
-import Box, { BoxProps } from '@material-ui/core/Box'
+import Box, { BoxProps } from "@material-ui/core/Box";
+import React from "react";
 
-type Props = BoxProps
+export type DialogWrapperProps = BoxProps;
 
-const useStyles = makeStyles(() => ({
-  dialogWrapper: {
-    display: 'flex',
-    flexDirection: 'column',
-    padding: '20px'
-  }
-}))
-
-const Component = ({
+export const DialogWrapper = ({
   children,
-  className,
+  sx,
   ...delegated
-}: Props): JSX.Element => {
-  const classes = useStyles()
+}: DialogWrapperProps): JSX.Element => {
   return (
-    <Box className={`${classes.dialogWrapper} ${className}`} {...delegated}>
+    <Box
+      sx={{ display: "flex", flexDirection: "column", padding: "20px", ...sx }}
+      {...delegated}
+    >
       {children}
     </Box>
-  )
-}
-
-export { Component as DialogWrapper }
-export type { Props as DialogWrapperProps }
+  );
+};
