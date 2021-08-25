@@ -13,14 +13,14 @@ npm install --save @dataware-tools/app-common
 ## Usage
 
 ```tsx
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
-import MyComponent from '@dataware-tools/app-common'
-import '@dataware-tools/app-common/dist/index.css'
+import MyComponent from "@dataware-tools/app-common";
+import "@dataware-tools/app-common/dist/index.css";
 
 class Example extends Component {
   render() {
-    return <MyComponent />
+    return <MyComponent />;
   }
 }
 ```
