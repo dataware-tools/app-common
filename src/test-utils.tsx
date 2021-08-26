@@ -4,7 +4,6 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import { StylesProvider } from "@material-ui/styles";
 import { render, RenderOptions } from "@testing-library/react";
 import React from "react";
-
 import { SWRConfig } from "swr";
 import { AUTH_CONFIG } from "./auth/config";
 import theme from "./theme";
@@ -22,7 +21,7 @@ export const onRedirectCallback = (appState: AppState): void => {
   history.replaceState(null, "", nonQueryParamURL);
 };
 
-const TestAuthProvider: React.FC = ({ children }) => {
+export const TestAuthProvider: React.FC = ({ children }) => {
   return (
     <Auth0Provider
       domain={authConfig.domain}
@@ -46,15 +45,14 @@ const AllTheProviders: React.FC = ({ children }) => {
     </StylesProvider>
   );
 };
-
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-const customRender = (
+export const customRender = (
   ui: React.ReactElement,
   options?: Omit<RenderOptions, "queries">
 ) => render(ui, { wrapper: AllTheProviders, ...options });
 
-// eslint-disable-next-line import/export
-export * from "@testing-library/react";
+export const CONST_STORY_BOOK = {
+  PARAM_SKIP_VISUAL_REGRESSION_TEST: { loki: { skip: true } },
+};
 
-// eslint-disable-next-line import/export
-export { customRender as render, TestAuthProvider };
+export * from "@testing-library/react";
