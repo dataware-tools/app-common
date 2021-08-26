@@ -1,5 +1,6 @@
 import { Story } from "@storybook/react";
 import React from "react";
+import { CONST_STORY_BOOK } from "../test-utils";
 import { FileUploadButton, FileUploadButtonProps } from "./FileUploadButton";
 
 export default {
@@ -20,7 +21,4 @@ Default.args = {
 export const Pending = Template.bind({});
 Pending.args = { children: "test", loading: true };
 // This story has animated SVG, so should be skipped in visual regression test
-// @ts-expect-error this is bug of loki or storybook
-Pending.story = {
-  parameters: { loki: { skip: true } },
-};
+Pending.parameters = { ...CONST_STORY_BOOK.PARAM_SKIP_VISUAL_REGRESSION_TEST };

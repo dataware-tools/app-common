@@ -1,6 +1,6 @@
 import { Story } from "@storybook/react";
 import React from "react";
-import { TestAuthProvider } from "../test-utils";
+import { TestAuthProvider, CONST_STORY_BOOK } from "../test-utils";
 import { HeaderPresentation, HeaderPresentationProps } from "./Header";
 
 export default {
@@ -21,9 +21,8 @@ BeforeLogin.args = {
   onLogout: () => window.confirm("logout!"),
 };
 // This story has logic for authentication, so should be skipped in visual regression test
-// @ts-expect-error this is bug of loki or storybook
-BeforeLogin.story = {
-  parameters: { loki: { skip: true } },
+BeforeLogin.parameters = {
+  ...CONST_STORY_BOOK.PARAM_SKIP_VISUAL_REGRESSION_TEST,
 };
 
 export const AfterLogin = Template.bind({});
@@ -34,6 +33,4 @@ AfterLogin.args = {
 };
 // This story has logic for authentication, so should be skipped in visual regression test
 // @ts-expect-error this is bug of loki or storybook
-AfterLogin.story = {
-  parameters: { loki: { skip: true } },
-};
+After.parameters = { ...CONST_STORY_BOOK.PARAM_SKIP_VISUAL_REGRESSION_TEST };

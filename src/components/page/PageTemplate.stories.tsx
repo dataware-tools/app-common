@@ -1,5 +1,5 @@
 import React from "react";
-import { TestAuthProvider } from "../../test-utils";
+import { TestAuthProvider, CONST_STORY_BOOK } from "../../test-utils";
 import { PageTemplate } from "./PageTemplate";
 
 export default {
@@ -13,6 +13,4 @@ export const Default = (): JSX.Element => (
   </TestAuthProvider>
 );
 // This story has logic for authentication, so should be skipped in visual regression test
-Default.story = {
-  parameters: { loki: { skip: true } },
-};
+Default.parameters = { ...CONST_STORY_BOOK.PARAM_SKIP_VISUAL_REGRESSION_TEST };
