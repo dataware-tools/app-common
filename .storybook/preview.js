@@ -1,6 +1,3 @@
-import { AUTH_CONFIG } from "../src/auth/config";
-
-import { Auth0Provider } from "@auth0/auth0-react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import React from "react";
 import { ThemeProvider } from "@material-ui/core/styles";
@@ -11,13 +8,7 @@ export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   layout: "fullscreen",
 };
-const redirectUri = window.location.origin;
 
-const onRedirectCallback = (appState) => {
-  const nonQueryParamURL =
-    appState && appState.returnTo ? appState.returnTo : window.location.origin;
-  history.replaceState(null, "", nonQueryParamURL);
-};
 export const decorators = [
   (Story, context) => {
     return (
@@ -30,15 +21,7 @@ export const decorators = [
         <StylesProvider injectFirst>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-            <Auth0Provider
-              domain={AUTH_CONFIG.domain}
-              clientId={AUTH_CONFIG.clientId}
-              audience={AUTH_CONFIG.apiUrl}
-              redirectUri={redirectUri}
-              onRedirectCallback={onRedirectCallback}
-            >
-              <Story {...context} />
-            </Auth0Provider>
+            <Story {...context} />
           </ThemeProvider>
         </StylesProvider>
       </>
