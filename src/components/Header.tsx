@@ -58,20 +58,25 @@ export const HeaderPresentation = ({
 
 export const Header = (): JSX.Element => {
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
-  const redirectUri =
+  const redirectUriWhenLogin =
+    typeof window === "undefined" ? null : `${window.location.origin}/callback`;
+  const returnToWhenLogin =
     typeof window === "undefined" ? null : window.location.href;
-  const returnTo =
+  const returnToWhenLogout =
     typeof window === "undefined" ? null : window.location.origin;
 
   return (
     <HeaderPresentation
       isAuthenticated={isAuthenticated}
       onLogin={() => {
-        // @ts-expect-error redirectUri is not null in client side
-        loginWithRedirect({ redirectUri: redirectUri });
+        loginWithRedirect({
+          // @ts-expect-error redirectUri is not null in client side
+          redirectUri: redirectUriWhenLogin,
+          appState: { returnTo: returnToWhenLogin },
+        });
       }}
       // @ts-expect-error returnTO is not null in client side
-      onLogout={() => logout({ returnTo: returnTo })}
+      onLogout={() => logout({ returnTo: returnToWhenLogout })}
     />
   );
 };
