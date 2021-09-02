@@ -1,0 +1,17 @@
+FROM node:14
+# Install docker
+RUN wget -O /tmp/docker https://download.docker.com/linux/static/stable/x86_64/docker-20.10.8.tgz  && tar xzvf /tmp/docker && cp docker/* /bin/
+# Install jq
+RUN wget -O /bin/jq https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 && chmod +x /bin/jq
+
+WORKDIR /app
+COPY ./ ./
+
+# Update loki config for dind https://github.com/oblador/loki/issues/9#issuecomment-803197847
+# See:
+RUN rm ./.lokirc.json && mv ./.lokirc-ci.json ./.lokirc.json
+
+# Install npm package
+RUN mkdir -p -m 0600 ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
+RUN npm -g config set user root && npm -g config set unsafe-perm true
+RUN --mount=type=ssh --mount=type=secret,id=npmrc,target=/root/.npmrc npm install

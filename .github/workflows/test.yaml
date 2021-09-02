@@ -1,0 +1,28 @@
+name: Build test image and test
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: self-hosted
+    timeout-minutes: 300
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup ssh-agent
+        uses: webfactory/ssh-agent@v0.4.1
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Build test image
+        env:
+          NPM_REGISTRY: https://npm.pkg.github.com
+          NPM_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
+        run: |
+          export DOCKER_BUILDKIT=1
+          [[ -n "${NPM_TOKEN}" ]] && echo "//${NPM_REGISTRY##*://}/:_authToken=${NPM_TOKEN}" > /tmp/.npmrc
+          cat /tmp/.npmrc
+          docker build -t app:latest --ssh default --secret id=npmrc,src=/tmp/.npmrc -f Dockerfile.test .
+      - name: Test
+        run: d run -v /var/run/docker.sock:/var/run/docker.sock app:latest npm run test
