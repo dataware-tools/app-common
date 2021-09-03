@@ -15,6 +15,11 @@ jobs:
           node-version: "14.x"
           registry-url: "https://npm.pkg.github.com"
 
+      - name: Setup ssh-agent
+        uses: webfactory/ssh-agent@v0.5.1
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
       - name: Install deps
         run: npm install --unsafe-perm
         env:
