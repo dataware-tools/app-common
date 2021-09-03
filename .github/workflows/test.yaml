@@ -10,20 +10,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Setup ssh-agent
-        uses: webfactory/ssh-agent@v0.4.1
+      - name: Install deps
+        uses: actions/setup-node@v2
         with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-      - name: Build test image
+          node-version: "14.x"
+          registry-url: "https://npm.pkg.github.com"
         env:
-          NPM_REGISTRY: https://npm.pkg.github.com
-          NPM_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
-        run: |
-          export DOCKER_BUILDKIT=1
-          [[ -n "${NPM_TOKEN}" ]] && echo "//${NPM_REGISTRY##*://}/:_authToken=${NPM_TOKEN}" > /tmp/.npmrc
-          cat /tmp/.npmrc
-          docker build -t app:latest --ssh default --secret id=npmrc,src=/tmp/.npmrc -f Dockerfile.test .
+          NODE_AUTH_TOKEN: ${{secrets.REPO_ACCESS_TOKEN}}
+        run: npm install --unsafe-perm
 
       - name: Test
-        run: docker run -v /var/run/docker.sock:/var/run/docker.sock app:latest npm run test
+        run: npm run test
