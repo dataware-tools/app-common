@@ -4,15 +4,14 @@ import OutlinedInput, {
   OutlinedInputProps,
 } from "@material-ui/core/OutlinedInput";
 import SearchIcon from "@material-ui/icons/Search";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { usePrevious } from "../utils";
 
-export type SearchFormPresentationProps = {
-  searchText: string;
-  setSearchText: React.Dispatch<string>;
-} & Omit<SearchFormProps, "defaultValue">;
+export type SearchFormPresentationProps = Omit<SearchFormProps, "defaultValue">;
 
 export type SearchFormProps = {
-  onSearch: (searchText: string) => void;
+  onSearch: (searchText?: string) => void;
+  onChange?: (newSearchText: string) => void;
   defaultValue?: string;
   value?: string;
   inputProps?: Omit<OutlinedInputProps, "onChange" | "value" | "endAdornment">;
@@ -20,8 +19,7 @@ export type SearchFormProps = {
 
 export const SearchFormPresentation = ({
   onSearch,
-  searchText,
-  setSearchText,
+  onChange,
   value,
   inputProps,
 }: SearchFormPresentationProps): JSX.Element => {
@@ -29,7 +27,7 @@ export const SearchFormPresentation = ({
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        onSearch(searchText);
+        onSearch(value);
       }}
     >
       <OutlinedInput
@@ -38,19 +36,15 @@ export const SearchFormPresentation = ({
         {...inputProps}
         endAdornment={
           <InputAdornment position="end">
-            <IconButton
-              edge="end"
-              onClick={() => onSearch(searchText)}
-              size="small"
-            >
+            <IconButton edge="end" onClick={() => onSearch(value)} size="small">
               <SearchIcon />
             </IconButton>
           </InputAdornment>
         }
         onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-          setSearchText(event.target.value);
+          onChange && onChange(event.target.value);
         }}
-        value={value != null ? value : searchText}
+        value={value}
       />
     </form>
   );
@@ -58,14 +52,23 @@ export const SearchFormPresentation = ({
 
 export const SearchForm = ({
   defaultValue,
+  value,
+  onChange,
   ...delegated
 }: SearchFormProps): JSX.Element => {
-  const [searchText, setSearchText] = useState(defaultValue || "");
+  const [searchText, setSearchText] = useState<string>(defaultValue || "");
+  const prevDefaultValue = usePrevious(defaultValue);
+  useEffect(() => {
+    if (defaultValue !== prevDefaultValue) {
+      setSearchText(defaultValue || "");
+    }
+  }, [defaultValue, prevDefaultValue]);
+
   return (
     <SearchFormPresentation
       {...delegated}
-      searchText={searchText}
-      setSearchText={setSearchText}
+      value={value != null ? value : searchText}
+      onChange={onChange || setSearchText}
     />
   );
 };
