@@ -1,4 +1,4 @@
-import Dialog, { DialogProps } from "@material-ui/core/Dialog";
+import Dialog, { DialogProps } from "@mui/material/Dialog";
 import React, { ReactNode } from "react";
 import { DialogBody } from "./dialog/DialogBody";
 import { DialogContainer } from "./dialog/DialogContainer";

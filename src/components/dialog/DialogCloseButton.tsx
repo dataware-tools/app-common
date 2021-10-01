@@ -1,5 +1,5 @@
-import Box from "@material-ui/core/Box";
-import CloseIcon from "@material-ui/icons/Close";
+import CloseIcon from "@mui/icons-material/Close";
+import Box from "@mui/material/Box";
 import React from "react";
 
 export type DialogCloseButtonProps = { onClick: () => void };

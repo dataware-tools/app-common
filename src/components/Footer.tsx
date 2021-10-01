@@ -1,7 +1,7 @@
-import AppBar from "@material-ui/core/AppBar";
-import Box from "@material-ui/core/Box";
-import Divider from "@material-ui/core/Divider";
-import Link from "@material-ui/core/Link";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Divider from "@mui/material/Divider";
+import Link from "@mui/material/Link";
 import React from "react";
 import { NoticeableLetters } from "./NoticeableLetters";
 

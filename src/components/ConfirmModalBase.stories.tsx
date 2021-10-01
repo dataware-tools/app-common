@@ -1,4 +1,4 @@
-import Button from "@material-ui/core/Button";
+import Button from "@mui/material/Button";
 import { Story } from "@storybook/react";
 import React from "react";
 import { ConfirmModalBase, ConfirmModalBaseProps } from "./ConfirmModalBase";

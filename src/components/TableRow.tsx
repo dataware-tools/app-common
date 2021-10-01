@@ -1,7 +1,7 @@
-import IconButton from "@material-ui/core/IconButton";
-import TableCell, { TableCellProps } from "@material-ui/core/TableCell";
-import MuiTableRow from "@material-ui/core/TableRow";
-import DeleteIcon from "@material-ui/icons/Delete";
+import DeleteIcon from "@mui/icons-material/Delete";
+import IconButton from "@mui/material/IconButton";
+import TableCell, { TableCellProps } from "@mui/material/TableCell";
+import MuiTableRow from "@mui/material/TableRow";
 import React from "react";
 
 type CellContent = string | number | Record<string, any> | any[];

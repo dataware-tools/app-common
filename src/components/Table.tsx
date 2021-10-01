@@ -1,8 +1,8 @@
-import MuiTable from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableHead from "@material-ui/core/TableHead";
-import MuiTableRow from "@material-ui/core/TableRow";
+import MuiTable from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableHead from "@mui/material/TableHead";
+import MuiTableRow from "@mui/material/TableRow";
 import React, { RefObject } from "react";
 
 import { TableRow, TableRowProps } from "./TableRow";
