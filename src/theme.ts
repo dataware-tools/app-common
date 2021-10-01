@@ -1,4 +1,5 @@
 import { createTheme, responsiveFontSizes } from "@mui/material/styles";
+import type {} from "@mui/x-data-grid/themeAugmentation";
 
 const HDLBaseColor = 200;
 const BasicSaturation = "10%";
@@ -120,7 +121,6 @@ let theme = createTheme({
         },
       },
     },
-    // @ts-expect-error M-ui v5 does not support
     MuiDataGrid: {
       styleOverrides: {
         row: {
