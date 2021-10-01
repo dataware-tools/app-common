@@ -1,4 +1,4 @@
-import AddCircle from "@material-ui/icons/AddCircle";
+import AddCircle from "@mui/icons-material/AddCircle";
 import { Story } from "@storybook/react";
 import React from "react";
 import { SquareIconButton, SquareIconButtonProps } from "./SquareIconButton";

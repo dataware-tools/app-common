@@ -1,8 +1,8 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import AppBar from "@material-ui/core/AppBar";
-import Box from "@material-ui/core/Box";
-import Link from "@material-ui/core/Link";
-import Toolbar from "@material-ui/core/Toolbar";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Link from "@mui/material/Link";
+import Toolbar from "@mui/material/Toolbar";
 import React from "react";
 import { NoticeableLetters } from "./NoticeableLetters";
 

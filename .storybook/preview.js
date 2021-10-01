@@ -1,7 +1,7 @@
-import CssBaseline from "@material-ui/core/CssBaseline";
+import CssBaseline from "@mui/material/CssBaseline";
 import React from "react";
-import { ThemeProvider } from "@material-ui/core/styles";
-import { StylesProvider } from "@material-ui/styles";
+import { ThemeProvider } from "@mui/material/styles";
+import { StylesProvider } from "@mui/styles";
 import theme from "../src/theme";
 
 export const parameters = {

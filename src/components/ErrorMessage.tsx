@@ -1,6 +1,6 @@
-import Alert from "@material-ui/core/Alert";
-import AlertTitle from "@material-ui/core/AlertTitle";
-import Box from "@material-ui/core/Box";
+import Alert from "@mui/material/Alert";
+import AlertTitle from "@mui/material/AlertTitle";
+import Box from "@mui/material/Box";
 import React from "react";
 
 export type ErrorMessageProps = {

@@ -1,5 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import Box, { BoxProps } from "@material-ui/core/Box";
+import Box, { BoxProps } from "@mui/material/Box";
 import React from "react";
 import { ErrorMessage } from "../ErrorMessage";
 import { Footer } from "../Footer";

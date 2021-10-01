@@ -1,12 +1,12 @@
-import { TextField } from "@material-ui/core";
+import ClearIcon from "@mui/icons-material/Clear";
+import LoadingButton from "@mui/lab/LoadingButton";
+import { TextField } from "@mui/material";
 import Autocomplete, {
   AutocompleteCloseReason,
   AutocompleteProps,
-} from "@material-ui/core/Autocomplete";
-import Box from "@material-ui/core/Box";
-import ClickAwayListener from "@material-ui/core/ClickAwayListener";
-import ClearIcon from "@material-ui/icons/Clear";
-import LoadingButton from "@material-ui/lab/LoadingButton";
+} from "@mui/material/Autocomplete";
+import Box from "@mui/material/Box";
+import ClickAwayListener from "@mui/material/ClickAwayListener";
 import React, { SyntheticEvent, useState } from "react";
 import themeInstance from "../theme";
 
@@ -235,4 +235,4 @@ export const MultiSelect = <
   );
 };
 
-export { createFilterOptions as createFilterOptionsForMultiSelect } from "@material-ui/core/Autocomplete";
+export { createFilterOptions as createFilterOptionsForMultiSelect } from "@mui/material/Autocomplete";

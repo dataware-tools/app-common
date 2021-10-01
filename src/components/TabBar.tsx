@@ -1,5 +1,5 @@
-import Tab from "@material-ui/core/Tab";
-import Tabs, { TabsProps } from "@material-ui/core/Tabs";
+import Tab from "@mui/material/Tab";
+import Tabs, { TabsProps } from "@mui/material/Tabs";
 import React from "react";
 
 export type TabBarProps = {

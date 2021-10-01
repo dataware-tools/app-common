@@ -1,4 +1,4 @@
-import Button, { ButtonProps } from "@material-ui/core/Button";
+import Button, { ButtonProps } from "@mui/material/Button";
 import React, { useState } from "react";
 import { ConfirmModalBase, ConfirmModalBaseProps } from "./ConfirmModalBase";
 import { Spacer } from "./Spacer";

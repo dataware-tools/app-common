@@ -1,4 +1,4 @@
-import Dialog, { DialogProps } from "@material-ui/core/Dialog";
+import Dialog, { DialogProps } from "@mui/material/Dialog";
 import React from "react";
 import { DialogBody } from "./DialogBody";
 import { DialogCloseButton } from "./DialogCloseButton";

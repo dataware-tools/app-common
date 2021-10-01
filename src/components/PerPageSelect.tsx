@@ -1,6 +1,6 @@
-import Box from "@material-ui/core/Box";
-import MenuItem from "@material-ui/core/MenuItem";
-import Select, { SelectChangeEvent } from "@material-ui/core/Select";
+import Box from "@mui/material/Box";
+import MenuItem from "@mui/material/MenuItem";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 import React from "react";
 import { Spacer } from "./Spacer";
 

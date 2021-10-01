@@ -1,9 +1,7 @@
-import IconButton from "@material-ui/core/IconButton";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import OutlinedInput, {
-  OutlinedInputProps,
-} from "@material-ui/core/OutlinedInput";
-import SearchIcon from "@material-ui/icons/Search";
+import SearchIcon from "@mui/icons-material/Search";
+import IconButton from "@mui/material/IconButton";
+import InputAdornment from "@mui/material/InputAdornment";
+import OutlinedInput, { OutlinedInputProps } from "@mui/material/OutlinedInput";
 import React, { useEffect, useState } from "react";
 import { usePrevious } from "../utils";
 

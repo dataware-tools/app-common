@@ -1,7 +1,7 @@
 import { AppState, Auth0Provider } from "@auth0/auth0-react";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import { ThemeProvider } from "@material-ui/core/styles";
-import { StylesProvider } from "@material-ui/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import { ThemeProvider } from "@mui/material/styles";
+import { StylesProvider } from "@mui/styles";
 import { render, RenderOptions } from "@testing-library/react";
 import React from "react";
 import { SWRConfig } from "swr";

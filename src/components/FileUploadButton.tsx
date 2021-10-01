@@ -1,6 +1,4 @@
-import LoadingButton, {
-  LoadingButtonProps,
-} from "@material-ui/lab/LoadingButton";
+import LoadingButton, { LoadingButtonProps } from "@mui/lab/LoadingButton";
 import React, { InputHTMLAttributes, useRef, RefObject } from "react";
 
 export type FileUploadButtonPresentationProps = {
