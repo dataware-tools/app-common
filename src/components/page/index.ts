@@ -10,3 +10,5 @@ export { PageToolBar } from "./PageToolBar";
 export type { PageToolBarProps } from "./PageToolBar";
 export { PageWrapper } from "./PageWrapper";
 export type { PageWrapperProps } from "./PageWrapper";
+export { ExperimentalPageWrapper } from "./ExperimentalPageWrapper";
+export type { ExperimentalPageWrapperProps } from "./ExperimentalPageWrapper";
