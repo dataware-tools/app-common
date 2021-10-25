@@ -26,7 +26,12 @@ export const AlertModalPresentation = ({
     </Button>
   );
   return (
-    <ConfirmModalBase {...delegated} buttons={<ConfirmButton />} open={open} />
+    <ConfirmModalBase
+      {...delegated}
+      buttons={<ConfirmButton />}
+      open={open}
+      onBackdropClick={onConfirm}
+    />
   );
 };
 
