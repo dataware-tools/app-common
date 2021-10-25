@@ -71,6 +71,7 @@ export const ConfirmModalPresentation = ({
   return (
     <ConfirmModalBase
       {...delegated}
+      onBackdropClick={onCancel}
       open={open}
       buttons={
         <>
