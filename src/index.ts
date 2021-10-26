@@ -44,5 +44,7 @@ export type { TextCenteringSpanProps } from "./components/TextCenteringSpan";
 export { ToolBar } from "./components/ToolBar";
 export type { ToolBarProps } from "./components/ToolBar";
 
+export { ExperimentalHeader } from "./components/ExperimentalHeader";
+
 export * from "./utils";
 export * from "./openapi";
