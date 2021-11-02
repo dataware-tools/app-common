@@ -13,7 +13,8 @@
   "source": "src/index.ts",
   "types": "dist/index.d.ts",
   "engines": {
-    "node": ">=10"
+    "node": ">=10",
+    "npm": ">=7 < 9"
   },
   "scripts": {
     "build": "cross-env NODE_OPTIONS=\"--max-old-space-size=4096\" rimraf dist && node bin/esbuild.js && run-s emit-types",
@@ -135,5 +136,8 @@
     "maintained Node versions",
     "last 2 Safari versions",
     "last 2 Samsung versions"
-  ]
+  ],
+  "volta": {
+    "node": "16.13.0"
+  }
 }
