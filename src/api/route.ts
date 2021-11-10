@@ -1,7 +1,9 @@
 import API_CATALOG from "./catalog";
 
 const API_HOME: string =
-  process.env.NEXT_PUBLIC_BACKEND_API_PREFIX || "/api/latest";
+  process.env.DATAWARE_TOOLS_BACKEND_API_PREFIX ||
+  process.env.NEXT_PUBLIC_BACKEND_API_PREFIX ||
+  "/api/latest";
 
 const constructApiBaseUrl = (url: string) => `${API_HOME}${url}`;
 
