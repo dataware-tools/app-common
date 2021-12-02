@@ -47,4 +47,3 @@ export type { ToolBarProps } from "./components/ToolBar";
 export { ExperimentalHeader } from "./components/ExperimentalHeader";
 
 export * from "./utils";
-export * from "./openapi";

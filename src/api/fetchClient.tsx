@@ -1,6 +1,3 @@
-import { fileProvider, metaStore } from "../openapi";
-import { API_ROUTE } from "./route";
-
 type Data<T> = T extends void | undefined | null
   ? "__fetchSuccess__" | undefined
   : T | undefined;
@@ -16,26 +13,6 @@ const fetchAPI = async <T, U>(
   } catch (error) {
     return [undefined as Data<U>, error];
   }
-};
-
-const fetchMetaStore = async <T, U>(
-  token: string | (() => Promise<string>),
-  fetcher: (args: T) => Promise<U>,
-  param: T
-): Promise<[data: Data<U>, error: any]> => {
-  metaStore.OpenAPI.BASE = API_ROUTE.META.BASE;
-  metaStore.OpenAPI.TOKEN = token;
-  return await fetchAPI(fetcher, param);
-};
-
-const fetchFileProvider = async <T, U>(
-  token: string | (() => Promise<string>),
-  fetcher: (args: T) => Promise<U>,
-  param: T
-): Promise<[data: Data<U>, error: any]> => {
-  fileProvider.OpenAPI.BASE = API_ROUTE.FILE.BASE;
-  fileProvider.OpenAPI.TOKEN = token;
-  return await fetchAPI(fetcher, param);
 };
 
 type FetchErrorType = {
@@ -76,8 +53,6 @@ const extractErrorMessageFromFetchError = (
 
 export {
   fetchAPI,
-  fetchMetaStore,
-  fetchFileProvider,
   extractReasonFromFetchError,
   extractErrorMessageFromFetchError,
 };
