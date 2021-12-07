@@ -19,7 +19,7 @@
   "scripts": {
     "build": "cross-env NODE_OPTIONS=\"--max-old-space-size=4096\" rimraf dist && node bin/esbuild.js && run-s emit-types",
     "emit-types": " tsc --emitDeclarationOnly --project tsconfig.json --outDir dist",
-    "prepare": "cross-env NODE_OPTIONS=\"--max-old-space-size=4096\" run-s download:catalog generate:openapi build && husky install",
+    "prepare": "cross-env NODE_OPTIONS=\"--max-old-space-size=4096\" run-s download:catalog build && husky install",
     "test": "cross-env NODE_OPTIONS=\"--max-old-space-size=4096\" run-s lint test:unit test:build test:visual-regression",
     "lint": "cross-env NODE_OPTIONS=\"--max-old-space-size=4096\" run-s lint:eslint lint:stylelint lint:tsc",
     "lint:eslint": "eslint .",
@@ -30,7 +30,6 @@
     "test:visual-regression": "build-storybook --quiet && loki --requireReference --reactUri file:./storybook-static",
     "format": "prettier --write src/*",
     "download:catalog": "./bin/download_catalog.sh",
-    "generate:openapi": "cross-env C_D=$PWD/bin ./bin/generate_openapi.sh",
     "storybook": "start-storybook -p 9009",
     "build-storybook": "build-storybook",
     "release-it": "release-it --ci"
@@ -45,8 +44,7 @@
     "@mui/styles": "^5.0.1",
     "oidc-react": "^1.5.1",
     "react": ">=16.0.0 < 18",
-    "react-dom": ">=16.0.0 < 18",
-    "semantic-ui-react": ">=2.0.3 < 3"
+    "react-dom": ">=16.0.0 < 18"
   },
   "devDependencies": {
     "@auth0/auth0-react": "^1.4.0",
@@ -70,7 +68,6 @@
     "@types/node": "^14.14.41",
     "@types/react": "^17.0.3",
     "@types/react-dom": "^17.0.3",
-    "@types/superagent": "^4.1.8",
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/parser": "^4.33.0",
     "cross-env": "^7.0.2",
@@ -98,13 +95,11 @@
     "loki": "^0.28.1",
     "npm-run-all": "^4.1.5",
     "oidc-react": "^1.5.1",
-    "openapi-typescript-codegen": "^0.9.3",
     "prettier": "^2.2.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "release-it": "^14.9.0",
     "rimraf": "^3.0.2",
-    "semantic-ui-react": "^2.0.3",
     "stylelint": "^13.12.0",
     "stylelint-config-prettier": "^8.0.2",
     "stylelint-config-recommended": "^4.0.0",
@@ -112,7 +107,6 @@
     "stylelint-config-styled-components": "^0.1.1",
     "stylelint-declaration-block-no-ignored-properties": "^2.3.0",
     "stylelint-order": "^4.1.0",
-    "superagent": "^5.3.1",
     "swr": "^0.5.5",
     "ts-jest": "^26.5.5",
     "tsconfig-paths-webpack-plugin": "^3.5.1",
