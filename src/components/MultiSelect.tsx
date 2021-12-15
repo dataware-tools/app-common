@@ -132,7 +132,6 @@ export const MultiSelectPresentation = <
       onClick={onFocusSelect}
     >
       {isValueExist ? (
-        // @ts-expect-error value must have some element
         value.map((option, index) => {
           return (
             <Box
