@@ -66,5 +66,10 @@ jobs:
           docker run --rm \
             -v ${PWD}/app-common:/app-common:rw \
             app:latest bash -c \
-            "rm -r node_modules/@dataware-tools/app-common && ln -s /app-common node_modules/@dataware-tools/app-common && npm run test"
+              "rm -r node_modules/@dataware-tools/app-common/dist \
+                 && rm node_modules/@dataware-tools/app-common/package.json \
+                 && ln -s /app-common/dist node_modules/@dataware-tools/app-common/dist \
+                 && ln -s /app-common/package.json node_modules/@dataware-tools/app-common/package.json \
+                 && npm run test \
+              "
 
