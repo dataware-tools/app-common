@@ -1,0 +1,51 @@
+name: Test applications
+
+on: [push]
+
+#on:
+#  pull_request:
+#    branches:
+#      - main
+#      - master
+
+jobs:
+  test-apps:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+
+    strategy:
+      matrix:
+        app:
+          - app-data-browser-next
+#          - app-user-manager
+#          - app-launcher
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          path: app-common
+
+      - uses: actions/checkout@v2
+        with:
+          repository: dataware-tools/${{ matrix.app }}
+          path: ./
+
+      - name: Setup ssh-agent
+        uses: webfactory/ssh-agent@v0.5.1
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Update package.json
+        shell: bash
+        run: |
+          sed -i -e 's|"@dataware-tools/app-common": ".*",|"@dataware-tools/app-common": "./app-common",|' package.json
+
+      - name: Build image
+        shell: bash
+        run: |
+          docker build -t app:latest --ssh default .
+
+      - name: Test image
+        shell: bash
+        run: |
+          docker run --rm app:latest npm run test
