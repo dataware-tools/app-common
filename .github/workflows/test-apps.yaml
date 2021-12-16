@@ -1,12 +1,9 @@
 name: Test applications
 
-on: [push]
-
-#on:
-#  pull_request:
-#    branches:
-#      - main
-#      - master
+on:
+  pull_request:
+    branches:
+      - master
 
 jobs:
   test-apps:
@@ -15,11 +12,11 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.10.0]
+        node-version: [16.x]
         app:
           - app-data-browser-next
-#          - app-user-manager
-#          - app-launcher
+          - app-user-manager
+          - app-launcher
 
     steps:
       - uses: actions/checkout@v2
