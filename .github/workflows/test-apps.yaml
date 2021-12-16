@@ -16,7 +16,6 @@ jobs:
         app:
           - app-data-browser-next
           - app-user-manager
-          - app-launcher
 
     steps:
       - uses: actions/checkout@v2
