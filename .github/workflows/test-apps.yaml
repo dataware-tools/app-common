@@ -41,7 +41,7 @@ jobs:
 
       - name: Build app-common
         working-directory: app-common
-        run: npm run build && rm -r node_modules
+        run: npm run build
 
       - uses: actions/checkout@v2
         with:
