@@ -60,12 +60,13 @@ jobs:
           echo "//${NPM_REGISTRY##*://}/:_authToken=${NPM_TOKEN}" > /tmp/.npmrc
           docker build -t app:latest --ssh default --secret id=npmrc,src=/tmp/.npmrc --target test .
 
+      - name: Run test container
+        run: (docker run --privileged -v ${PWD}/app-common:/app-common:rw --name app-test app:latest) &
+
       - name: Test app
         shell: bash
         run: |
-          docker run --privileged --rm \
-            -v ${PWD}/app-common:/app-common:rw \
-            app:latest bash -c \
+          docker exec app-test bash -c \
               "rm -r node_modules/@dataware-tools/app-common/dist \
                  && rm node_modules/@dataware-tools/app-common/package.json \
                  && ln -s /app-common/dist node_modules/@dataware-tools/app-common/dist \
