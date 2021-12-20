@@ -63,7 +63,7 @@ jobs:
       - name: Test app
         shell: bash
         run: |
-          docker run --rm \
+          docker run --privileged --rm \
             -v ${PWD}/app-common:/app-common:rw \
             app:latest bash -c \
               "rm -r node_modules/@dataware-tools/app-common/dist \
