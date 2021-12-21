@@ -79,6 +79,27 @@ let theme = createTheme({
         },
       },
     },
+    // @ts-expect-error this is working properly in @mui/lab@^5.0.0-alpha.60, but is not included in Theme type
+    MuiLoadingButton: {
+      defaultProps: {
+        disableElevation: true,
+        variant: "contained",
+      },
+      styleOverrides: {
+        root: {
+          borderRadius: 0,
+          fontFamily: [
+            "Oxanium",
+            "Helvetica Neue",
+            "Arial",
+            "Helvetica",
+            "Roboto",
+            "Noto Sans JP",
+            "sans-serif",
+          ].join(","),
+        },
+      },
+    },
     MuiTableCell: {
       styleOverrides: {
         root: {

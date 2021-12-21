@@ -1,4 +1,3 @@
-const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 const path = require("path");
 const toPath = (filePath) => path.join(process.cwd(), filePath);
 
@@ -19,12 +18,6 @@ module.exports = {
     // `configType` has a value of 'DEVELOPMENT' or 'PRODUCTION'
     // You can change the configuration based on that.
     // 'PRODUCTION' is used when building the static version of storybook.
-
-    config.resolve.plugins.push(
-      new TsconfigPathsPlugin({
-        configFile: path.resolve(__dirname, "../tsconfig.json"),
-      })
-    );
 
     // Return the altered config
     return {

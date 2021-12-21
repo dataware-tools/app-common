@@ -1,4 +1,5 @@
 module.exports = {
+  customSyntax: "postcss-syntax",
   plugins: [
     "stylelint-declaration-block-no-ignored-properties",
     "stylelint-order",

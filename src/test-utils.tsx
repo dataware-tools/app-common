@@ -4,7 +4,6 @@ import { ThemeProvider } from "@mui/material/styles";
 import { StylesProvider } from "@mui/styles";
 import { render, RenderOptions } from "@testing-library/react";
 import React from "react";
-import { SWRConfig } from "swr";
 import { AUTH_CONFIG } from "./auth/config";
 import theme from "./theme";
 
@@ -40,7 +39,7 @@ const AllTheProviders: React.FC = ({ children }) => {
     <StylesProvider injectFirst>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <SWRConfig value={{ dedupingInterval: 0 }}>{children}</SWRConfig>
+        {children}
       </ThemeProvider>
     </StylesProvider>
   );
