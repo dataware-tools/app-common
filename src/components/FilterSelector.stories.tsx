@@ -1,5 +1,5 @@
 import { Story } from "@storybook/react";
-import React from "react";
+import React, { useState } from "react";
 import { FilterSelector, FilterSelectorProps } from "./FilterSelector";
 
 export default {
@@ -30,4 +30,15 @@ export const DisableCollapse = Template.bind({});
 DisableCollapse.args = {
   ...defaultArgs,
   disableCollapse: true,
+};
+
+export const Controlled = (): JSX.Element => {
+  const [selectedValues, setSelectedValues] = useState<string[]>([]);
+  return (
+    <FilterSelector
+      {...defaultArgs}
+      selectedValues={selectedValues}
+      onChange={(selectedValues) => setSelectedValues(selectedValues)}
+    />
+  );
 };
