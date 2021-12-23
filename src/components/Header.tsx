@@ -19,12 +19,7 @@ export const HeaderPresentation = ({
 }: HeaderPresentationProps): JSX.Element => {
   return (
     <>
-      <AppBar
-        sx={{ color: "common.white" }}
-        elevation={0}
-        position="sticky"
-        role="banner"
-      >
+      <AppBar sx={{ color: "common.white" }} elevation={0} position="sticky">
         <Toolbar
           sx={{
             backgroundColor: "common.black",
