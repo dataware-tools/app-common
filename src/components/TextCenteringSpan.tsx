@@ -7,7 +7,12 @@ export const TextCenteringSpan = ({
   children,
 }: TextCenteringSpanProps): JSX.Element => {
   return (
-    <Box component="span" sx={{ paddingTop: "0.1rem" }}>
+    <Box
+      component="span"
+      sx={{ paddingTop: "0.1rem" }}
+      // See: https://www.w3.org/TR/wai-aria-1.1/#none
+      role="none presentation"
+    >
       {children}
     </Box>
   );

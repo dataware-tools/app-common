@@ -21,6 +21,8 @@ export const SpacerPresentation = ({
         height,
         minHeight: height,
       }}
+      // See: https://www.w3.org/TR/wai-aria-1.1/#none
+      role="none presentation"
     />
   );
 };

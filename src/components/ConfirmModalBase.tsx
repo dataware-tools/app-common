@@ -24,7 +24,7 @@ export const ConfirmModalBase = ({
   ...dialogProps
 }: ConfirmModalBaseProps): JSX.Element => {
   return (
-    <Dialog {...dialogProps} open={open}>
+    <Dialog role="alertdialog" {...dialogProps} open={open}>
       <DialogWrapper>
         <DialogContainer height={height}>
           <DialogBody padding="0">

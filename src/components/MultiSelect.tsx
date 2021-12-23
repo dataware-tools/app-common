@@ -130,6 +130,7 @@ export const MultiSelectPresentation = <
         },
       }}
       onClick={onFocusSelect}
+      role="combobox"
     >
       {isValueExist ? (
         value.map((option, index) => {

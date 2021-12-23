@@ -4,9 +4,10 @@ import React from "react";
 export type ToolBarProps = {
   right?: React.ReactNode;
   left?: React.ReactNode;
+  role?: string;
 };
 
-export const ToolBar = ({ right, left }: ToolBarProps): JSX.Element => {
+export const ToolBar = ({ right, left, role }: ToolBarProps): JSX.Element => {
   return (
     <Box
       sx={{
@@ -15,6 +16,7 @@ export const ToolBar = ({ right, left }: ToolBarProps): JSX.Element => {
         flexShrink: 0,
         justifyContent: "space-between",
       }}
+      role={role}
     >
       <Box sx={{ alignItems: "center", display: "flex", textAlign: "left" }}>
         {left}

@@ -49,6 +49,7 @@ export const PerPageSelect = ({
         size="small"
         labelId={labelId}
         variant="outlined"
+        role="combobox"
       >
         {values.map((value) => (
           <MenuItem key={value} value={value}>

@@ -27,6 +27,7 @@ export const SquareIconButton = ({
         },
       }}
       onClick={disabled ? undefined : onClick}
+      role="button"
     >
       {icon}
     </Box>
