@@ -28,7 +28,7 @@ Default.args = {
   },
 };
 
-const testArgs = {
+const testArgs: TableProps = {
   rows: [
     { name: "user", description: "外部の人", role_id: "1" },
     { name: "internal user", description: "内部の人", role_id: "2" },
@@ -52,10 +52,10 @@ const testArgs = {
     { field: "name", type: "string" as const, label: "Name" },
     { field: "description" },
   ],
-  onDeleteRow: (detail: any) => {
+  onDeleteRow: (detail) => {
     window.alert(`delete! ${JSON.stringify(detail)}`);
   },
-  onClickRow: (detail: any) => {
+  onClickRow: (detail) => {
     window.alert(`click! ${JSON.stringify(detail)}`);
   },
 };
@@ -66,7 +66,7 @@ export const StickyHeader = (): JSX.Element => (
   </div>
 );
 
-export const disableHover = (): JSX.Element => (
+export const DisableHover = (): JSX.Element => (
   <div style={{ height: "60vh", overflow: "auto" }}>
     <Table stickyHeader disableHoverRow disableHoverCell {...testArgs} />
   </div>
