@@ -9,6 +9,7 @@ module.exports = {
     "standard",
     "standard-jsx",
     "standard-react",
+    "plugin:jsx-a11y/recommended",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:eslint-comments/recommended",
