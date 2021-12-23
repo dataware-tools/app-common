@@ -17,6 +17,7 @@ module.exports = {
     "plugin:import/typescript",
     "plugin:compat/recommended",
     "plugin:storybook/recommended",
+    "plugin:jest/all",
     "prettier",
   ],
   parser: "@typescript-eslint/parser",
@@ -33,6 +34,7 @@ module.exports = {
     "import",
     "unused-imports",
     "react-hooks",
+    "jest",
   ],
   settings: {
     react: {
@@ -47,31 +49,57 @@ module.exports = {
         project: ["./tsconfig.json"],
       },
     },
+    jest: {
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      version: require("jest/package.json").version,
+    },
   },
   rules: {
+    // Non-exist error  can't be disabled
     "eslint-comments/no-unused-disable": "error",
+
     // This rule make mean only when using "prop-type" library(https://ja.reactjs.org/docs/typechecking-with-proptypes.html)
     "react/prop-types": "off",
-    // https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/FAQ.md#eslint-plugin-import
+
+    // rules relating import are recommended that do not use with eslint-plugin-import
+    // See: https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/FAQ.md#eslint-plugin-import
     "import/named": "off",
     "import/namespace": "off",
     "import/default": "off",
     "import/no-named-as-default-member": "off",
+    "import/no-named-as-default": "off",
+    "import/no-cycle": "off",
+    "import/no-unused-modules": "off",
+    "import/no-deprecated": "off",
+
+    // Rules relating indentation are recommended that do not use with prettier
+    // See https://typescript-eslint.io/docs/linting/troubleshooting#the-indent--typescript-eslintindent-rules
     indent: "off",
     "@typescript-eslint/indent": "off",
-    // https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/FAQ.md#i-am-using-a-rule-from-eslint-core-and-it-doesnt-work-correctly-with-typescript-code
-    "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
-    // https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/FAQ.md#i-get-errors-from-the-no-undef-rule-about-global-variables-not-being-defined-even-though-there-are-no-typescript-errors
+
+    // no-undef rule is strongly recommended that do not use in typescript project
+    // See: https://typescript-eslint.io/docs/linting/troubleshooting#i-get-errors-from-the-no-undef-rule-about-global-variables-not-being-defined-even-though-there-are-no-typescript-errors
     "no-undef": "off",
-    // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-use-before-define.md
+
+    // no-use-before-define should be use with disabling eslint same rule
+    // See: https://typescript-eslint.io/rules/no-use-before-define/#how-to-use
     "no-use-before-define": "off",
     "@typescript-eslint/no-use-before-define": ["error"],
-    // in Next project, react need not be imported every file.
-    "react/jsx-fragments": "off",
-    "react/display-name": "off",
+
     "sort-imports": "off",
+
+    // Sort import statements by alphabet order
     "import/order": ["warn", { alphabetize: { order: "asc" } }],
     "unused-imports/no-unused-imports": "error",
+
+    // Config for plugin-jest
+    // force to use single name
+    "jest/consistent-test-it": ["error", { fn: "test" }],
+    // incompatible waitFor in @testing-library/react
+    "jest/prefer-expect-assertions": "off",
+    // Too strict
+    "jest/lowercase-name": "off",
+    "jest/no-hooks": "off",
+    "jest/require-top-level-describe": "off",
   },
 };
