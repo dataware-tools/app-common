@@ -15,6 +15,7 @@ export const SquareIconButton = ({
   return (
     <Box
       sx={{
+        all: "unset",
         alignItems: "center",
         cursor: disabled ? "unset" : "pointer",
         display: "flex",
@@ -25,9 +26,12 @@ export const SquareIconButton = ({
         "&:hover": {
           backgroundColor: disabled ? "unset" : "action.hover",
         },
+        "&:focus": {
+          border: disabled ? "unset" : "1px solid black",
+        },
       }}
       onClick={disabled ? undefined : onClick}
-      role="button"
+      component="button"
     >
       {icon}
     </Box>

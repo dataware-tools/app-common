@@ -8,7 +8,7 @@ export const DialogTabBar = ({
   ...delegated
 }: DialogTabBarProps): JSX.Element => {
   return (
-    <Box sx={{ flex: 0 }}>
+    <Box sx={{ flex: 0 }} role="none presentation">
       <TabBar {...delegated} />
     </Box>
   );

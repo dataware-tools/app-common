@@ -6,7 +6,7 @@ export type PageTabBarProps = TabBarProps;
 
 export const PageTabBar = ({ ...delegated }: PageTabBarProps): JSX.Element => {
   return (
-    <Box sx={{ flex: 0 }}>
+    <Box sx={{ flex: 0 }} role="none presentation">
       <TabBar {...delegated} />
     </Box>
   );

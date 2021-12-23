@@ -18,10 +18,16 @@ export const ToolBar = ({ right, left, role }: ToolBarProps): JSX.Element => {
       }}
       role={role}
     >
-      <Box sx={{ alignItems: "center", display: "flex", textAlign: "left" }}>
+      <Box
+        sx={{ alignItems: "center", display: "flex", textAlign: "left" }}
+        role={left ? undefined : "none presentation"}
+      >
         {left}
       </Box>
-      <Box sx={{ alignItems: "center", display: "flex", textAlign: "right" }}>
+      <Box
+        sx={{ alignItems: "center", display: "flex", textAlign: "right" }}
+        role={right ? undefined : "none presentation"}
+      >
         {right}
       </Box>
     </Box>
