@@ -1,4 +1,3 @@
-/* eslint-disable jest/require-hook */
 /* eslint @typescript-eslint/no-var-requires: 0 */
 const esbuild = require("esbuild");
 const packageInfo = require("../package.json");
@@ -18,5 +17,3 @@ esbuild
 esbuild
   .build({ ...CommonConfig, format: "esm", outfile: "dist/index.modern.js" })
   .catch(() => process.exit(1));
-
-/* eslint-enable jest/require-hook */

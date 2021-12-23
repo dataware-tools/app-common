@@ -18,7 +18,6 @@ module.exports = {
     "plugin:import/typescript",
     "plugin:compat/recommended",
     "plugin:storybook/recommended",
-    "plugin:jest/all",
     "prettier",
   ],
   parser: "@typescript-eslint/parser",
@@ -36,6 +35,7 @@ module.exports = {
     "unused-imports",
     "react-hooks",
     "jest",
+    "testing-library",
   ],
   settings: {
     react: {
@@ -92,15 +92,26 @@ module.exports = {
     // Sort import statements by alphabet order
     "import/order": ["warn", { alphabetize: { order: "asc" } }],
     "unused-imports/no-unused-imports": "error",
-
-    // Config for plugin-jest
-    // force to use single name
-    "jest/consistent-test-it": ["error", { fn: "test" }],
-    // incompatible waitFor in @testing-library/react
-    "jest/prefer-expect-assertions": "off",
-    // Too strict
-    "jest/lowercase-name": "off",
-    "jest/no-hooks": "off",
-    "jest/require-top-level-describe": "off",
   },
+  overrides: [
+    {
+      files: ["**/?(*.)+(spec|test).[jt]s?(x)"],
+      extends: ["plugin:testing-library/react", "plugin:jest/all"],
+      rules: {
+        // Config for plugin-jest
+        // force to use single name
+        "jest/consistent-test-it": ["error", { fn: "test" }],
+        // incompatible waitFor in @testing-library/react
+        "jest/prefer-expect-assertions": "off",
+        // Too strict
+        "jest/lowercase-name": "off",
+        "jest/no-hooks": "off",
+        "jest/require-top-level-describe": "off",
+
+        // Config for plugin-testing-library
+        // Too strict
+        "testing-library/prefer-screen-queries": "off",
+      },
+    },
+  ],
 };
