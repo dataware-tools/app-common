@@ -110,7 +110,7 @@
     "stylelint-config-styled-components": "^0.1.1",
     "stylelint-declaration-block-no-ignored-properties": "^2.5.0",
     "stylelint-order": "^5.0.0",
-    "ts-jest": "^27.1.1",
+    "ts-jest": "^27.1.2",
     "typescript": "^4.5.4"
   },
   "files": [
