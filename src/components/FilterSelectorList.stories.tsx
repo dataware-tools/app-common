@@ -1,5 +1,5 @@
 import { Story } from "@storybook/react";
-import React from "react";
+import React, { useState } from "react";
 import {
   FilterSelectorList,
   FilterSelectorListProps,
@@ -14,8 +14,7 @@ const Template: Story<FilterSelectorListProps> = (args) => (
   <FilterSelectorList {...args} />
 );
 
-export const Default = Template.bind({});
-Default.args = {
+const defaultArgs: FilterSelectorListProps = {
   filters: [
     {
       label: "First",
@@ -38,4 +37,23 @@ Default.args = {
   onChange: (selectedValues) => {
     window.confirm(JSON.stringify(selectedValues));
   },
+};
+
+export const Default = Template.bind({});
+Default.args = {
+  ...defaultArgs,
+};
+
+export const Controlled = (): JSX.Element => {
+  const [selectedValues, setSelectedValues] = useState<
+    FilterSelectorListProps["selectedValues"]
+  >({ first: [], second: [] });
+
+  return (
+    <FilterSelectorList
+      {...defaultArgs}
+      selectedValues={selectedValues}
+      onChange={setSelectedValues}
+    />
+  );
 };

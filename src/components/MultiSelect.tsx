@@ -106,6 +106,7 @@ export const MultiSelectPresentation = <
             deleteIcon: <ClearIcon />,
           }}
           size="small"
+          // eslint-disable-next-line jsx-a11y/no-autofocus
           renderInput={(params) => <TextField {...params} autoFocus />}
           getOptionLabel={getOptionLabel}
         />
@@ -130,6 +131,7 @@ export const MultiSelectPresentation = <
         },
       }}
       onClick={onFocusSelect}
+      role="combobox"
     >
       {isValueExist ? (
         value.map((option, index) => {

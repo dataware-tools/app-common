@@ -12,9 +12,8 @@ const defaultOptions = [
   { name: "test3", id: 3 },
 ];
 
-export const Default = () => {
+export const Controlled = (): JSX.Element => {
   const [selected, setSelected] = useState([defaultOptions[0]]);
-  console.log(selected);
   return (
     <MultiSelect
       options={defaultOptions}

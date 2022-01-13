@@ -8,7 +8,10 @@ export const PageToolBar = ({
   ...delegated
 }: PageToolBarProps): JSX.Element => {
   return (
-    <Box sx={{ overflow: "auto", padding: "0 0 3vh 0" }}>
+    <Box
+      sx={{ overflow: "auto", padding: "0 0 3vh 0" }}
+      role="none presentation"
+    >
       <ToolBar {...delegated} />
     </Box>
   );

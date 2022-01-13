@@ -27,10 +27,12 @@ export const SearchFormPresentation = ({
         e.preventDefault();
         onSearch(value);
       }}
+      role="search"
     >
       <OutlinedInput
         size="small"
         placeholder="Search..."
+        inputProps={{ role: "searchbox" }}
         {...inputProps}
         endAdornment={
           <InputAdornment position="end">

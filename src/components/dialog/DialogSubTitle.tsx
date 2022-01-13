@@ -14,6 +14,7 @@ export const DialogSubTitle = ({
         fontSize: "1.3rem",
         padding: "1vh 0",
       }}
+      role="heading"
     >
       {children}
     </Box>

@@ -16,6 +16,7 @@ export const Footer = ({ repository }: FooterProps): JSX.Element => {
         position="sticky"
         sx={{ bottom: 0, backgroundColor: "common.white" }}
         elevation={0}
+        component="footer"
       >
         <Box
           sx={{

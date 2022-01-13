@@ -10,6 +10,7 @@ export const DialogCloseButton = ({
     <Box sx={{ position: "absolute", right: 15, top: -10 }}>
       <Box
         sx={{
+          all: "unset",
           alignItems: "center",
           backgroundColor: "white",
           border: 1,
@@ -24,6 +25,7 @@ export const DialogCloseButton = ({
           width: 30,
         }}
         onClick={onClick}
+        component="button"
       >
         <CloseIcon />
       </Box>

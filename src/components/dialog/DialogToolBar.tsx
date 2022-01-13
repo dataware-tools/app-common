@@ -8,7 +8,7 @@ export const DialogToolBar = ({
   ...delegated
 }: DialogToolBarProps): JSX.Element => {
   return (
-    <Box sx={{ padding: "2vh 0 0 0" }}>
+    <Box sx={{ padding: "2vh 0 0 0" }} role="none presentation">
       <ToolBar {...delegated} />
     </Box>
   );

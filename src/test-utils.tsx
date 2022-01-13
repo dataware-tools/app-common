@@ -45,7 +45,7 @@ const AllTheProviders: React.FC = ({ children }) => {
   );
 };
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export const customRender = (
+const customRender = (
   ui: React.ReactElement,
   options?: Omit<RenderOptions, "queries">
 ) => render(ui, { wrapper: AllTheProviders, ...options });
@@ -54,4 +54,4 @@ export const CONST_STORY_BOOK = {
   PARAM_SKIP_VISUAL_REGRESSION_TEST: { loki: { skip: true } },
 };
 
-export * from "@testing-library/react";
+export { customRender as render };

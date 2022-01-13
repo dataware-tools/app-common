@@ -8,7 +8,7 @@ export default {
   title: "PerPageSelect",
 };
 
-export const Default: Story = () => {
+export const Controlled: Story = () => {
   const [perPage, setPerPage] = useState(20);
   return (
     <PerPageSelect
