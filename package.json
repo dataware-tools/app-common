@@ -57,7 +57,7 @@
     "@mui/material": "^5.2.5",
     "@mui/styles": "^5.2.3",
     "@mui/x-data-grid": "^5.1.0",
-    "@storybook/addon-actions": "^6.4.9",
+    "@storybook/addon-actions": "^6.4.12",
     "@storybook/addon-essentials": "^6.4.9",
     "@storybook/addon-links": "^6.4.9",
     "@storybook/react": "^6.4.9",
