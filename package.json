@@ -47,7 +47,7 @@
     "react-dom": ">=16.0.0 < 18"
   },
   "devDependencies": {
-    "@auth0/auth0-react": "^1.8.0",
+    "@auth0/auth0-react": "^1.9.0",
     "@babel/preset-react": "^7.16.7",
     "@csmith/release-it-calver-plugin": "^2021.12.10",
     "@emotion/react": "^11.7.1",
