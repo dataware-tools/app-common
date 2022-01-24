@@ -138,7 +138,6 @@ export const SearchForm = ({
     }
   }, [defaultValue, prevDefaultValue]);
 
-  console.log(searchHistory);
   const onSearch: SearchFormPresentationProps["onSearch"] = async (
     searchText
   ) => {
