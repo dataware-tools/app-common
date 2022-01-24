@@ -138,6 +138,7 @@ export const SearchForm = ({
     }
   }, [defaultValue, prevDefaultValue]);
 
+  console.log(searchHistory);
   const onSearch: SearchFormPresentationProps["onSearch"] = async (
     searchText
   ) => {
@@ -155,6 +156,9 @@ export const SearchForm = ({
         newSearchHistory.unshift(prev[index]);
       } else {
         newSearchHistory.unshift(searchText);
+        if (newSearchHistory.length > 100) {
+          newSearchHistory.pop();
+        }
       }
 
       localStorage.setItem(
