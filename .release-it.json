@@ -5,7 +5,7 @@
   },
   "plugins": {
     "@csmith/release-it-calver-plugin": {
-      "format": "YY.MM.MICRO"
+      "format": "YY.MM.minor"
     }
   }
 }
