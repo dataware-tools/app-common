@@ -54,7 +54,7 @@
     "@emotion/styled": "^11.6.0",
     "@mui/icons-material": "^5.3.1",
     "@mui/lab": "^5.0.0-alpha.65",
-    "@mui/material": "^5.3.0",
+    "@mui/material": "^5.3.1",
     "@mui/styles": "^5.3.0",
     "@mui/x-data-grid": "^5.3.0",
     "@storybook/addon-actions": "^6.4.12",
