@@ -94,7 +94,7 @@
     "eslint-plugin-unused-imports": "^1.1.5",
     "husky": "^7.0.4",
     "jest": "^27.4.7",
-    "lint-staged": "^12.3.2",
+    "lint-staged": "^12.3.3",
     "loki": "^0.28.1",
     "npm-run-all": "^4.1.5",
     "oidc-react": "^1.5.1",
