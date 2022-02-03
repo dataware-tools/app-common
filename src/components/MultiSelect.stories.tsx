@@ -7,9 +7,9 @@ export default {
 };
 
 const defaultOptions = [
-  { name: "test1", id: 1 },
-  { name: "test2", id: 2 },
-  { name: "test3", id: 3 },
+  { name: "test1", id: 1, color: "#BACDFE" },
+  { name: "test2", id: 2, color: "#ABCDEF" },
+  { name: "test3", id: 3, color: "#FEDCBA" },
 ];
 
 export const Controlled = (): JSX.Element => {
