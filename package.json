@@ -44,7 +44,8 @@
     "@mui/styles": "^5.0.1",
     "oidc-react": "^1.5.1",
     "react": ">=16.0.0 < 18",
-    "react-dom": ">=16.0.0 < 18"
+    "react-dom": ">=16.0.0 < 18",
+    "react-toastify": "^8.1.1"
   },
   "devDependencies": {
     "@auth0/auth0-react": "^1.9.0",
