@@ -1,3 +1,4 @@
+import CloseIcon from "@mui/icons-material/Close";
 import { useTheme } from "@mui/material/styles";
 import React from "react";
 import { ToastContainer, ToastContainerProps } from "react-toastify";
@@ -21,6 +22,7 @@ export const Toaster = ({
         backgroundColor: muiTheme.palette.grey[600],
         ...progressStyle,
       }}
+      closeButton={<CloseIcon />}
       {...delegated}
     />
   );

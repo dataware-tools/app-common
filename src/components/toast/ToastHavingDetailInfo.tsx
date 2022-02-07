@@ -1,44 +1,36 @@
-import Button, { ButtonProps } from "@mui/material/Button";
-import Dialog from "@mui/material/Dialog";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { AccordionDetails, AccordionSummary } from "@mui/material";
+import Accordion from "@mui/material/Accordion";
 import React, { useState, ReactNode } from "react";
-import { DialogCloseButton } from "../dialog/DialogCloseButton";
-import { DialogWrapper } from "../dialog/DialogWrapper";
-import { Toast, ToastProps } from "./Toast";
 
-export type ToastHavingDetailModalProps = {
+export type ToastHavingDetailInfoProps = {
   detailContent: ReactNode;
-  detailButtonProps?: Omit<ButtonProps, "onClick">;
-} & Omit<ToastProps, "action">;
-export const ToastHavingDetailModal = ({
+  children: ReactNode;
+};
+export const ToastHavingDetailInfo = ({
   detailContent,
-  detailButtonProps,
-  ...delegated
-}: ToastHavingDetailModalProps): JSX.Element => {
+  children,
+}: ToastHavingDetailInfoProps): JSX.Element => {
   const [open, setOpen] = useState(false);
   return (
-    <>
-      <Toast
-        {...delegated}
-        action={
-          <Button
-            onClick={(e) => {
-              e.stopPropagation();
-              setOpen(true);
-            }}
-            color="inherit"
-            variant="text"
-            {...detailButtonProps}
-          >
-            {detailButtonProps?.children ?? "Detail"}
-          </Button>
-        }
-      />
-      <Dialog open={open} onClose={() => setOpen(false)} role="alertdialog">
-        <DialogWrapper>
-          <DialogCloseButton onClick={() => setOpen(false)} />
-          {detailContent}
-        </DialogWrapper>
-      </Dialog>
-    </>
+    <Accordion
+      expanded={open}
+      onChange={(e) => {
+        e.stopPropagation();
+        setOpen((prev) => !prev);
+      }}
+      sx={{
+        backgroundColor: "inherit",
+        padding: 0,
+        overflow: "auto",
+        maxHeight: "50vh",
+      }}
+      elevation={0}
+    >
+      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+        {children}
+      </AccordionSummary>
+      <AccordionDetails>{detailContent}</AccordionDetails>
+    </Accordion>
   );
 };

@@ -1,11 +1,11 @@
 import React from "react";
 import { toast } from "react-toastify";
 import { ErrorMessage } from "../ErrorMessage";
-import { ToastHavingDetailModal } from "./ToastHavingDetailInfo";
+import { ToastHavingDetailInfo } from "./ToastHavingDetailInfo";
 import { Toaster } from "./Toaster";
 
 export default {
-  component: ToastHavingDetailModal,
+  component: ToastHavingDetailInfo,
   title: "toast/ToastHavingDetailModal",
 };
 
@@ -14,17 +14,18 @@ export const Default = (): JSX.Element => {
     <div>
       <button
         onClick={() =>
-          toast(
-            <ToastHavingDetailModal
+          toast.error(
+            <ToastHavingDetailInfo
               detailContent={
                 <ErrorMessage
+                  variant="transparent"
                   reason="This is test"
-                  instruction="Don't worry!"
+                  instruction="toooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo long instruction"
                 />
               }
             >
               test
-            </ToastHavingDetailModal>
+            </ToastHavingDetailInfo>
           )
         }
       >
