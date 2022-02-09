@@ -1,17 +1,22 @@
 import ClearIcon from "@mui/icons-material/Clear";
 import LoadingButton from "@mui/lab/LoadingButton";
-import { TextField } from "@mui/material";
 import Autocomplete, {
   AutocompleteCloseReason,
   AutocompleteProps,
 } from "@mui/material/Autocomplete";
 import Box from "@mui/material/Box";
+import Chip from "@mui/material/Chip";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
+import TextField from "@mui/material/TextField";
 import React, { SyntheticEvent, useState } from "react";
 import themeInstance from "../theme";
 
+type Option =
+  | { color?: string; label?: string; [key: string]: any }
+  | string
+  | number;
 export type MultiSelectPresentationProps<
-  T,
+  T extends Option,
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined
 > = {
@@ -31,7 +36,7 @@ export type MultiSelectPresentationProps<
 } & Omit<AutocompleteProps<T, true, DisableClearable, FreeSolo>, "renderInput">;
 
 export type MultiSelectProps<
-  T,
+  T extends Option,
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined
 > = {
@@ -55,7 +60,7 @@ const selectedItemStyleBase = {
 };
 
 export const MultiSelectPresentation = <
-  T,
+  T extends Option,
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined
 >({
@@ -101,10 +106,25 @@ export const MultiSelectPresentation = <
           open={isSelectOpen}
           onOpen={onOpenSelect}
           onClose={onCloseSelect}
-          ChipProps={{
-            style: { ...selectedItemStyleBase },
-            deleteIcon: <ClearIcon />,
-          }}
+          renderTags={(value, getTagProps) =>
+            value.map((option, index) => (
+              <Chip
+                label={getOptionLabel ? getOptionLabel(option) : option}
+                {...getTagProps({ index })}
+                style={{
+                  ...selectedItemStyleBase,
+                  ...(typeof option !== "string" &&
+                  typeof option !== "number" &&
+                  option.color
+                    ? { backgroundColor: option.color }
+                    : {}),
+                }}
+                deleteIcon={<ClearIcon />}
+                size="small"
+                key={index}
+              />
+            ))
+          }
           size="small"
           // eslint-disable-next-line jsx-a11y/no-autofocus
           renderInput={(params) => <TextField {...params} autoFocus />}
@@ -138,7 +158,12 @@ export const MultiSelectPresentation = <
           return (
             <Box
               key={index}
-              sx={{ ...selectedItemStyleBase, padding: "2px 6px" }}
+              sx={{
+                ...selectedItemStyleBase,
+                padding: "2px 6px",
+                // @ts-expect-error I dont know how to resolve this error...
+                ...(option.color ? { backgroundColor: option.color } : {}),
+              }}
             >
               {getOptionLabel
                 ? // @ts-expect-error I don't know how to resolve this error
