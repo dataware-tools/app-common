@@ -1,6 +1,28 @@
+import { SWRResponse } from "swr";
+import { AwaitType } from "../utils/types";
+
 type Data<T> = T extends void | undefined | null
   ? "__fetchSuccess__" | undefined
   : T | undefined;
+
+interface UseAPI<T extends (...args: any) => Promise<any>> {
+  (
+    token: string | (() => Promise<string>),
+    param: Partial<Parameters<T>[number]>,
+    shouldFetch?: boolean
+  ): SWRResponse<AwaitType<ReturnType<T>>, any> & { cacheKey: string };
+}
+
+interface UseAPIWithoutToken<T extends (...args: any) => Promise<any>> {
+  (...args: Omit<Parameters<UseAPI<T>>, "token">): ReturnType<UseAPI<T>>;
+}
+
+interface UseAPIWithoutCache<T extends (...args: any) => Promise<any>> {
+  (...args: Parameters<UseAPI<T>>): {
+    data: AwaitType<ReturnType<T>> | undefined;
+    error: any;
+  };
+}
 
 const fetchAPI = async <T, U>(
   fetcher: (args: T) => Promise<U>,
@@ -56,3 +78,4 @@ export {
   extractReasonFromFetchError,
   extractErrorMessageFromFetchError,
 };
+export type { UseAPI, UseAPIWithoutCache, UseAPIWithoutToken };
