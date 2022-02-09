@@ -11,7 +11,10 @@ import TextField from "@mui/material/TextField";
 import React, { SyntheticEvent, useState } from "react";
 import themeInstance from "../theme";
 
-type Option = { color?: string; label?: string };
+type Option =
+  | { color?: string; label?: string; [key: string]: any }
+  | string
+  | number;
 export type MultiSelectPresentationProps<
   T extends Option,
   DisableClearable extends boolean | undefined,
@@ -110,7 +113,11 @@ export const MultiSelectPresentation = <
                 {...getTagProps({ index })}
                 style={{
                   ...selectedItemStyleBase,
-                  ...(option.color ? { backgroundColor: option.color } : {}),
+                  ...(typeof option !== "string" &&
+                  typeof option !== "number" &&
+                  option.color
+                    ? { backgroundColor: option.color }
+                    : {}),
                 }}
                 deleteIcon={<ClearIcon />}
                 size="small"
