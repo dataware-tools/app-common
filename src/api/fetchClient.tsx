@@ -14,7 +14,9 @@ interface UseAPI<T extends (...args: any) => Promise<any>> {
 }
 
 interface UseAPIWithoutToken<T extends (...args: any) => Promise<any>> {
-  (...args: Omit<Parameters<UseAPI<T>>, "token">): ReturnType<UseAPI<T>>;
+  (param: Partial<Parameters<T>[number]>, shouldFetch?: boolean): ReturnType<
+    UseAPI<T>
+  >;
 }
 
 interface UseAPIWithoutCache<T extends (...args: any) => Promise<any>> {
