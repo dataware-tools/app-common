@@ -14,15 +14,15 @@ describe("FilterSelectorList", () => {
     render(<Controlled />);
 
     const filterNames = screen.getAllByRole("button");
-    expect(filterNames).toHaveLength(2);
+    expect(filterNames).toHaveLength(3);
 
-    const topFilterName = filterNames[0];
+    const topFilterName = filterNames[1];
     fireEvent.click(topFilterName);
     const buttons = screen.getAllByRole("button");
     // We should wait for finishing animation
     await waitFor(() => expect(buttons.length >= 3).toBeTruthy());
 
-    const filterValue = buttons[1];
+    const filterValue = buttons[2];
     expect(filterValue).toBeVisible();
 
     fireEvent.click(topFilterName);
@@ -32,14 +32,14 @@ describe("FilterSelectorList", () => {
   test("should toggle icon when filter value clicked", async () => {
     render(<Controlled />);
 
-    const topFilterName = screen.getAllByRole("button")[0];
+    const topFilterName = screen.getAllByRole("button")[1];
     fireEvent.click(topFilterName);
     const buttons = screen.getAllByRole("button");
     await waitFor(() => expect(buttons.length >= 3).toBeTruthy());
 
     const uncheckedIconId = "CheckBoxOutlineBlankIcon";
     const checkedIconId = "CheckBoxIcon";
-    const filterValue = buttons[1];
+    const filterValue = buttons[3];
     expect(getByTestId(filterValue, uncheckedIconId)).toBeDefined();
     fireEvent.click(filterValue);
     expect(getByTestId(filterValue, checkedIconId)).toBeDefined();
