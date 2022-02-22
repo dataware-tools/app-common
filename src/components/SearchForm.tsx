@@ -12,11 +12,15 @@ import { Spacer } from "./Spacer";
 export type SearchFormPresentationProps = Omit<
   SearchFormProps,
   "defaultValue" | "searchHistoryKey"
-> & { searchHistory?: string[] };
+> & {
+  searchHistory?: string[];
+  onInputChange: (inputText: string) => void;
+  inputText: string;
+};
 
 type SearchFormPropsBase = {
-  onSearch: (searchText?: string) => void;
-  onChange?: (newSearchText: string) => void;
+  onSearch: (searchText?: string) => void | Promise<void>;
+  onChange?: (newSearchText: string) => void | Promise<void>;
   defaultValue?: string;
   value?: string;
   inputProps?: Omit<OutlinedInputProps, "onChange" | "value" | "endAdornment">;
@@ -41,6 +45,8 @@ export const SearchFormPresentation = ({
   onChange,
   value,
   inputProps,
+  onInputChange,
+  inputText,
 }: SearchFormPresentationProps): JSX.Element => {
   const textFieldProps: TextFieldProps = {
     variant: "outlined",
@@ -48,7 +54,11 @@ export const SearchFormPresentation = ({
     placeholder: "Search...",
   };
 
-  const SearchIconButton = ({ onClick }: { onClick: () => void }) => (
+  const SearchIconButton = ({
+    onClick,
+  }: {
+    onClick: () => void | Promise<void>;
+  }) => (
     <InputAdornment position="end">
       <IconButton edge="end" onClick={onClick} size="small">
         <SearchIcon />
@@ -58,20 +68,21 @@ export const SearchFormPresentation = ({
 
   return (
     <form
-      onSubmit={(e) => {
+      onSubmit={async (e) => {
         e.preventDefault();
-        onSearch(value);
+        await onSearch(value);
       }}
       role="search"
     >
       {enableSearchHistory ? (
         <Autocomplete
           freeSolo
+          onInputChange={(_, value) => onInputChange(value)}
           options={searchHistory as NonNullable<typeof searchHistory>}
-          onChange={(_, value, reason) => {
-            onChange && onChange(value || "");
+          onChange={async (_, value, reason) => {
+            onChange && (await onChange(value || ""));
             if (reason === "selectOption") {
-              onSearch(value || undefined);
+              await onSearch(value || undefined);
             }
           }}
           filterSelectedOptions
@@ -93,7 +104,9 @@ export const SearchFormPresentation = ({
                   ...params.InputProps,
                   ...inputProps,
                   endAdornment: (
-                    <SearchIconButton onClick={() => onSearch(value)} />
+                    <SearchIconButton
+                      onClick={async () => await onSearch(inputText)}
+                    />
                   ),
                 }}
               />
@@ -106,10 +119,12 @@ export const SearchFormPresentation = ({
           inputProps={{ role: "searchbox" }}
           InputProps={{
             ...inputProps,
-            endAdornment: <SearchIconButton onClick={() => onSearch(value)} />,
+            endAdornment: (
+              <SearchIconButton onClick={async () => await onSearch(value)} />
+            ),
           }}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-            onChange && onChange(event.target.value);
+          onChange={async (event: React.ChangeEvent<HTMLInputElement>) => {
+            onChange && (await onChange(event.target.value));
           }}
           value={value}
         />
@@ -128,6 +143,7 @@ export const SearchForm = ({
   ...delegated
 }: SearchFormProps): JSX.Element => {
   const [searchText, setSearchText] = useState<string>(defaultValue || "");
+  const [inputText, setInputText] = useState<string>(defaultValue || "");
   const [searchHistory, setSearchHistory] = useState<string[]>(
     JSON.parse(localStorage.getItem(searchHistoryKey || "") || "[]")
   );
@@ -177,6 +193,8 @@ export const SearchForm = ({
       searchHistory={searchHistory}
       value={value != null ? value : searchText}
       onChange={onChange || setSearchText}
+      onInputChange={setInputText}
+      inputText={inputText}
     />
   );
 };
