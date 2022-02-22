@@ -15,6 +15,8 @@ export { ErrorMessage } from "./components/ErrorMessage";
 export type { ErrorMessageProps } from "./components/ErrorMessage";
 export { FileUploadButton } from "./components/FileUploadButton";
 export type { FileUploadButtonProps } from "./components/FileUploadButton";
+export { FilterSelector } from "./components/FilterSelector";
+export type { FilterSelectorProps } from "./components/FilterSelector";
 export { FilterSelectorList } from "./components/FilterSelectorList";
 export type { FilterSelectorListProps } from "./components/FilterSelectorList";
 export { Footer } from "./components/Footer";
