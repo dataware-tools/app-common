@@ -49,6 +49,8 @@ let theme = createTheme({
       disabled: `hsl(${HDLBaseColor}, ${BasicSaturation}, 62%)`,
     },
     divider: `hsl(${HDLBaseColor}, ${BasicSaturation}, 88%)`,
+    // @ts-expect-error additional util color
+    hoveredWhite: `hsl(${HDLBaseColor}, ${BasicSaturation}, 94%)`,
   },
   components: {
     MuiButtonBase: {
