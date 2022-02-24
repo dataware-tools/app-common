@@ -1,6 +1,6 @@
 {
   "name": "@dataware-tools/app-common",
-  "version": "22.2.8",
+  "version": "22.2.9",
   "description": "Common components for dataware-tools",
   "author": "dataware-tools",
   "license": "Apache-2.0",
@@ -53,7 +53,7 @@
     "@emotion/react": "^11.8.1",
     "@emotion/styled": "^11.8.1",
     "@mui/icons-material": "^5.4.2",
-    "@mui/lab": "^5.0.0-alpha.69",
+    "@mui/lab": "^5.0.0-alpha.70",
     "@mui/material": "^5.4.3",
     "@mui/styles": "^5.4.2",
     "@mui/x-data-grid": "^5.5.1",
