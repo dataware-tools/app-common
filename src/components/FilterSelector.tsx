@@ -10,6 +10,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 
+import { useTheme } from "@mui/material/styles";
 import React, { useState, useRef } from "react";
 
 export type Filter = {
@@ -126,6 +127,8 @@ export const FilterSelectorPresentation = ({
   onClickHeader,
   disableCollapse,
 }: FilterSelectorPresentationProps): JSX.Element | null => {
+  const theme = useTheme();
+
   return filter.length > 0 ? (
     <>
       {header ? (
@@ -167,7 +170,10 @@ export const FilterSelectorPresentation = ({
                   />
                   <Collapse
                     in={disableCollapse || groupOpens[groupName]}
-                    sx={{ borderLeft: "1px solid black", ml: 4 }}
+                    sx={{
+                      borderLeft: `2px solid ${theme.palette.divider}`,
+                      ml: 4,
+                    }}
                   >
                     <Box textAlign="end" pr={2}>
                       <Button
