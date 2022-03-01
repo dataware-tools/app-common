@@ -71,6 +71,10 @@ export const SearchFormPresentation = ({
       onSubmit={async (e) => {
         e.preventDefault();
         await onSearch(value);
+        if (enableSearchHistory) {
+          // @ts-expect-error I don't know why document.activeElement does no have blur() method on type....
+          document.activeElement?.blur();
+        }
       }}
       role="search"
     >
@@ -81,8 +85,10 @@ export const SearchFormPresentation = ({
           options={searchHistory as NonNullable<typeof searchHistory>}
           onChange={async (_, value, reason) => {
             onChange && (await onChange(value || ""));
-            if (reason === "selectOption") {
-              await onSearch(value || undefined);
+            await onSearch(value || undefined);
+            if (reason === "selectOption" || reason === "createOption") {
+              // @ts-expect-error I don't know why document.activeElement does no have blur() method on type....
+              document.activeElement?.blur();
             }
           }}
           filterSelectedOptions
