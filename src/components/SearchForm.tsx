@@ -99,7 +99,11 @@ export const SearchFormPresentation = ({
               <TextField
                 {...params}
                 {...textFieldProps}
-                inputProps={{ ...params.inputProps, role: "searchbox" }}
+                inputProps={{
+                  ...params.inputProps,
+                  role: "searchbox",
+                  inputMode: "search",
+                }}
                 InputProps={{
                   ...params.InputProps,
                   ...inputProps,
@@ -116,7 +120,10 @@ export const SearchFormPresentation = ({
       ) : (
         <TextField
           {...textFieldProps}
-          inputProps={{ role: "searchbox" }}
+          inputProps={{
+            role: "searchbox",
+            inputMode: "search",
+          }}
           InputProps={{
             ...inputProps,
             endAdornment: (
