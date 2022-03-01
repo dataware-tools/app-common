@@ -55,7 +55,7 @@
     "@mui/icons-material": "^5.4.4",
     "@mui/lab": "^5.0.0-alpha.71",
     "@mui/material": "^5.4.3",
-    "@mui/styles": "^5.4.2",
+    "@mui/styles": "^5.4.4",
     "@mui/x-data-grid": "^5.5.1",
     "@storybook/addon-actions": "^6.4.17",
     "@storybook/addon-essentials": "^6.4.19",
