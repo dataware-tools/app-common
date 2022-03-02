@@ -72,8 +72,7 @@ export const SearchFormPresentation = ({
         e.preventDefault();
         await onSearch(value);
         if (enableSearchHistory) {
-          // @ts-expect-error I don't know why document.activeElement does no have blur() method on type....
-          document.activeElement?.blur();
+          (document.activeElement as HTMLElement)?.blur();
         }
       }}
       role="search"
@@ -87,8 +86,7 @@ export const SearchFormPresentation = ({
             onChange && (await onChange(value || ""));
             await onSearch(value || undefined);
             if (reason === "selectOption" || reason === "createOption") {
-              // @ts-expect-error I don't know why document.activeElement does no have blur() method on type....
-              document.activeElement?.blur();
+              (document.activeElement as HTMLElement)?.blur();
             }
           }}
           filterSelectedOptions
