@@ -5,7 +5,7 @@ import { StylesProvider } from "@mui/styles";
 import { render, RenderOptions } from "@testing-library/react";
 import React from "react";
 import { AUTH_CONFIG } from "./auth/config";
-import theme from "./theme";
+import { theme } from "./theme";
 
 export const authConfig = {
   domain: process.env.JEST_AUTH0_DOMAIN || AUTH_CONFIG.domain,

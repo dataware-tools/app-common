@@ -9,7 +9,7 @@ import Chip from "@mui/material/Chip";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
 import TextField from "@mui/material/TextField";
 import React, { SyntheticEvent, useState } from "react";
-import themeInstance from "../theme";
+import { theme as themeInstance } from "../theme";
 
 type Option =
   | { color?: string; label?: string; [key: string]: any }

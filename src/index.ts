@@ -1,7 +1,7 @@
 export * from "./api";
 export { AUTH_CONFIG } from "./auth/config";
 export { default as APP_CATALOG } from "./app/catalog";
-export { default as theme } from "./theme";
+export * from "./theme";
 
 export * from "./components/dialog";
 export * from "./components/page";
