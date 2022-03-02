@@ -71,6 +71,9 @@ export const SearchFormPresentation = ({
       onSubmit={async (e) => {
         e.preventDefault();
         await onSearch(value);
+        if (enableSearchHistory) {
+          (document.activeElement as HTMLElement)?.blur();
+        }
       }}
       role="search"
     >
@@ -81,8 +84,9 @@ export const SearchFormPresentation = ({
           options={searchHistory as NonNullable<typeof searchHistory>}
           onChange={async (_, value, reason) => {
             onChange && (await onChange(value || ""));
-            if (reason === "selectOption") {
-              await onSearch(value || undefined);
+            await onSearch(value || undefined);
+            if (reason === "selectOption" || reason === "createOption") {
+              (document.activeElement as HTMLElement)?.blur();
             }
           }}
           filterSelectedOptions
@@ -99,7 +103,11 @@ export const SearchFormPresentation = ({
               <TextField
                 {...params}
                 {...textFieldProps}
-                inputProps={{ ...params.inputProps, role: "searchbox" }}
+                inputProps={{
+                  ...params.inputProps,
+                  role: "searchbox",
+                  inputMode: "search",
+                }}
                 InputProps={{
                   ...params.InputProps,
                   ...inputProps,
@@ -116,7 +124,10 @@ export const SearchFormPresentation = ({
       ) : (
         <TextField
           {...textFieldProps}
-          inputProps={{ role: "searchbox" }}
+          inputProps={{
+            role: "searchbox",
+            inputMode: "search",
+          }}
           InputProps={{
             ...inputProps,
             endAdornment: (
