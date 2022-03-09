@@ -33,6 +33,8 @@ export { NoticeableLetters } from "./components/NoticeableLetters";
 export type { NoticeableLettersProps } from "./components/NoticeableLetters";
 export { PerPageSelect } from "./components/PerPageSelect";
 export type { PerPageSelectProps } from "./components/PerPageSelect";
+export { RecursiveFilterSelector } from "./components/RecursiveFilterSelector";
+export type { RecursiveFilterSelectorProps } from "./components/RecursiveFilterSelector";
 export { SearchForm } from "./components/SearchForm";
 export type { SearchFormProps } from "./components/SearchForm";
 export { Spacer } from "./components/Spacer";
