@@ -1,5 +1,7 @@
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 import Checkbox from "@mui/material/Checkbox";
 import Collapse from "@mui/material/Collapse";
 import List from "@mui/material/List";
@@ -20,10 +22,12 @@ export type Filter = {
 export type RecursiveFilterSelectorPresentationProps = {
   onClickFilter: (
     filter: Filter,
-    event?: React.ChangeEvent<HTMLInputElement>
+    isSelected?: boolean,
+    isIndeterminate?: boolean
   ) => void | Promise<void>;
   childOpens: boolean[];
   onClickHeader: (childIndex: number) => void;
+  onClear: (filter: Filter) => void | Promise<void>;
 } & RecursiveFilterSelectorProps;
 
 export type RecursiveFilterSelectorProps = {
@@ -55,6 +59,7 @@ export const RecursiveFilterSelectorPresentation = ({
   onClickHeader,
   onChange,
   disableCollapse,
+  onClear,
 }: RecursiveFilterSelectorPresentationProps): JSX.Element | null => {
   const theme = useTheme();
 
@@ -91,7 +96,9 @@ export const RecursiveFilterSelectorPresentation = ({
                   <Checkbox
                     checked={isSelected}
                     indeterminate={isIndeterminate}
-                    onChange={(e) => onClickFilter(filter, e)}
+                    onChange={() => {
+                      onClickFilter(filter, isSelected, isIndeterminate);
+                    }}
                     disableRipple
                   />
                 </ListItemIcon>
@@ -116,6 +123,11 @@ export const RecursiveFilterSelectorPresentation = ({
                   ml: 4,
                 }}
               >
+                <Box textAlign="end" pr={2}>
+                  <Button onClick={() => onClear(filter)} variant="text">
+                    クリア
+                  </Button>
+                </Box>
                 {/* eslint-disable-next-line @typescript-eslint/no-use-before-define */}
                 <RecursiveFilterSelector
                   filters={filter.children}
@@ -126,30 +138,23 @@ export const RecursiveFilterSelectorPresentation = ({
               </Collapse>
             </div>
           ) : (
-            <div key={filter.key || index}>
-              <ListItem
-                disablePadding
-                secondaryAction={
-                  filter.number ? `(${filter.number})` : undefined
-                }
-                role="listitem"
+            <ListItem
+              disablePadding
+              secondaryAction={filter.number ? `(${filter.number})` : undefined}
+              role="listitem"
+              key={filter.key || index}
+            >
+              <ListItemButton
+                onClick={() => onClickFilter(filter)}
+                dense
+                sx={{ padding: 0 }}
               >
                 <ListItemIcon>
-                  <Checkbox
-                    checked={isSelected}
-                    disableRipple
-                    onChange={(e) => onClickFilter(filter, e)}
-                  />
+                  <Checkbox checked={isSelected} disableRipple />
                 </ListItemIcon>
-                <ListItemButton
-                  onClick={() => onClickFilter(filter)}
-                  dense
-                  disableGutters
-                >
-                  <ListItemText primary={filter.label} />
-                </ListItemButton>
-              </ListItem>
-            </div>
+                <ListItemText primary={filter.label} />
+              </ListItemButton>
+            </ListItem>
           );
         })}
       </List>
@@ -169,25 +174,48 @@ export const RecursiveFilterSelector = ({
       return false;
     })
   );
+
   const onClickFilter: RecursiveFilterSelectorPresentationProps["onClickFilter"] =
-    async (filter, event) => {
+    async (filter, isSelected, isIndeterminate) => {
       const newSelectedValues = new Set([...selectedValues]);
       const keys = getKeysInFilter(filter);
-      const value = event
-        ? event.target.checked
-        : filter.key
-        ? !selectedValues.includes(filter.key)
-        : undefined;
+
+      const shouldBeAdded =
+        isSelected != null && isIndeterminate != null
+          ? isIndeterminate
+            ? false
+            : !isSelected
+          : filter.key
+          ? !selectedValues.includes(filter.key)
+          : false;
 
       for (const key of keys) {
         if (!key) {
           continue;
         }
-        value ? newSelectedValues.add(key) : newSelectedValues.delete(key);
+        shouldBeAdded
+          ? newSelectedValues.add(key)
+          : newSelectedValues.delete(key);
       }
 
       await onChange([...newSelectedValues]);
     };
+
+  const onClear: RecursiveFilterSelectorPresentationProps["onClear"] = async (
+    filter
+  ) => {
+    const newSelectedValues = new Set([...selectedValues]);
+    const keys = getKeysInFilter(filter);
+
+    for (const key of keys) {
+      if (!key) {
+        continue;
+      }
+      newSelectedValues.delete(key);
+    }
+
+    await onChange([...newSelectedValues]);
+  };
 
   const onClickHeader: RecursiveFilterSelectorPresentationProps["onClickHeader"] =
     (childIndex) => {
@@ -207,6 +235,7 @@ export const RecursiveFilterSelector = ({
       onChange={onChange}
       childOpens={childOpens}
       onClickHeader={onClickHeader}
+      onClear={onClear}
       disableCollapse={disableCollapse}
     />
   );
