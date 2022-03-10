@@ -78,7 +78,7 @@ export const RecursiveFilterSelectorListPresentation = ({
             <Collapse
               in={childOpens[index]}
               sx={{
-                ml: 2,
+                ml: "5%",
               }}
             >
               <Box textAlign="end" pr={2}>

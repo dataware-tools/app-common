@@ -23,42 +23,4 @@ describe("RecursiveFilterSelectorList", () => {
     fireEvent.click(topFilterName);
     await waitFor(() => expect(filterValue).not.toBeVisible());
   });
-
-  test("should toggle icon when filter value clicked", async () => {
-    render(<Controlled />);
-
-    const topFilterName = screen.getAllByRole("button")[1];
-    fireEvent.click(topFilterName);
-    const buttons = screen.getAllByRole("button");
-    await waitFor(() => expect(buttons.length >= 3).toBeTruthy());
-
-    // Open the first tree
-    fireEvent.click(buttons[3]);
-
-    // Make sure that no boxes are checked
-    const checkBoxOnInitState = screen.getAllByRole("checkbox");
-    checkBoxOnInitState.forEach((box) => {
-      expect(box).not.toBeChecked();
-    });
-
-    // Check the first tree-item
-    checkBoxOnInitState[0].click();
-    const checkBoxOnState1 = screen.getAllByRole("checkbox");
-    await waitFor(() => {
-      expect(checkBoxOnState1[0]).toBeChecked();
-    });
-    await waitFor(() => {
-      expect(checkBoxOnState1[1]).toBeChecked();
-    });
-    await waitFor(() => {
-      expect(checkBoxOnState1[2]).toBeChecked();
-    });
-
-    // Click Clear button
-    const clearButton = screen.getAllByRole("button")[0];
-    fireEvent.click(clearButton);
-    const checkBoxOnState2 = screen.getAllByRole("checkbox");
-    expect(checkBoxOnState2[0]).not.toBeChecked();
-    expect(checkBoxOnState2[1]).not.toBeChecked();
-  });
 });

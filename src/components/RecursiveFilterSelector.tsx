@@ -1,7 +1,5 @@
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import Checkbox from "@mui/material/Checkbox";
 import Collapse from "@mui/material/Collapse";
 import List from "@mui/material/List";
@@ -27,7 +25,6 @@ export type RecursiveFilterSelectorPresentationProps = {
   ) => void | Promise<void>;
   childOpens: boolean[];
   onClickHeader: (childIndex: number) => void;
-  onClear: (filter: Filter) => void | Promise<void>;
 } & RecursiveFilterSelectorProps;
 
 export type RecursiveFilterSelectorProps = {
@@ -59,7 +56,6 @@ export const RecursiveFilterSelectorPresentation = ({
   onClickHeader,
   onChange,
   disableCollapse,
-  onClear,
 }: RecursiveFilterSelectorPresentationProps): JSX.Element | null => {
   const theme = useTheme();
 
@@ -119,14 +115,9 @@ export const RecursiveFilterSelectorPresentation = ({
                 in={disableCollapse || childOpens[index]}
                 sx={{
                   borderLeft: `2px solid ${theme.palette.divider}`,
-                  ml: 4,
+                  ml: "5%",
                 }}
               >
-                <Box textAlign="end" pr={2}>
-                  <Button onClick={() => onClear(filter)} variant="text">
-                    クリア
-                  </Button>
-                </Box>
                 {/* eslint-disable-next-line @typescript-eslint/no-use-before-define */}
                 <RecursiveFilterSelector
                   filters={filter.children}
@@ -200,22 +191,6 @@ export const RecursiveFilterSelector = ({
       await onChange([...newSelectedValues]);
     };
 
-  const onClear: RecursiveFilterSelectorPresentationProps["onClear"] = async (
-    filter
-  ) => {
-    const newSelectedValues = new Set([...selectedValues]);
-    const keys = getKeysInFilter(filter);
-
-    for (const key of keys) {
-      if (!key) {
-        continue;
-      }
-      newSelectedValues.delete(key);
-    }
-
-    await onChange([...newSelectedValues]);
-  };
-
   const onClickHeader: RecursiveFilterSelectorPresentationProps["onClickHeader"] =
     (childIndex) => {
       setChildOpens((prev) => {
@@ -234,7 +209,6 @@ export const RecursiveFilterSelector = ({
       onChange={onChange}
       childOpens={childOpens}
       onClickHeader={onClickHeader}
-      onClear={onClear}
       disableCollapse={disableCollapse}
     />
   );
