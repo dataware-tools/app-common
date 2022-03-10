@@ -76,6 +76,16 @@ export const RecursiveFilterSelectorPresentation = ({
                   filter.number ? `(${filter.number})` : undefined
                 }
                 role="treeitem"
+                sx={
+                  childOpens[index]
+                    ? {
+                        position: "sticky",
+                        top: 0,
+                        backgroundColor: "common.white",
+                        zIndex: 1,
+                      }
+                    : undefined
+                }
               >
                 <ListItemIcon>
                   <Checkbox
@@ -89,13 +99,7 @@ export const RecursiveFilterSelectorPresentation = ({
                   onClick={() => onClickHeader(index)}
                   dense
                   disableGutters
-                  sx={{
-                    position: "sticky",
-                    top: 0,
-                    backgroundColor: "common.white",
-                    zIndex: 1,
-                    ":hover": { backgroundColor: "hoveredWhite" },
-                  }}
+                  sx={{ pr: 2 }}
                 >
                   <ListItemText primary={filter.label} />
                   {disableCollapse ? null : childOpens[index] ? (

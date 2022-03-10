@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Collapse from "@mui/material/Collapse";
 import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import React, { useState } from "react";
@@ -51,25 +52,28 @@ export const RecursiveFilterSelectorListPresentation = ({
       <List>
         {filters.map((filter, index) => (
           <div key={index}>
-            <ListItemButton
-              onClick={() => onClickHeader(index)}
+            <ListItem
+              disablePadding
               sx={{
                 position: "sticky",
                 top: 0,
                 backgroundColor: "common.white",
                 zIndex: 1,
                 ":hover": { backgroundColor: "hoveredWhite" },
+                height: "42px",
               }}
             >
-              <ListItemText
-                primary={
-                  selectedValues[filter.key].length > 0
-                    ? `${filter.label} (${selectedValues[filter.key].length})`
-                    : `${filter.label}`
-                }
-              />
-              {childOpens[index] ? <ExpandLess /> : <ExpandMore />}
-            </ListItemButton>
+              <ListItemButton dense onClick={() => onClickHeader(index)}>
+                <ListItemText
+                  primary={
+                    selectedValues[filter.key].length > 0
+                      ? `${filter.label} (${selectedValues[filter.key].length})`
+                      : `${filter.label}`
+                  }
+                />
+                {childOpens[index] ? <ExpandLess /> : <ExpandMore />}
+              </ListItemButton>
+            </ListItem>
             <Collapse
               in={childOpens[index]}
               sx={{
