@@ -105,8 +105,7 @@ export const RecursiveFilterSelectorPresentation = ({
                 <ListItemButton
                   onClick={() => onClickHeader(index)}
                   dense
-                  disableGutters
-                  sx={{ pr: 2 }}
+                  sx={{ pr: 2, pl: 0 }}
                 >
                   <ListItemText primary={filter.label} />
                   {disableCollapse ? null : childOpens[index] ? (

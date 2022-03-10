@@ -66,6 +66,7 @@ export const RecursiveFilterSelectorListPresentation = ({
               <ListItemButton dense onClick={() => onClickHeader(index)}>
                 <ListItemText
                   primary={
+                    selectedValues[filter.key] &&
                     selectedValues[filter.key].length > 0
                       ? `${filter.label} (${selectedValues[filter.key].length})`
                       : `${filter.label}`
