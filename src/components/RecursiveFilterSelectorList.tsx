@@ -63,6 +63,7 @@ export const RecursiveFilterSelectorListPresentation = ({
             >
               <ListItemText
                 primary={
+                  selectedValues[filter.key] &&
                   selectedValues[filter.key].length > 0
                     ? `${filter.label} (${selectedValues[filter.key].length})`
                     : `${filter.label}`
@@ -73,7 +74,7 @@ export const RecursiveFilterSelectorListPresentation = ({
             <Collapse
               in={childOpens[index]}
               sx={{
-                ml: 4,
+                ml: 2,
               }}
             >
               <Box textAlign="end" pt={1} pr={2}>
@@ -87,7 +88,7 @@ export const RecursiveFilterSelectorListPresentation = ({
               </Box>
               <RecursiveFilterSelector
                 filters={filter.children}
-                selectedValues={selectedValues[filter.key]}
+                selectedValues={selectedValues[filter.key] || []}
                 onChange={async (newSelectedValues) =>
                   await onChange({
                     ...selectedValues,

@@ -88,8 +88,8 @@ export const RecursiveFilterSelectorPresentation = ({
                 <ListItemButton
                   onClick={() => onClickHeader(index)}
                   dense
-                  disableGutters
                   sx={{
+                    pl: 0,
                     position: "sticky",
                     top: 0,
                     backgroundColor: "common.white",
