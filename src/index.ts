@@ -35,6 +35,8 @@ export { PerPageSelect } from "./components/PerPageSelect";
 export type { PerPageSelectProps } from "./components/PerPageSelect";
 export { RecursiveFilterSelector } from "./components/RecursiveFilterSelector";
 export type { RecursiveFilterSelectorProps } from "./components/RecursiveFilterSelector";
+export { RecursiveFilterSelectorList } from "./components/RecursiveFilterSelectorList";
+export type { RecursiveFilterSelectorListProps } from "./components/RecursiveFilterSelectorList";
 export { SearchForm } from "./components/SearchForm";
 export type { SearchFormProps } from "./components/SearchForm";
 export { Spacer } from "./components/Spacer";

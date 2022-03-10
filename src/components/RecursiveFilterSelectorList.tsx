@@ -77,7 +77,7 @@ export const RecursiveFilterSelectorListPresentation = ({
             <Collapse
               in={childOpens[index]}
               sx={{
-                ml: 4,
+                ml: 2,
               }}
             >
               <Box textAlign="end" pr={2}>
@@ -91,7 +91,7 @@ export const RecursiveFilterSelectorListPresentation = ({
               </Box>
               <RecursiveFilterSelector
                 filters={filter.children}
-                selectedValues={selectedValues[filter.key]}
+                selectedValues={selectedValues[filter.key] || []}
                 onChange={async (newSelectedValues) =>
                   await onChange({
                     ...selectedValues,
