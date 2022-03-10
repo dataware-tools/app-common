@@ -80,7 +80,7 @@ export const RecursiveFilterSelectorListPresentation = ({
                 ml: 4,
               }}
             >
-              <Box textAlign="end" pt={1} pr={2}>
+              <Box textAlign="end" pr={2}>
                 <Button
                   onClick={() => onClear(filter.key)}
                   variant="text"
