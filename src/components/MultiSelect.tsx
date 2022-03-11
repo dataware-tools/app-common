@@ -98,7 +98,10 @@ export const MultiSelectPresentation = <
 
   return isSelectFocused ? (
     <ClickAwayListener onClickAway={onClickAway}>
-      <Box sx={{ display: "flex", flexDirection: "row" }}>
+      <Box
+        sx={{ display: "flex", flexDirection: "row" }}
+        data-testid="MultiSelectBox"
+      >
         <Autocomplete
           {...delegated}
           value={value}
