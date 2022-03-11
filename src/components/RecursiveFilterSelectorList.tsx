@@ -63,7 +63,7 @@ export const RecursiveFilterSelectorListPresentation = ({
                 height: "42px",
               }}
             >
-              <ListItemButton dense onClick={() => onClickHeader(index)}>
+              <ListItemButton onClick={() => onClickHeader(index)}>
                 <ListItemText
                   primary={
                     selectedValues[filter.key] &&
@@ -79,6 +79,7 @@ export const RecursiveFilterSelectorListPresentation = ({
               in={childOpens[index]}
               sx={{
                 ml: "5%",
+                mb: 1,
               }}
             >
               <Box textAlign="end" pr={2}>

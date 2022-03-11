@@ -100,7 +100,6 @@ export const RecursiveFilterSelectorPresentation = ({
                 </ListItemIcon>
                 <ListItemButton
                   onClick={() => onClickHeader(index)}
-                  dense
                   sx={{ pr: 2, pl: 0 }}
                 >
                   <ListItemText primary={filter.label} />
@@ -136,7 +135,6 @@ export const RecursiveFilterSelectorPresentation = ({
             >
               <ListItemButton
                 onClick={() => onClickFilter(filter)}
-                dense
                 sx={{ padding: 0 }}
               >
                 <ListItemIcon>
