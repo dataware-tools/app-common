@@ -19,7 +19,7 @@ describe("MultiSelect", () => {
     // When clicking non-focused MultiSelect, it should show option list
     const unfocusedCombobox = screen.getByRole("combobox");
     fireEvent.click(unfocusedCombobox);
-    const combobox = screen.getByRole("combobox");
+    const combobox = screen.getByTestId("MultiSelectBox");
     const listbox = screen.getByRole("listbox");
     expect(combobox).toBeDefined();
     expect(listbox).toBeDefined();
