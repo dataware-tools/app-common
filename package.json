@@ -52,7 +52,7 @@
     "@csmith/release-it-calver-plugin": "^2021.12.10",
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
-    "@mui/icons-material": "^5.5.1",
+    "@mui/icons-material": "^5.6.0",
     "@mui/lab": "^5.0.0-alpha.75",
     "@mui/material": "^5.5.3",
     "@mui/styles": "^5.6.0",
