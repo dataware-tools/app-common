@@ -21,11 +21,18 @@ export const ToastHavingDetailInfo = ({
       }}
       sx={{
         backgroundColor: "inherit",
+        color: "inherit",
         padding: 0,
       }}
       elevation={0}
     >
-      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+      <AccordionSummary
+        sx={{
+          color: "inherit",
+          "& .MuiAccordionSummary-expandIconWrapper": { color: "inherit" },
+        }}
+        expandIcon={<ExpandMoreIcon sx={{ color: "inherit" }} />}
+      >
         {children}
       </AccordionSummary>
       <AccordionDetails
