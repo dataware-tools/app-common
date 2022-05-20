@@ -9,28 +9,34 @@ export default {
   title: "toast/ToastHavingDetailModal",
 };
 
+const DetailInfo = (): JSX.Element => {
+  return (
+    <ToastHavingDetailInfo
+      detailContent={
+        <ErrorMessage
+          variant="transparent"
+          reason="This is test"
+          instruction="toooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo long instruction"
+        />
+      }
+    >
+      test
+    </ToastHavingDetailInfo>
+  );
+};
+
 export const Default = (): JSX.Element => {
   return (
     <div>
-      <button
-        onClick={() =>
-          toast.error(
-            <ToastHavingDetailInfo
-              detailContent={
-                <ErrorMessage
-                  variant="transparent"
-                  reason="This is test"
-                  instruction="toooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo ooo long instruction"
-                />
-              }
-            >
-              test
-            </ToastHavingDetailInfo>
-          )
-        }
-      >
-        toaster
-      </button>
+      <button onClick={() => toast(DetailInfo)}>toaster</button>
+      <Toaster />
+    </div>
+  );
+};
+export const Error = (): JSX.Element => {
+  return (
+    <div>
+      <button onClick={() => toast.error(DetailInfo)}>toaster</button>
       <Toaster />
     </div>
   );
