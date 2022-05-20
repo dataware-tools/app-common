@@ -22,15 +22,20 @@ export const ToastHavingDetailInfo = ({
       sx={{
         backgroundColor: "inherit",
         padding: 0,
-        overflow: "auto",
-        maxHeight: "50vh",
       }}
       elevation={0}
     >
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
         {children}
       </AccordionSummary>
-      <AccordionDetails>{detailContent}</AccordionDetails>
+      <AccordionDetails
+        sx={{
+          overflow: "auto",
+          maxHeight: "200px",
+        }}
+      >
+        {detailContent}
+      </AccordionDetails>
     </Accordion>
   );
 };
