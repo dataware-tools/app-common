@@ -3,7 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { AlertModal, AlertModalProps } from "../components/AlertModal";
 import { ConfirmModal, ConfirmModalProps } from "../components/ConfirmModal";
-import theme from "../theme";
+import { theme } from "../theme";
 
 type ConfirmArgs = Omit<ConfirmModalProps, "onClose">;
 

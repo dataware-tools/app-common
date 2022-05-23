@@ -36,7 +36,7 @@ describe("FilterSelector", () => {
     const buttons = screen.getAllByRole("button");
     await waitFor(() => expect(buttons.length >= 2).toBeTruthy());
 
-    const filterValue = buttons[1];
+    const filterValue = buttons[2];
     expect(getByTestId(filterValue, uncheckedIconId)).toBeDefined();
 
     fireEvent.click(filterValue);

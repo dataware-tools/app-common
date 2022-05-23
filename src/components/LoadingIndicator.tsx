@@ -10,7 +10,6 @@ export const LoadingIndicator = (): JSX.Element => {
         display: "flex",
         height: "100%",
         justifyContent: "center",
-        overflow: "auto",
         width: "100%",
       }}
     >

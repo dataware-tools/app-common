@@ -4,6 +4,7 @@ import {
   FilterSelectorList,
   FilterSelectorListProps,
 } from "./FilterSelectorList";
+import { Spacer } from "./Spacer";
 
 export default {
   component: FilterSelectorList,
@@ -11,7 +12,12 @@ export default {
 };
 
 const Template: Story<FilterSelectorListProps> = (args) => (
-  <FilterSelectorList {...args} />
+  <>
+    <Spacer direction="vertical" size={5} />
+    <div style={{ width: "100%", height: "300px", overflowY: "auto" }}>
+      <FilterSelectorList {...args} />
+    </div>
+  </>
 );
 
 const defaultArgs: FilterSelectorListProps = {
@@ -19,17 +25,27 @@ const defaultArgs: FilterSelectorListProps = {
     {
       label: "First",
       key: "first",
+      groups: { test: Array.from({ length: 5 }, (_, i) => `${i}`) },
       filter: [
         { label: "Test", key: "test", number: 100 },
         { label: "Sample", key: "sample", number: 40 },
+        ...Array.from({ length: 10 }, (_, i) => ({
+          label: `${i}`,
+          key: `${i}`,
+        })),
       ],
     },
     {
       label: "Second",
       key: "second",
+      groups: { test: Array.from({ length: 5 }, (_, i) => `${i}`) },
       filter: [
         { label: "Foo", key: "foo", number: 10 },
         { label: "Bar", key: "bar", number: 20 },
+        ...Array.from({ length: 10 }, (_, i) => ({
+          label: `${i}`,
+          key: `${i}`,
+        })),
       ],
     },
   ],
