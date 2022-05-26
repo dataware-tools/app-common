@@ -5,6 +5,7 @@ export * from "./theme";
 
 export * from "./components/dialog";
 export * from "./components/page";
+export * from "./components/toast";
 export { AlertModal } from "./components/AlertModal";
 export type { AlertModalProps } from "./components/AlertModal";
 export { ConfirmModal } from "./components/ConfirmModal";
