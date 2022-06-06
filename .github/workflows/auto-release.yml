@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - fix/auto-release-ci
 
 jobs:
   publish:
