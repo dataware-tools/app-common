@@ -32,7 +32,7 @@
     "download:catalog": "./bin/download_catalog.sh",
     "storybook": "start-storybook -p 9009",
     "build-storybook": "build-storybook",
-    "release-it": "release-it --ci"
+    "release-it": "release-it --ci --dry-run -VV"
   },
   "peerDependencies": {
     "@auth0/auth0-react": ">=1.4.0 < 2",
@@ -123,7 +123,7 @@
     "dist"
   ],
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
+    "registry": "https://npm.pkg.github.com"
   },
   "browserslist": [
     "last 2 Android versions",
