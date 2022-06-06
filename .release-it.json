@@ -3,9 +3,6 @@
     "requireCleanWorkingDir": false,
     "requireBranch": "master"
   },
-  "github": {
-    "release": true
-  },
   "plugins": {
     "@csmith/release-it-calver-plugin": {
       "format": "YY.MM.minor"
