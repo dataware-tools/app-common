@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - master
-      - fix/auto-release-ci  # TODO: Remove later
+      - fix/auto-release-ci-forked-watanabe # FIXME
 
 jobs:
   publish:
@@ -30,14 +30,8 @@ jobs:
           git config --global user.email "hdl-service@hdwlab.co.jp"
           git config --global user.name "hdl-service"
       - run: npm install
-      # WARNING: This may lead commiting .npmrc with token in it (add .npmrc to .gitignore before uncommentint the following block)
-      # https://github.com/release-it/release-it/blob/14.14.3/docs/ci.md#npm
-      - run: |
-          npm config set //npm.pkg.github.com/:_authToken $NPM_TOKEN
-          npm config set @dataware-tools:registry=https://npm.pkg.github.com
         env:
-          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
       - run: npm run release-it
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
