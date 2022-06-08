@@ -15,7 +15,8 @@ describe("SearchForm", () => {
     expect(screen.getByRole("searchbox")).toBeDefined();
   });
 
-  test("should fire onChange and onSearch when controlled", () => {
+  test("should fire onChange and onSearch when controlled", async () => {
+    const user = userEvent.setup();
     const mockOnSearch = jest.fn();
     const mockOnChange = jest.fn();
 
@@ -26,13 +27,14 @@ describe("SearchForm", () => {
     screen.getByRole("searchbox").focus();
     // eslint-disable-next-line testing-library/no-node-access
     expect(document.activeElement).toHaveAttribute("value", "A");
-    userEvent.keyboard("A{Enter}");
+    await user.keyboard("A{Enter}");
     expect(mockOnChange).toHaveBeenCalledWith("AA");
 
     expect(mockOnSearch).toHaveBeenCalledWith("A");
   });
 
   test("should fire onChange and onSearch when controlled with enableSearchHistory", async () => {
+    const user = userEvent.setup();
     const promise = Promise.resolve();
     const mockOnSearch = jest.fn(() => promise);
     const mockOnChange = jest.fn();
@@ -50,7 +52,7 @@ describe("SearchForm", () => {
     screen.getByRole("searchbox").focus();
     // eslint-disable-next-line testing-library/no-node-access
     expect(document.activeElement).toHaveAttribute("value", "A");
-    userEvent.keyboard("A{Enter}");
+    await user.keyboard("A{Enter}");
     expect(mockOnChange).toHaveBeenCalledWith("AA");
 
     expect(mockOnSearch).toHaveBeenCalledWith("A");
@@ -59,7 +61,8 @@ describe("SearchForm", () => {
     await act(() => promise);
   });
 
-  test("should fire onSearch when uncontrolled", () => {
+  test("should fire onSearch when uncontrolled", async () => {
+    const user = userEvent.setup();
     const mockOnSearch = jest.fn();
 
     render(<SearchForm onSearch={mockOnSearch} defaultValue="A" />);
@@ -67,12 +70,13 @@ describe("SearchForm", () => {
     screen.getByRole("searchbox").focus();
     // eslint-disable-next-line testing-library/no-node-access
     expect(document.activeElement).toHaveAttribute("value", "A");
-    userEvent.keyboard("A{Enter}");
+    await user.keyboard("A{Enter}");
 
     expect(mockOnSearch).toHaveBeenCalledWith("AA");
   });
 
   test("should fire onSearch when uncontrolled with enableSearchHistory", async () => {
+    const user = userEvent.setup();
     const promise = Promise.resolve();
     const mockOnSearch = jest.fn(() => promise);
 
@@ -88,7 +92,7 @@ describe("SearchForm", () => {
     screen.getByRole("searchbox").focus();
     // eslint-disable-next-line testing-library/no-node-access
     expect(document.activeElement).toHaveAttribute("value", "A");
-    userEvent.keyboard("A{Enter}");
+    await user.keyboard("A{Enter}");
 
     expect(mockOnSearch).toHaveBeenCalledWith("AA");
 
