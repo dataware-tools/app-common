@@ -1,6 +1,8 @@
 {
   "git": {
-    "requireCleanWorkingDir": false,
+    "requireCleanWorkingDir": false
+  },
+  "npm":{
     "skipChecks": true
   },
   "plugins": {
