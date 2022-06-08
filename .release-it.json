@@ -1,6 +1,7 @@
 {
   "git": {
-    "requireCleanWorkingDir": false
+    "requireCleanWorkingDir": false,
+    "skipChecks": true
   },
   "plugins": {
     "@csmith/release-it-calver-plugin": {
