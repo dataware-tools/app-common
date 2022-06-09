@@ -26,6 +26,8 @@ jobs:
           git config --global user.email "hdl-service@hdwlab.co.jp"
           git config --global user.name "hdl-service"
       - run: npm install
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: npm run release-it
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
