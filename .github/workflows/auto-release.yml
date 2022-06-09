@@ -18,6 +18,10 @@ jobs:
         with:
           node-version: "16"
           registry-url: "https://npm.pkg.github.com"
+      - name: Setup ssh-agent
+        uses: webfactory/ssh-agent@v0.4.1
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
       - name: git config
         run: |
           git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
