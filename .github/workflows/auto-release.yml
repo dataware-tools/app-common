@@ -11,6 +11,10 @@ jobs:
     if: github.actor != 'dependabot[bot]'
     runs-on: ubuntu-18.04
     timeout-minutes: 300
+    permissions:
+      contents: read
+      packages: write
+      id-token: read
 
     steps:
       - uses: actions/checkout@v2
