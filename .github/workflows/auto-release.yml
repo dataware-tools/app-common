@@ -1,13 +1,15 @@
 name: Automatic release
 
 on:
-  push:
+  pull_request:
+    types:
+      - closed
     branches:
       - master
 
 jobs:
   publish:
-    if: "!(startsWith(github.ref_name,'renovate/'))"
+    if: github.event.pull_request.merged == true && !(startsWith(github.ref_name,'renovate/'))
     runs-on: ubuntu-18.04
     timeout-minutes: 300
 
