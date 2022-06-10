@@ -1,5 +1,6 @@
 import ClearIcon from "@mui/icons-material/Clear";
 import LoadingButton from "@mui/lab/LoadingButton";
+import { AutocompleteFreeSoloValueMapping } from "@mui/material";
 import Autocomplete, {
   AutocompleteCloseReason,
   AutocompleteProps,
@@ -11,7 +12,7 @@ import TextField from "@mui/material/TextField";
 import React, { SyntheticEvent, useEffect, useState } from "react";
 import { theme as themeInstance } from "../theme";
 
-type Option =
+export type Option =
   | {
       color?: string;
       name?: string;
@@ -25,7 +26,9 @@ export type MultiSelectPresentationProps<
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined
 > = {
-  colorMap: any;
+  getOptionColor: (
+    option: T | AutocompleteFreeSoloValueMapping<FreeSolo>
+  ) => T | AutocompleteFreeSoloValueMapping<FreeSolo>;
   saveButtonId: string;
   haveSaveButton: boolean;
   isSaving: boolean;
@@ -46,7 +49,9 @@ export type MultiSelectProps<
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined
 > = {
-  colorMap: any;
+  getOptionColor?: (
+    option: T | AutocompleteFreeSoloValueMapping<FreeSolo>
+  ) => T | AutocompleteFreeSoloValueMapping<FreeSolo>;
   onSave?: () => Promise<void> | void;
   onFocusOut?: () => Promise<void> | void;
   saveOnFocusOut?: boolean;
@@ -72,7 +77,7 @@ export const MultiSelectPresentation = <
   FreeSolo extends boolean | undefined
 >({
   value,
-  colorMap,
+  getOptionColor,
   getOptionLabel,
   saveButtonId,
   haveSaveButton,
@@ -104,20 +109,18 @@ export const MultiSelectPresentation = <
   };
   const isValueExist = value && value.length > 0;
 
-  const [updatedValue, setUpdatedValue] = useState<T[]>([]);
+  const [updatedValue, setUpdatedValue] = useState<
+    (T | AutocompleteFreeSoloValueMapping<FreeSolo>)[]
+  >([]);
 
   useEffect(() => {
     if (value) {
       const newValue = value.map((option) => {
-        console.log(option);
-        if (colorMap && Object.keys(colorMap).includes(option.name)) {
-          option.color = colorMap[option.name];
-        }
-        return option;
+        return getOptionColor(option);
       });
       setUpdatedValue(newValue);
     }
-  }, [value, colorMap]);
+  }, [value, getOptionColor]);
 
   return isSelectFocused ? (
     <ClickAwayListener onClickAway={onClickAway}>
@@ -212,7 +215,7 @@ export const MultiSelect = <
   FreeSolo extends boolean | undefined
 >({
   value,
-  colorMap,
+  getOptionColor = (options) => options,
   onSave,
   onFocusOut,
   saveOnFocusOut = true,
@@ -274,7 +277,7 @@ export const MultiSelect = <
     <MultiSelectPresentation
       {...delegated}
       value={value}
-      colorMap={colorMap}
+      getOptionColor={getOptionColor}
       onClickAway={onClickAway}
       onClickSaveButton={onClickSaveButton}
       onCloseSelect={onCloseSelect}
