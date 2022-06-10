@@ -8,18 +8,24 @@ import Box from "@mui/material/Box";
 import Chip from "@mui/material/Chip";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
 import TextField from "@mui/material/TextField";
-import React, { SyntheticEvent, useState } from "react";
+import React, { SyntheticEvent, useEffect, useState } from "react";
 import { theme as themeInstance } from "../theme";
 
 type Option =
-  | { color?: string; label?: string; [key: string]: any }
+  | {
+      color?: string;
+      name?: string;
+      [key: string]: any;
+    }
   | string
   | number;
+
 export type MultiSelectPresentationProps<
   T extends Option,
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined
 > = {
+  colorMap: any;
   saveButtonId: string;
   haveSaveButton: boolean;
   isSaving: boolean;
@@ -40,6 +46,7 @@ export type MultiSelectProps<
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined
 > = {
+  colorMap: any;
   onSave?: () => Promise<void> | void;
   onFocusOut?: () => Promise<void> | void;
   saveOnFocusOut?: boolean;
@@ -65,6 +72,7 @@ export const MultiSelectPresentation = <
   FreeSolo extends boolean | undefined
 >({
   value,
+  colorMap,
   getOptionLabel,
   saveButtonId,
   haveSaveButton,
@@ -96,6 +104,21 @@ export const MultiSelectPresentation = <
   };
   const isValueExist = value && value.length > 0;
 
+  const [updatedValue, setUpdatedValue] = useState<T[]>([]);
+
+  useEffect(() => {
+    if (value) {
+      const newValue = value.map((option) => {
+        console.log(option);
+        if (colorMap && Object.keys(colorMap).includes(option.name)) {
+          option.color = colorMap[option.name];
+        }
+        return option;
+      });
+      setUpdatedValue(newValue);
+    }
+  }, [value, colorMap]);
+
   return isSelectFocused ? (
     <ClickAwayListener onClickAway={onClickAway}>
       <Box
@@ -104,13 +127,13 @@ export const MultiSelectPresentation = <
       >
         <Autocomplete
           {...delegated}
-          value={value}
+          value={updatedValue}
           multiple
           open={isSelectOpen}
           onOpen={onOpenSelect}
           onClose={onCloseSelect}
-          renderTags={(value, getTagProps) =>
-            value.map((option, index) => (
+          renderTags={(updatedValue, getTagProps) =>
+            updatedValue?.map((option, index) => (
               <Chip
                 label={getOptionLabel ? getOptionLabel(option) : option}
                 {...getTagProps({ index })}
@@ -157,7 +180,7 @@ export const MultiSelectPresentation = <
       role="combobox"
     >
       {isValueExist ? (
-        value.map((option, index) => {
+        updatedValue?.map((option, index) => {
           return (
             <Box
               key={index}
@@ -189,6 +212,7 @@ export const MultiSelect = <
   FreeSolo extends boolean | undefined
 >({
   value,
+  colorMap,
   onSave,
   onFocusOut,
   saveOnFocusOut = true,
@@ -250,6 +274,7 @@ export const MultiSelect = <
     <MultiSelectPresentation
       {...delegated}
       value={value}
+      colorMap={colorMap}
       onClickAway={onClickAway}
       onClickSaveButton={onClickSaveButton}
       onCloseSelect={onCloseSelect}
