@@ -59,7 +59,7 @@
     "@mui/styles": "5.6.0",
     "@mui/x-data-grid": "5.5.1",
     "@types/node": "16.11.39",
-    "@types/react": "17.0.43",
+    "@types/react": "17.0.45",
     "@types/react-dom": "17.0.14",
     "esbuild": "0.14.34",
     "jest-transform-stub": "2.0.0",
