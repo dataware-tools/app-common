@@ -60,7 +60,7 @@
     "@mui/x-data-grid": "5.5.1",
     "@types/node": "16.11.39",
     "@types/react": "17.0.45",
-    "@types/react-dom": "17.0.14",
+    "@types/react-dom": "17.0.17",
     "esbuild": "0.14.34",
     "jest-transform-stub": "2.0.0",
     "oidc-react": "1.5.1",
