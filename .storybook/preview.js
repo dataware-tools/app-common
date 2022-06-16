@@ -3,7 +3,7 @@ import React from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import { StylesProvider } from "@mui/styles";
 import { theme } from "../src/theme";
-import baseConfig from "@dataware-tools/dev-deps-for-apps/configs/.storybook/preview";
+import baseConfig from "@dataware-tools/dev-tools-for-react/configs/.storybook/preview";
 
 export const parameters = {
   ...baseConfig.parameters,
