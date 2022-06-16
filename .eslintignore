@@ -5,3 +5,7 @@ src/openapi
 src/api/utils.tsx
 
 storybook-static
+
+*rc.js
+*.config.js
+bin/esbuild.js
