@@ -215,7 +215,8 @@ export const MultiSelect = <
   FreeSolo extends boolean | undefined
 >({
   value,
-  getOptionColor = (options) => options,
+  getOptionColor = (options: T | AutocompleteFreeSoloValueMapping<FreeSolo>) =>
+    options,
   onSave,
   onFocusOut,
   saveOnFocusOut = true,
