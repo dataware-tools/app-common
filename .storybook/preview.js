@@ -3,9 +3,10 @@ import React from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import { StylesProvider } from "@mui/styles";
 import { theme } from "../src/theme";
+import baseConfig from "@dataware-tools/dev-tools-for-react/configs/.storybook/preview";
 
 export const parameters = {
-  actions: { argTypesRegex: "^on[A-Z].*" },
+  ...baseConfig.parameters,
   layout: "fullscreen",
 };
 
