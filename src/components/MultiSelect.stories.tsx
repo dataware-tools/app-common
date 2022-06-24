@@ -17,7 +17,8 @@ const Template: ComponentStory<typeof MultiSelect> = (args) => {
       onChange={(_, newValue) => {
         setSelected([...newValue]);
       }}
-      getOptionLabel={(option) => option.name}
+      // @ts-expect-error option type
+      getOptionLabel={(option: Option) => option.name}
       getOptionColor={args.getOptionColor}
       freeSolo={false}
       fullWidth
@@ -26,8 +27,32 @@ const Template: ComponentStory<typeof MultiSelect> = (args) => {
   );
 };
 
-export const Controlled = Template.bind({});
-Controlled.args = {
+const defaultOptions = [
+  { name: "test1", id: 1, color: "#BACDFE" },
+  { name: "test2", id: 2, color: "#ABCDEF" },
+  { name: "test3", id: 3, color: "#FEDCBA" },
+];
+
+export const Controlled = (): JSX.Element => {
+  const [selected, setSelected] = useState([defaultOptions[0]]);
+  return (
+    <MultiSelect
+      options={defaultOptions}
+      value={selected}
+      onChange={(_, newValue) => {
+        setSelected([...newValue]);
+      }}
+      getOptionLabel={(option) => option.name}
+      getOptionColor={(option) => option}
+      freeSolo={false}
+      fullWidth
+      filterSelectedOptions
+    />
+  );
+};
+
+export const Default = Template.bind({});
+Default.args = {
   options: [
     { name: "test1", id: 1, color: "#BACDFE" },
     { name: "test2", id: 2, color: "#ABCDEF" },
@@ -43,6 +68,7 @@ ColorMap.args = {
     { name: "test2", id: 2 },
     { name: "test3", id: 3 },
   ],
+  // @ts-expect-error returning option type
   getOptionColor: <T extends Option, FreeSolo extends boolean>(
     option: T | AutocompleteFreeSoloValueMapping<FreeSolo>
   ) => {
@@ -82,6 +108,7 @@ HashBasedColor.args = {
     { name: "user", id: 2 },
     { name: "guest", id: 3 },
   ],
+  // @ts-expect-error returning option type
   getOptionColor: <T extends Option, FreeSolo extends boolean>(
     option: T | AutocompleteFreeSoloValueMapping<FreeSolo>
   ) => {
