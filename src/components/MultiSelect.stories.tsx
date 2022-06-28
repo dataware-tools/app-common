@@ -41,7 +41,6 @@ export const Default: ComponentStoryObj<typeof MultiSelect> = {
       { name: "test3", id: 3, color: "#FEDCBA" },
     ],
     getOptionLabel: (option) => {
-      console.log(typeof option);
       if (option === null) {
         return "";
       } else if (typeof option === "string") {
@@ -55,6 +54,10 @@ export const Default: ComponentStoryObj<typeof MultiSelect> = {
         return "";
       }
     },
+    getOptionColor: (option) => option,
+    freeSolo: false,
+    fullWidth: true,
+    filterSelectedOptions: true,
   },
 };
 
@@ -67,7 +70,6 @@ export const ColorMap: ComponentStoryObj<typeof MultiSelect> = {
       { name: "test3", id: 3, color: "#FEDCBA" },
     ],
     getOptionLabel: (option) => {
-      console.log(typeof option);
       if (option === null) {
         return "";
       } else if (typeof option === "string") {
@@ -123,7 +125,6 @@ export const HashBasedColor: ComponentStoryObj<typeof MultiSelect> = {
       { name: "test3", id: 3, color: "#FEDCBA" },
     ],
     getOptionLabel: (option) => {
-      console.log(typeof option);
       if (option === null) {
         return "";
       } else if (typeof option === "string") {
