@@ -1,4 +1,3 @@
-import { AutocompleteFreeSoloValueMapping } from "@mui/material";
 import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
 import React, { useState } from "react";
 import { MultiSelect, Option } from "./MultiSelect";
@@ -32,7 +31,32 @@ export const Controlled = (): JSX.Element => {
   );
 };
 
-export const ColorMap: ComponentStoryObj<typeof MultiSelect> = {
+type MultiSelectStory = ComponentStoryObj<
+  typeof MultiSelect<Option, boolean, boolean>
+>;
+
+export const Default: MultiSelectStory = {
+  args: {
+    value: [{ name: "test1" }],
+    options: [
+      { name: "test1", id: 1, color: "#BACDFE" },
+      { name: "test2", id: 2, color: "#ABCDEF" },
+      { name: "test3", id: 3, color: "#FEDCBA" },
+    ],
+    getOptionLabel: (option: Option) => {
+      if (typeof option !== "string" && typeof option !== "number") {
+        return String(option.name);
+      } else {
+        return "";
+      }
+    },
+    getOptionColor: (option) => {
+      return option;
+    },
+  },
+};
+
+export const ColorMap: MultiSelectStory = {
   args: {
     value: [{ name: "test1" }],
     options: [
@@ -41,23 +65,13 @@ export const ColorMap: ComponentStoryObj<typeof MultiSelect> = {
       { name: "test3", id: 3, color: "#FEDCBA" },
     ],
     getOptionLabel: (option) => {
-      if (option === null) {
-        return "";
-      } else if (typeof option === "string") {
-        return String(option);
-      } else if (typeof option === "number") {
-        return String(option);
-      } else if (typeof option === "object") {
-        // @ts-expect-error ignore check
+      if (typeof option !== "string" && typeof option !== "number") {
         return String(option.name);
       } else {
         return "";
       }
     },
-    // @ts-expect-error to be fixed
-    getOptionColor: <T extends Option, FreeSolo extends boolean>(
-      option: T | AutocompleteFreeSoloValueMapping<FreeSolo>
-    ) => {
+    getOptionColor: (option) => {
       const colorMap = {
         test1: "green",
         test2: "yellow",
@@ -72,6 +86,7 @@ export const ColorMap: ComponentStoryObj<typeof MultiSelect> = {
     },
   },
 };
+
 const stringToHash = (string: string | undefined) => {
   if (!string) return 0;
   let hash = 0;
@@ -87,7 +102,7 @@ const stringToHash = (string: string | undefined) => {
   return hash;
 };
 
-export const HashBasedColor: ComponentStoryObj<typeof MultiSelect> = {
+export const HashBasedColor: MultiSelectStory = {
   args: {
     value: [{ name: "test1" }],
     options: [
@@ -96,23 +111,13 @@ export const HashBasedColor: ComponentStoryObj<typeof MultiSelect> = {
       { name: "test3", id: 3, color: "#FEDCBA" },
     ],
     getOptionLabel: (option) => {
-      if (option === null) {
-        return "";
-      } else if (typeof option === "string") {
-        return String(option);
-      } else if (typeof option === "number") {
-        return String(option);
-      } else if (typeof option === "object") {
-        // @ts-expect-error ignore check
+      if (typeof option !== "string" && typeof option !== "number") {
         return String(option.name);
       } else {
         return "";
       }
     },
-    // @ts-expect-error returning option type
-    getOptionColor: <T extends Option, FreeSolo extends boolean>(
-      option: T | AutocompleteFreeSoloValueMapping<FreeSolo>
-    ) => {
+    getOptionColor: (option) => {
       if (typeof option !== "string" && typeof option !== "number") {
         const hue = stringToHash(option.name) % 360;
         option.color = `hsl(${hue}, 50%, 80%)`;
