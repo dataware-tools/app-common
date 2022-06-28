@@ -32,35 +32,6 @@ export const Controlled = (): JSX.Element => {
   );
 };
 
-export const Default: ComponentStoryObj<typeof MultiSelect> = {
-  args: {
-    value: [{ name: "test1" }],
-    options: [
-      { name: "test1", id: 1, color: "#BACDFE" },
-      { name: "test2", id: 2, color: "#ABCDEF" },
-      { name: "test3", id: 3, color: "#FEDCBA" },
-    ],
-    getOptionLabel: (option) => {
-      if (option === null) {
-        return "";
-      } else if (typeof option === "string") {
-        return String(option);
-      } else if (typeof option === "number") {
-        return String(option);
-      } else if (typeof option === "object") {
-        // @ts-expect-error to be fixed
-        return String(option.name);
-      } else {
-        return "";
-      }
-    },
-    getOptionColor: (option) => option,
-    freeSolo: false,
-    fullWidth: true,
-    filterSelectedOptions: true,
-  },
-};
-
 export const ColorMap: ComponentStoryObj<typeof MultiSelect> = {
   args: {
     value: [{ name: "test1" }],
