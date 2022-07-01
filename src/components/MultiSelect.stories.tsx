@@ -23,7 +23,7 @@ export const Controlled = (): JSX.Element => {
         setSelected([...newValue]);
       }}
       getOptionLabel={(option) => option.name}
-      getOptionColor={(option) => option}
+      getOptionColor={(option) => option.color}
       freeSolo={false}
       fullWidth
       filterSelectedOptions
@@ -37,12 +37,8 @@ type MultiSelectStory = ComponentStoryObj<
 
 export const Default: MultiSelectStory = {
   args: {
-    value: [{ name: "test1" }],
-    options: [
-      { name: "test1", id: 1, color: "#BACDFE" },
-      { name: "test2", id: 2, color: "#ABCDEF" },
-      { name: "test3", id: 3, color: "#FEDCBA" },
-    ],
+    value: [defaultOptions[0]],
+    options: defaultOptions,
     getOptionLabel: (option: Option) => {
       if (typeof option !== "string" && typeof option !== "number") {
         return String(option.name);
@@ -51,19 +47,19 @@ export const Default: MultiSelectStory = {
       }
     },
     getOptionColor: (option) => {
-      return option;
+      if (typeof option !== "string" && typeof option !== "number") {
+        return String(option.color);
+      } else {
+        return "";
+      }
     },
   },
 };
 
 export const ColorMap: MultiSelectStory = {
   args: {
-    value: [{ name: "test1" }],
-    options: [
-      { name: "test1", id: 1, color: "#BACDFE" },
-      { name: "test2", id: 2, color: "#ABCDEF" },
-      { name: "test3", id: 3, color: "#FEDCBA" },
-    ],
+    value: [defaultOptions[0]],
+    options: defaultOptions,
     getOptionLabel: (option) => {
       if (typeof option !== "string" && typeof option !== "number") {
         return String(option.name);
@@ -77,12 +73,15 @@ export const ColorMap: MultiSelectStory = {
         test2: "yellow",
         test3: "blue",
       };
+      console.log(option);
       if (typeof option !== "string" && typeof option !== "number") {
-        if (colorMap && Object.keys(colorMap).includes(option.name ?? "")) {
-          option.color = colorMap[option.name ?? ""];
+        if (typeof option.name === "string") {
+          if (Object.keys(colorMap).includes(option.name)) {
+            return colorMap[option.name ?? ""];
+          }
         }
       }
-      return option;
+      return "";
     },
   },
 };
@@ -120,9 +119,9 @@ export const HashBasedColor: MultiSelectStory = {
     getOptionColor: (option) => {
       if (typeof option !== "string" && typeof option !== "number") {
         const hue = stringToHash(option.name) % 360;
-        option.color = `hsl(${hue}, 50%, 80%)`;
+        return `hsl(${hue}, 50%, 80%)`;
       }
-      return option;
+      return "";
     },
   },
 };
