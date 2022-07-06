@@ -51,7 +51,7 @@
     "@csmith/release-it-calver-plugin": "2021.12.10",
     "@dataware-tools/dev-tools-for-react": "^0.0.0",
     "@dataware-tools/dev-tools-for-typescript": "^0.0.1",
-    "@dataware-tools/eslint-config": "^0.0.0-alpha1",
+    "@dataware-tools/eslint-config": "^0.1.0",
     "@emotion/react": "11.9.3",
     "@emotion/styled": "11.9.3",
     "@mui/icons-material": "5.6.2",
