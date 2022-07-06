@@ -9,7 +9,7 @@ describe("Spacer", () => {
     render(<Spacer direction="vertical" size={1} />);
     expect(
       // eslint-disable-next-line testing-library/prefer-presence-queries
-      screen.queryByRole("none") || screen.queryByRole("presentation")
+      screen.queryByRole("none")
     ).not.toBeNull();
   });
 });
