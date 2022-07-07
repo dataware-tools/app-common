@@ -2,5 +2,11 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "github>dataware-tools/renovate-config"
-  ]
+  ],
+  "packageRules": [ {
+      "matchDepTypes": [
+        "peerDependencies"
+      ],
+      "rangeStrategy": "bump"
+    }]
 }
