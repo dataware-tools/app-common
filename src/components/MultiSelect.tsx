@@ -12,12 +12,14 @@ import TextField from "@mui/material/TextField";
 import React, { SyntheticEvent, useEffect, useState } from "react";
 import { theme as themeInstance } from "../theme";
 
-export type Option = {
-  color?: string;
-  name?: string;
-  [key: string]: any;
-};
-
+export type Option =
+  | {
+      color?: string;
+      name?: string;
+      [key: string]: any;
+    }
+  | string
+  | number;
 export type MultiSelectPresentationProps<
   T extends Option,
   DisableClearable extends boolean | undefined,
