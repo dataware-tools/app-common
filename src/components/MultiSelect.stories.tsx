@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
 import React, { useState } from "react";
-import { MultiSelect } from "./MultiSelect";
+import { MultiSelect, Option } from "./MultiSelect";
 
 export default {
   component: MultiSelect,
@@ -40,7 +40,7 @@ export const Default: MultiSelectStory = {
     value: [defaultOptions[0]],
     options: defaultOptions,
     // @ts-expect-error caused by csf3.0
-    getOptionLabel: (option) => option.name,
+    getOptionLabel: (option: Option) => option.name,
     getOptionColor: (option) => {
       if (typeof option !== "string" && typeof option !== "number") {
         return String(option.color);
