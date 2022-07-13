@@ -14,7 +14,7 @@ export const authConfig = {
 };
 export const redirectUri = window.location.origin;
 
-export const onRedirectCallback = (appState: AppState): void => {
+export const onRedirectCallback = (appState?: AppState): void => {
   const nonQueryParamURL =
     appState && appState.returnTo ? appState.returnTo : window.location.origin;
   history.replaceState(null, "", nonQueryParamURL);
@@ -44,7 +44,7 @@ const AllTheProviders: React.FC = ({ children }) => {
     </StylesProvider>
   );
 };
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+
 const customRender = (
   ui: React.ReactElement,
   options?: Omit<RenderOptions, "queries">

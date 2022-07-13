@@ -85,7 +85,7 @@ export const TableRowPresentation = ({
               onClickCell({
                 index,
                 row,
-                cell: { field: field, content: cellContent },
+                cell: { field, content: cellContent },
               })
             }
           >
@@ -160,15 +160,12 @@ export const TableRow = ({
     }
   };
 
-  const onClickDeleteButton: TableRowPresentationProps["onClickDeleteButton"] = ({
-    index,
-    row,
-    cell,
-  }) => {
-    if (onDelete) {
-      onDelete({ index, row, cell });
-    }
-  };
+  const onClickDeleteButton: TableRowPresentationProps["onClickDeleteButton"] =
+    ({ index, row, cell }) => {
+      if (onDelete) {
+        onDelete({ index, row, cell });
+      }
+    };
 
   return (
     <TableRowPresentation
