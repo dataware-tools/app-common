@@ -9,7 +9,7 @@ import Box from "@mui/material/Box";
 import Chip from "@mui/material/Chip";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
 import TextField from "@mui/material/TextField";
-import React, { SyntheticEvent, useEffect, useState } from "react";
+import React, { SyntheticEvent, useState } from "react";
 import { theme as themeInstance } from "../theme";
 
 export type Option =
@@ -107,9 +107,6 @@ export const MultiSelectPresentation = <
     );
   };
   const isValueExist = value && value.length > 0;
-  useEffect(() => {
-    console.log(value);
-  }, [value]);
 
   return isSelectFocused ? (
     <ClickAwayListener onClickAway={onClickAway}>
