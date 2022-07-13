@@ -1,5 +1,6 @@
 import ClearIcon from "@mui/icons-material/Clear";
 import LoadingButton from "@mui/lab/LoadingButton";
+import { AutocompleteFreeSoloValueMapping } from "@mui/material";
 import Autocomplete, {
   AutocompleteCloseReason,
   AutocompleteProps,
@@ -11,8 +12,12 @@ import TextField from "@mui/material/TextField";
 import React, { SyntheticEvent, useState } from "react";
 import { theme as themeInstance } from "../theme";
 
-type Option =
-  | { color?: string; label?: string; [key: string]: any }
+export type Option =
+  | {
+      color?: string;
+      name?: string;
+      [key: string]: any;
+    }
   | string
   | number;
 export type MultiSelectPresentationProps<
@@ -20,6 +25,9 @@ export type MultiSelectPresentationProps<
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined
 > = {
+  getOptionColor?: (
+    option: T | AutocompleteFreeSoloValueMapping<FreeSolo>
+  ) => string;
   saveButtonId: string;
   haveSaveButton: boolean;
   isSaving: boolean;
@@ -40,6 +48,9 @@ export type MultiSelectProps<
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined
 > = {
+  getOptionColor?: (
+    option: T | AutocompleteFreeSoloValueMapping<FreeSolo>
+  ) => string;
   onSave?: () => Promise<void> | void;
   onFocusOut?: () => Promise<void> | void;
   saveOnFocusOut?: boolean;
@@ -65,6 +76,7 @@ export const MultiSelectPresentation = <
   FreeSolo extends boolean | undefined
 >({
   value,
+  getOptionColor,
   getOptionLabel,
   saveButtonId,
   haveSaveButton,
@@ -110,17 +122,13 @@ export const MultiSelectPresentation = <
           onOpen={onOpenSelect}
           onClose={onCloseSelect}
           renderTags={(value, getTagProps) =>
-            value.map((option, index) => (
+            value?.map((option, index) => (
               <Chip
                 label={getOptionLabel ? getOptionLabel(option) : option}
                 {...getTagProps({ index })}
                 style={{
                   ...selectedItemStyleBase,
-                  ...(typeof option !== "string" &&
-                  typeof option !== "number" &&
-                  option.color
-                    ? { backgroundColor: option.color }
-                    : {}),
+                  backgroundColor: getOptionColor ? getOptionColor(option) : "",
                 }}
                 deleteIcon={<ClearIcon />}
                 size="small"
@@ -157,15 +165,14 @@ export const MultiSelectPresentation = <
       role="combobox"
     >
       {isValueExist ? (
-        value.map((option, index) => {
+        value?.map((option, index) => {
           return (
             <Box
               key={index}
               sx={{
                 ...selectedItemStyleBase,
                 padding: "2px 6px",
-                // @ts-expect-error I dont know how to resolve this error...
-                ...(option.color ? { backgroundColor: option.color } : {}),
+                backgroundColor: getOptionColor ? getOptionColor(option) : "",
               }}
             >
               {getOptionLabel
@@ -189,6 +196,7 @@ export const MultiSelect = <
   FreeSolo extends boolean | undefined
 >({
   value,
+  getOptionColor,
   onSave,
   onFocusOut,
   saveOnFocusOut = true,
@@ -250,6 +258,7 @@ export const MultiSelect = <
     <MultiSelectPresentation
       {...delegated}
       value={value}
+      getOptionColor={getOptionColor}
       onClickAway={onClickAway}
       onClickSaveButton={onClickSaveButton}
       onCloseSelect={onCloseSelect}
