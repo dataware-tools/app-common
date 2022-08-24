@@ -4,3 +4,4 @@ export { Toaster } from "./Toaster";
 export type { ToasterProps } from "./Toaster";
 export { Toast } from "./Toast";
 export type { ToastProps } from "./Toast";
+export { enqueueErrorToastForFetchError } from "./utils";
