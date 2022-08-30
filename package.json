@@ -88,6 +88,6 @@
     "last 2 Samsung versions"
   ],
   "volta": {
-    "node": "16.15.1"
+    "node": "16.17.0"
   }
 }
