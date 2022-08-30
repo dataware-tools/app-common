@@ -49,7 +49,7 @@
   "devDependencies": {
     "@auth0/auth0-react": "1.10.2",
     "@csmith/release-it-calver-plugin": "2021.12.10",
-    "@dataware-tools/dev-tools-for-react": "0.0.2",
+    "@dataware-tools/dev-tools-for-react": "0.0.3",
     "@dataware-tools/dev-tools-for-typescript": "0.0.2",
     "@dataware-tools/eslint-config": "0.1.0",
     "@emotion/react": "11.9.3",
