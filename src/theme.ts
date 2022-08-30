@@ -1,4 +1,5 @@
 import { createTheme, responsiveFontSizes, Theme } from "@mui/material/styles";
+import type {} from "@mui/lab/themeAugmentation";
 import type {} from "@mui/x-data-grid/themeAugmentation";
 
 const HDLBaseColor = 200;
