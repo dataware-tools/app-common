@@ -142,7 +142,7 @@ const genThemeFromTemplate = ({
               fontWeight: "bolder",
               fontFamily: fixedNoticeableFonts,
             },
-            columnHeaderWrapper: {
+            columnHeaders: {
               borderBottom: `solid 2px hsl(${HDLBaseColor}, ${BasicSaturation}, 88%)`,
             },
           },
