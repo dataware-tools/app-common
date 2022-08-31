@@ -89,6 +89,7 @@ export const SearchFormPresentation = ({
               (document.activeElement as HTMLElement)?.blur();
             }
           }}
+          disableClearable
           filterSelectedOptions
           value={value}
           renderOption={(props, option) => (
