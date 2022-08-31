@@ -191,7 +191,7 @@ export const MultiSelectPresentation = <
 };
 
 export const MultiSelect = <
-  T,
+  T extends Option,
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined
 >({
