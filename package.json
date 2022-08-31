@@ -49,8 +49,8 @@
   "devDependencies": {
     "@auth0/auth0-react": "1.10.2",
     "@csmith/release-it-calver-plugin": "2021.12.10",
-    "@dataware-tools/dev-tools-for-react": "0.0.2",
-    "@dataware-tools/dev-tools-for-typescript": "0.0.2",
+    "@dataware-tools/dev-tools-for-react": "^0.1.0",
+    "@dataware-tools/dev-tools-for-typescript": "^0.1.0",
     "@dataware-tools/eslint-config": "0.1.0",
     "@emotion/react": "11.9.3",
     "@emotion/styled": "11.9.3",
@@ -83,7 +83,6 @@
     "last 2 Electron versions",
     "last 2 Firefox versions",
     "last 2 FirefoxAndroid versions",
-    "maintained Node versions",
     "last 2 Safari versions",
     "last 2 Samsung versions"
   ],
