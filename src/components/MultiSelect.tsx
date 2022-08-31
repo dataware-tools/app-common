@@ -176,10 +176,10 @@ export const MultiSelectPresentation = <
               }}
             >
               {getOptionLabel
-                ? // @ts-expect-error I don't know how to resolve this error
-                  getOptionLabel(option)
-                : // @ts-expect-error I don't know how to resolve this error
-                  option.label}
+                ? getOptionLabel(option)
+                : typeof option === "string" || typeof option === "number"
+                ? option
+                : option.name ?? option.label}
             </Box>
           );
         })
