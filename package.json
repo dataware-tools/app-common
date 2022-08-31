@@ -30,8 +30,7 @@
     "format": "prettier --write src/*",
     "download:catalog": "./bin/download_catalog.sh",
     "storybook": "start-storybook -p 9009",
-    "build-storybook": "build-storybook",
-    "release-it": "release-it --ci"
+    "build-storybook": "build-storybook"
   },
   "peerDependencies": {
     "@auth0/auth0-react": ">=1.4.0 < 2",
@@ -48,7 +47,6 @@
   },
   "devDependencies": {
     "@auth0/auth0-react": "1.10.2",
-    "@csmith/release-it-calver-plugin": "2021.12.10",
     "@dataware-tools/dev-tools-for-react": "0.0.3",
     "@dataware-tools/dev-tools-for-typescript": "0.0.3",
     "@dataware-tools/eslint-config": "0.1.0",
