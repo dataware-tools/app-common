@@ -48,7 +48,7 @@
   "devDependencies": {
     "@auth0/auth0-react": "1.10.2",
     "@dataware-tools/dev-tools-for-react": "0.0.3",
-    "@dataware-tools/dev-tools-for-typescript": "0.0.3",
+    "@dataware-tools/dev-tools-for-typescript": "0.1.0",
     "@dataware-tools/eslint-config": "0.1.0",
     "@emotion/react": "11.10.4",
     "@emotion/styled": "11.10.4",
