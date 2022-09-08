@@ -26,3 +26,6 @@ yarn-error.log*
 storybook-static
 
 .npmrc
+/test-results/
+/playwright-report/
+/playwright/.cache/
