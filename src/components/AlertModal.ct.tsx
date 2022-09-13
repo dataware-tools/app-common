@@ -1,6 +1,5 @@
 import { test, expect } from "@playwright/experimental-ct-react";
 import React from "react";
-import { sleep } from "../utils";
 import { ComponentTestProvider } from "../utils-for-component-test";
 import { AlertOnClick } from "./AlertModal.stories";
 
@@ -13,9 +12,7 @@ test("should work", async ({ mount, page }) => {
     </ComponentTestProvider>
   );
   await component.click();
-  await sleep(100);
-  await expect(await page.screenshot()).toMatchSnapshot();
+  await expect(page).toHaveScreenshot({ animations: "disabled" });
   await page.locator("text=yes").click();
-  await sleep(100);
-  await expect(await page.screenshot()).toMatchSnapshot();
+  await expect(page).toHaveScreenshot({ animations: "disabled" });
 });

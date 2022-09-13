@@ -1,6 +1,5 @@
 import { test, expect } from "@playwright/experimental-ct-react";
 import React from "react";
-import { sleep } from "../utils";
 import { ComponentTestProvider } from "../utils-for-component-test";
 import { PageWrapper } from "./page/PageWrapper";
 
@@ -14,8 +13,7 @@ test("should work", async ({ mount, page }) => {
       </PageWrapper>
     </ComponentTestProvider>
   );
-  await expect(await page.screenshot()).toMatchSnapshot();
+  await expect(page).toHaveScreenshot({});
   await component.locator("text=Login").click();
-  await sleep(1000);
-  await expect(await page.screenshot()).toMatchSnapshot();
+  await expect(page).toHaveScreenshot({ animations: "disabled" });
 });
