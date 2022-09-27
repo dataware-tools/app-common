@@ -28,7 +28,7 @@
     "test:build": "cross-env NODE_OPTIONS=\"--max-old-space-size=4096\" run-s build",
     "test:visual-regression": "build-storybook --quiet && loki --requireReference --reactUri file:./storybook-static",
     "test:cypress": "cypress run --component --browser chrome",
-    "test:new-visual-regression": "test -e ./.reg/actual && reg-cli ./.reg/actual ./.reg/expected ./.reg/diff --report ./.reg/index.html || http-server ./.reg/index.html",
+    "test:new-visual-regression": "test -e ./.reg/actual && reg-cli ./.reg/actual ./.reg/expected ./.reg/diff --report ./.reg/index.html || http-server ./.reg",
     "new-visual-regression:approve": "test -e ./.reg/actual && reg-cli ./.reg/actual ./.reg/expected ./.reg/diff --report ./.reg/index.html --update",
     "format": "prettier --write src/*",
     "download:catalog": "./bin/download_catalog.sh",
