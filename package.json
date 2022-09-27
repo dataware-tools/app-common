@@ -26,6 +26,7 @@
     "lint:tsc": "tsc --noEmit --project tsconfig.json",
     "test:unit": "jest",
     "test:component": "playwright test -c playwright-ct.config.ts",
+    "test:component:approve": "playwright test -c playwright-ct.config.ts --update-snapshots",
     "test:build": "cross-env NODE_OPTIONS=\"--max-old-space-size=4096\" run-s build",
     "test:visual-regression": "build-storybook --quiet && loki --requireReference --reactUri file:./storybook-static",
     "format": "prettier --write src/*",
