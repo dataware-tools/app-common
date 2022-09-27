@@ -8,5 +8,6 @@ describe("experiment", () => {
       </PageWrapper>
     );
     cy.screenshot("logout");
+    cy.contains("Login").click();
   });
 });

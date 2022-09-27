@@ -10,6 +10,7 @@ export default defineConfig({
     },
     screenshotsFolder: "./.reg/actual",
   },
+  chromeWebSecurity: false,
 });
 
 /* eslint-enable import/no-anonymous-default-export */
