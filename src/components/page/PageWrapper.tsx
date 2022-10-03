@@ -33,6 +33,28 @@ export const PageWrapper = ({
       />
     );
   };
+  if ((window as any).Cypress) {
+    console.log("I'm in cypress env!!");
+    return (
+      <div>
+        <Header />
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            // 100vh - Header size - Footer size
+            height: "calc(100vh - 64px - 55px)",
+            width: "100vw",
+            ...sx,
+          }}
+          {...delegated}
+        >
+          {children}
+        </Box>
+        <Footer repository={repository} />
+      </div>
+    );
+  }
 
   return isLoading ? (
     <FullWidthContainer>
