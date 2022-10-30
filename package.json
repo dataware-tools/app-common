@@ -46,7 +46,7 @@
     "react-toastify": "^9.0.8"
   },
   "devDependencies": {
-    "@auth0/auth0-react": "1.10.2",
+    "@auth0/auth0-react": "1.12.0",
     "@dataware-tools/dev-tools-for-react": "0.1.0",
     "@dataware-tools/dev-tools-for-typescript": "0.1.0",
     "@dataware-tools/eslint-config": "0.1.0",
